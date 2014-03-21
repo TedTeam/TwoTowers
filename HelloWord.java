@@ -3,5 +3,6 @@ public class HelloWord {
     System.out.println("HelloGitHub");
     System.out.println("Buuu");
     System.out.println("Huuu");
+    System.out.println("Ezt most raktam be..");
   }
 }
