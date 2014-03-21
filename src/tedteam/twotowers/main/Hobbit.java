@@ -1,10 +1,5 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:14:11
- */
 public class Hobbit extends Enemy {
 
 	public Hobbit(){
@@ -19,7 +14,7 @@ public class Hobbit extends Enemy {
 	 * 
 	 * @param d
 	 */
-	public acceptDamage(IDamage d){
+	public void acceptDamage(IDamage d){
 
 	}
 
@@ -28,7 +23,7 @@ public class Hobbit extends Enemy {
 	 * @param g
 	 * @param c
 	 */
-	public init(GameState g, Cell c){
+	public void init(GameState g, Cell c){
 
 	}
 

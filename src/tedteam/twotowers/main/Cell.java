@@ -1,10 +1,5 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:13:36
- */
 public class Cell {
 
 	private Enemy actualEnemies[];
@@ -17,15 +12,11 @@ public class Cell {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/**
 	 * 
 	 * @param e
 	 */
-	public addEnemy(Enemy e){
+	public void addEnemy(Enemy e){
 
 	}
 
@@ -37,7 +28,7 @@ public class Cell {
 	 * 
 	 * @param e
 	 */
-	public removeEnemy(Enemy e){
+	public void removeEnemy(Enemy e){
 
 	}
 
@@ -45,7 +36,7 @@ public class Cell {
 	 * 
 	 * @param c
 	 */
-	public setNeighbors(Cell[] c){
+	public void setNeighbors(Cell[] c){
 
 	}
 

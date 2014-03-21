@@ -1,21 +1,11 @@
+package tedteam.twotowers.main;
 
-
-/**
- * tower ability-je elérhetõ
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:14:09
- */
 public class Hit implements IDamage {
 
 	private Tower actualTower;
-	private IEnemyList enemyList;
+	private EnemyList enemyList;
 
 	public Hit(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 
@@ -23,7 +13,7 @@ public class Hit implements IDamage {
 	 * 
 	 * @param t
 	 */
-	public addActualTower(Tower t){
+	public void addActualTower(Tower t){
 
 	}
 
@@ -31,7 +21,7 @@ public class Hit implements IDamage {
 	 * 
 	 * @param e
 	 */
-	public affect(Hobbit e){
+	public void affect(Hobbit e){
 
 	}
 
@@ -39,7 +29,7 @@ public class Hit implements IDamage {
 	 * 
 	 * @param e
 	 */
-	public affect(Elf e){
+	public void affect(Elf e){
 
 	}
 
@@ -47,7 +37,7 @@ public class Hit implements IDamage {
 	 * 
 	 * @param d
 	 */
-	public affect(Dwarf d){
+	public void affect(Dwarf d){
 
 	}
 
@@ -55,7 +45,7 @@ public class Hit implements IDamage {
 	 * 
 	 * @param h
 	 */
-	public affect(Human h){
+	public void affect(Human h){
 
 	}
 

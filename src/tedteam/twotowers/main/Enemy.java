@@ -1,11 +1,6 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:13:55
- */
-public class Enemy {
+public abstract class Enemy {
 
 	private Cell cell;
 	private int currentLifePoint;
@@ -20,21 +15,17 @@ public class Enemy {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/**
 	 * 
 	 * @param d
 	 */
-	public abstract acceptDamage(IDamage d);
+	public abstract void acceptDamage(IDamage d);
 
 	/**
 	 * 
 	 * @param s
 	 */
-	public block(slowing s){
+	public void block(int slowing){
 
 	}
 
@@ -42,7 +33,7 @@ public class Enemy {
 	 * 
 	 * @param dv
 	 */
-	public damage(damageValue dv){
+	public void damage(int damageValue){
 
 	}
 
@@ -51,9 +42,9 @@ public class Enemy {
 	 * @param g
 	 * @param c
 	 */
-	public abstract init(GameState g, Cell c);
+	public abstract void init(GameState g, Cell c);
 
-	public step(){
+	public void step(){
 
 	}
 

@@ -1,10 +1,5 @@
+package tedteam.twotowers.main; 
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:14:05
- */
 public class Generator {
 
 	private ElementList elementList;
@@ -20,10 +15,6 @@ public class Generator {
 
 	}
 
-	public void finalize() throws Throwable {
-
-	}
-
 	/**
 	 * 
 	 * @param m
@@ -33,7 +24,7 @@ public class Generator {
 		return false;
 	}
 
-	public buildField(){
+	public void buildField(){
 
 	}
 
@@ -53,7 +44,7 @@ public class Generator {
 		return false;
 	}
 
-	public generateEnemies(){
+	public void generateEnemies(){
 
 	}
 

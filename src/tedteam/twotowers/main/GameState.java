@@ -1,10 +1,5 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:14:03
- */
 public class GameState {
 
 	private int countEnemy;
@@ -32,7 +27,7 @@ public class GameState {
 	 * 
 	 * @param e
 	 */
-	public deadEnemy(Enemy e){
+	public void deadEnemy(Enemy e){
 
 	}
 
@@ -48,7 +43,7 @@ public class GameState {
 	 * 
 	 * @param c
 	 */
-	public setFinalCell(Cell c){
+	public void setFinalCell(Cell c){
 
 	}
 

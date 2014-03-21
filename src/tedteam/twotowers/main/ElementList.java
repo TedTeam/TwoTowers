@@ -1,11 +1,5 @@
+package tedteam.twotowers.main;
 
-
-/**
- * call EnemyList notifyAll(IAction)
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:13:51
- */
 public class ElementList {
 
 	private Element elements[];
@@ -23,7 +17,7 @@ public class ElementList {
 	 * 
 	 * @param e
 	 */
-	public addElement(Element e){
+	public void addElement(Element e){
 
 	}
 
@@ -31,11 +25,11 @@ public class ElementList {
 	 * 
 	 * @param e
 	 */
-	public deleteElement(Element e){
+	public void deleteElement(Element e){
 
 	}
 
-	public notifyAllElement(){
+	public void notifyAllElement(){
 
 	}
 

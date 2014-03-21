@@ -1,17 +1,8 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:13:45
- */
-public class Element {
+public abstract class Element {
 
 	public Element(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 

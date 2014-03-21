@@ -1,10 +1,5 @@
+package tedteam.twotowers.main;
 
-
-/**
- * @author Zsolt
- * @version 1.0
- * @created 21-Mar-2014 22:14:40
- */
 public class RedStone extends MagicStone {
 
 	public RedStone(){
