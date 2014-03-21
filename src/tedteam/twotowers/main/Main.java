@@ -10,6 +10,8 @@ public class Main {
 
 		int i = 10;
 		System.out.println("Változtatás "+i);
+		
+		System.out.println("Változtatás másik accounttal? Megy??");
 	}
 
 }
