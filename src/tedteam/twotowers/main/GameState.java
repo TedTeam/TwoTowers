@@ -1,5 +1,7 @@
 package tedteam.twotowers.main;
 
+import tedteam.twotowers.logger.Logger;
+
 public class GameState {
 
 	private int countEnemy;
@@ -12,10 +14,6 @@ public class GameState {
 	public EnemyList m_EnemyList;
 
 	public GameState(){
-
-	}
-
-	public void finalize() throws Throwable {
 
 	}
 
@@ -44,7 +42,9 @@ public class GameState {
 	 * @param c
 	 */
 	public void setFinalCell(Cell c){
-
+		Logger.enter("gameState", "setFinalCell", "Cell c", "");
+		
+		Logger.exit("void");
 	}
 
 }

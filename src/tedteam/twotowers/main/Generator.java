@@ -1,11 +1,13 @@
 package tedteam.twotowers.main; 
 
+import tedteam.twotowers.logger.Logger;
+
 public class Generator {
 
 	private ElementList elementList;
 	private EnemyList enemylist;
-	private GameField gameField;
-	private GameState gameState;
+	private GameField gameField = new GameField();
+	private GameState gameState = new GameState();
 	public GameField m_GameField;
 	public GameState m_GameState;
 	public EnemyList m_EnemyList;
@@ -25,7 +27,13 @@ public class Generator {
 	}
 
 	public void buildField(){
-
+		Logger.enter("gen", "buildField", "", "");
+		
+		gameField.init();
+		Cell cell4 = gameField.getFinalCell();
+		gameState.setFinalCell(cell4);
+		
+		Logger.exit("void");
 	}
 
 	/**

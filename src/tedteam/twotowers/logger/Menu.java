@@ -1,9 +1,12 @@
-package tedteam.twotowers.main;
+package tedteam.twotowers.logger;
 
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import tedteam.twotowers.main.Generator;
+
 
 public class Menu {
 
@@ -15,6 +18,8 @@ public class Menu {
 		switch (choice) {
 
 		case 1:
+			Generator g = new Generator();
+			g.buildField();
 			break;
 		case 2:
 			break;

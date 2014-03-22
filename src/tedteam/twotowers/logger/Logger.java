@@ -1,4 +1,4 @@
-package tedteam.twotowers.main;
+package tedteam.twotowers.logger;
 
 public class Logger {
 	public static int count = 0;

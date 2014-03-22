@@ -1,7 +1,11 @@
 package tedteam.twotowers.main;
 
+import tedteam.twotowers.logger.Logger;
+
 public class Cell {
 
+	private static int logger_number = 0;
+	
 	private Enemy actualEnemies[];
 	private Element element;
 	private Cell[] neighbor;
@@ -37,7 +41,10 @@ public class Cell {
 	 * @param c
 	 */
 	public void setNeighbors(Cell[] c){
-
+		logger_number++;
+		Logger.enter("cell"+(logger_number%5), "setNeighbors", "", "");
+		
+		Logger.exit("void");
 	}
 
 }
