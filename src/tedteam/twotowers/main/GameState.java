@@ -13,10 +13,6 @@ public class GameState {
 	public ElementList m_ElementList;
 	public EnemyList m_EnemyList;
 
-	public GameState(){
-
-	}
-
 	public boolean checkGame(){
 		Logger.enter("gameState", "checkGame", "", "");
 		finalCell.getEnemy();

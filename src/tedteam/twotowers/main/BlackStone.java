@@ -4,14 +4,11 @@ import tedteam.twotowers.logger.Logger;
 
 public class BlackStone extends MagicStone {
 
-	public BlackStone(){
-
-	}
 	/**
 	 * 
 	 * @param b
 	 */
-	public boolean effect(Blocker blocker){
+	public boolean effect(Blocker blocker) {
 		Logger.enter("blackStone", "effect", "blocker", "");
 		
 		int i = 0;

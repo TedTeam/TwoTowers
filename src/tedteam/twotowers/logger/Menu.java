@@ -8,9 +8,12 @@ import java.io.InputStreamReader;
 import tedteam.twotowers.main.BlackStone;
 import tedteam.twotowers.main.Blocker;
 import tedteam.twotowers.main.Cell;
+import tedteam.twotowers.main.ElementList;
+import tedteam.twotowers.main.EnemyList;
 import tedteam.twotowers.main.GameState;
 import tedteam.twotowers.main.Generator;
 import tedteam.twotowers.main.GreenStone;
+import tedteam.twotowers.main.Hobbit;
 import tedteam.twotowers.main.Tower;
 
 
@@ -59,14 +62,28 @@ public class Menu {
 			g6.addStone(gs, c6);						
 			break;
 		case 7:
+			ElementList el7 = new ElementList();
+			el7.addElement(new Blocker());
+			el7.notifyAllElement();
+			
 			break;
 		case 8:
+			ElementList el8 = new ElementList();
+			el8.addElement(new Tower());
+			el8.notifyAllElement();
 			break;
 		case 9:
+			Generator g9 = new Generator();
+			g9.generateEnemies();
 			break;
 		case 10:
+			EnemyList enemyList = new EnemyList();
+			enemyList.stepAll();
 			break;
 		case 11:
+			Tower tower11 = new Tower();
+			Hobbit hobbit11 = new Hobbit();
+			hobbit11.acceptDamage(tower11);
 			break;
 			
 		}

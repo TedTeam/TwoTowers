@@ -8,7 +8,6 @@ public class Blocker extends Element {
 	private int countRemain = 0;
 	private int slowing = 0;
 	
-
 	/**
 	 * 
 	 * @param m
@@ -40,6 +39,13 @@ public class Blocker extends Element {
 		Logger.enter("blocker", "setSlowing", "i:int", "");
 		
 		Logger.exit("true");
+	}
+	
+	public void action() {
+		Logger.enter("blocker", "action", "", "");
+		
+		cell.getEnemy();
+		Logger.exit("void");	
 	}
 	
 	/**

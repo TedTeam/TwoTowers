@@ -2,14 +2,6 @@ package tedteam.twotowers.main;
 
 public class Human extends Enemy {
 
-	public Human(){
-
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 	/**
 	 * 
 	 * @param d

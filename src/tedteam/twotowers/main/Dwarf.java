@@ -2,10 +2,6 @@ package tedteam.twotowers.main;
 
 public class Dwarf extends Enemy {
 
-	public Dwarf(){
-
-	}
-
 	/**
 	 * 
 	 * @param d

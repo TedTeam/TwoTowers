@@ -2,10 +2,8 @@ package tedteam.twotowers.main;
 
 public abstract class Element {
 
-	public Element(){
-
-	}
-
+	protected Cell cell = new Cell();
+	
 	/**
 	 * 
 	 * @param m
@@ -17,4 +15,6 @@ public abstract class Element {
 	 * @return
 	 */
 	public abstract String loggerGetName();
+	
+	public abstract void action();
 }

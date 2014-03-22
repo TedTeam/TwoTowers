@@ -5,13 +5,9 @@ import tedteam.twotowers.logger.Logger;
 public class Generator {
 
 	private ElementList elementList = new ElementList();
-	private EnemyList enemylist = new EnemyList();
+	private EnemyList enemyList = new EnemyList();
 	private GameField gameField = new GameField();
 	private GameState gameState = new GameState();
-
-	public Generator(){
-
-	}
 
 	/**
 	 * 
@@ -66,7 +62,13 @@ public class Generator {
 	}
 
 	public void generateEnemies(){
-
+		Logger.enter("gen", "generateEnemies", "", "");
+		Cell cell = gameField.getStartCell();
+		Hobbit hobbit = new Hobbit();
+		hobbit.init(gameState, cell);
+		enemyList.addEnemy(hobbit);
+		
+		Logger.exit("void");
 	}
 	
 	public void addStone(BlackStone blackStone, Cell cell) {

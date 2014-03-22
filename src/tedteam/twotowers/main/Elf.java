@@ -1,10 +1,8 @@
 package tedteam.twotowers.main;
 
+import tedteam.twotowers.logger.Logger;
+
 public class Elf extends Enemy {
-
-	public Elf(){
-
-	}
 
 	/**
 	 * 
@@ -21,6 +19,12 @@ public class Elf extends Enemy {
 	 */
 	public void init(GameState g, Cell c) {
 
+	}
+	
+	public void block(int slowing) {
+		Logger.enter("elf", "block", "slowing: int", "");
+		
+		Logger.exit("void");
 	}
 
 }

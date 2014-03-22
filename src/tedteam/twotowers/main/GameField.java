@@ -6,19 +6,20 @@ public class GameField {
 
 	private Cell cells[] = new Cell[4];
 
-	public GameField(){
-
-	}
-
 	public Cell getFinalCell(){
-		Logger.enter("gfield", "getFinalCell", "", "");
+		Logger.enter("gameField", "getFinalCell", "", "");
 		
 		Logger.exit("cell4");
 		return cells[3];
 	}
 
 	public Cell getStartCell(){
-		return null;
+		Logger.enter("gameField", "getStartCell", "", "");
+		
+		cells[1] = new Cell();
+		
+		Logger.exit("cell");
+		return cells[1];
 	}
 
 	public void init(){ 

@@ -4,16 +4,7 @@ import tedteam.twotowers.logger.Logger;
 
 public class ElementList {
 
-	private Element elements[];
-	public Element m_Element;
-
-	public ElementList() {
-
-	}
-
-	public void finalize() throws Throwable {
-
-	}
+	private Element elements[] = new Element[10];
 
 	/**
 	 * 
@@ -24,7 +15,9 @@ public class ElementList {
 			Logger.enter("cell", "setElement", "tower", "");
 		if (element.loggerGetName().equals("Blocker"))
 			Logger.enter("cell", "setElement", "blocker", "");
-
+		
+		elements[0] = element;
+		
 		Logger.exit("void");
 	}
 
@@ -33,11 +26,12 @@ public class ElementList {
 	 * @param e
 	 */
 	public void deleteElement(Element e) {
-
 	}
 
 	public void notifyAllElement() {
-
+		Logger.enter("elementList", "notifyAllElement", "", "");
+		
+		elements[0].action();
 	}
 
 }

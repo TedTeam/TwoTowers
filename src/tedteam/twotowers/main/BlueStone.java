@@ -2,10 +2,6 @@ package tedteam.twotowers.main;
 
 public class BlueStone extends MagicStone {
 
-	public BlueStone(){
-
-	}
-
 	/**
 	 * 
 	 * @param b

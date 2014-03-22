@@ -4,27 +4,33 @@ import tedteam.twotowers.logger.Logger;
 
 public class Cell {
 
-	private static int logger_number = 0;
+	private static int logger_number_setNeigh = 0;
+	private static int logger_number_hasRoad = 0;
 
 	private Enemy actualEnemies[];
 	private Element element = null;
-	private Cell[] neighbor;
-	private boolean road;
-
-	public Cell() {
-
-	}
+	private Cell[] neighbor = new Cell[4];
+	private boolean road = false;
 
 	/**
 	 * 
 	 * @param e
 	 */
-	public void addEnemy(Enemy e) {
-
+	public void addEnemy(Enemy enemy) {
+		Logger.enter("cell", "addEnemy", "enemy", "");
+		
+		Logger.exit("void");
 	}
 
 	public Cell[] getNeighbors() {
-		return null;
+		Logger.enter("cell", "getNeighbors", "", "");
+
+		neighbor[0] = new Cell();
+		neighbor[1] = new Cell();
+		neighbor[2] = new Cell();
+		neighbor[3] = new Cell();
+		Logger.exit("Cell[c1,c2,c3,c4]");
+		return neighbor;
 	}
 
 	/**
@@ -40,14 +46,15 @@ public class Cell {
 	 * @param c
 	 */
 	public void setNeighbors(Cell[] c) {
-		logger_number++;
-		Logger.enter("cell" + (logger_number % 5), "setNeighbors", "", "");
+		logger_number_setNeigh++;
+		Logger.enter("cell" + (logger_number_setNeigh % 5), "setNeighbors", "",
+				"");
 
 		Logger.exit("void");
 	}
 
 	public Enemy[] getEnemy() {
-		Logger.enter("finalcell", "getEnemy", "", "");
+		Logger.enter("cell", "getEnemy", "", "");
 
 		Logger.exit("e:Enemy[]");
 		return actualEnemies;
@@ -73,4 +80,14 @@ public class Cell {
 		Logger.exit("void");
 	}
 
+	public boolean hasRoad() {
+		logger_number_hasRoad++;
+		Logger.enter("cell" + (logger_number_hasRoad % 5), "hasRoad", "", "");
+		if ((logger_number_hasRoad % 4) == 0) {
+			Logger.exit("true");
+			return true;
+		} else
+			Logger.exit("false");
+		return false;
+	}
 }

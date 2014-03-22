@@ -2,18 +2,12 @@ package tedteam.twotowers.main;
 
 public abstract class Enemy {
 
-	private Cell cell;
+	protected Cell cell = new Cell();
 	private int currentLifePoint;
 	private Cell formerCell;
 	private GameState gameState;
 	private int maxLifePoint;
 	private int speed;
-	public GameState m_GameState;
-	public Cell m_Cell;
-
-	public Enemy(){
-
-	}
 
 	/**
 	 * 
