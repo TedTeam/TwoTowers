@@ -15,6 +15,7 @@ public class Main {
 		
 		System.out.println("Módosítás.");
 		System.out.println("Sikerült?! Sz.");
+		System.out.println("Módosítás. T.");
 	}
 
 }
