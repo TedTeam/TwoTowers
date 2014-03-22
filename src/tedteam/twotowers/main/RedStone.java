@@ -2,14 +2,6 @@ package tedteam.twotowers.main;
 
 public class RedStone extends MagicStone {
 
-	public RedStone(){
-
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
-
 	/**
 	 * 
 	 * @param b

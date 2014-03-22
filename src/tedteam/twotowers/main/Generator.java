@@ -4,14 +4,10 @@ import tedteam.twotowers.logger.Logger;
 
 public class Generator {
 
-	private ElementList elementList;
-	private EnemyList enemylist;
+	private ElementList elementList = new ElementList();
+	private EnemyList enemylist = new EnemyList();
 	private GameField gameField = new GameField();
 	private GameState gameState = new GameState();
-	public GameField m_GameField;
-	public GameState m_GameState;
-	public EnemyList m_EnemyList;
-	public ElementList m_ElementList;
 
 	public Generator(){
 
@@ -40,20 +36,55 @@ public class Generator {
 	 * 
 	 * @param c
 	 */
-	public boolean createBlocker(Cell c){
-		return false;
+	public boolean createBlocker(Cell cell){
+		Logger.enter("gen", "createBlocker", "cell", "");
+		
+		cell.getElement();
+		Blocker blocker = new Blocker();
+		blocker.setCell(cell);
+		blocker.setGameState(gameState);
+		elementList.addElement(blocker);
+		
+		Logger.exit("true");
+		return true;
 	}
 
 	/**
 	 * 
 	 * @param c
 	 */
-	public boolean createTower(Cell c){
-		return false;
+	public boolean createTower(Cell cell){
+		Logger.enter("gen", "createTower", "cell", "");
+		
+		cell.getElement();		
+		Tower tower = new Tower();
+		tower.setCell(cell);
+		elementList.addElement(tower);
+		
+		Logger.exit("true");
+		return true;
 	}
 
 	public void generateEnemies(){
 
+	}
+	
+	public void addStone(BlackStone blackStone, Cell cell) {
+		Logger.enter("gen", "addStone", "blackStone", "cell");
+		
+		Blocker blocker = (Blocker)cell.getElement();
+		blocker.enhance(blackStone);
+		
+		Logger.exit("void");
+	}
+	
+	public void addStone(GreenStone greenStone, Cell cell) {
+		Logger.enter("gen", "addStone", "greenStone", "cell");
+		
+		Tower tower = (Tower)cell.getElement();
+		tower.enhance(greenStone);
+		
+		Logger.exit("void");
 	}
 
 }

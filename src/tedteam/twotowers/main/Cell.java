@@ -5,14 +5,13 @@ import tedteam.twotowers.logger.Logger;
 public class Cell {
 
 	private static int logger_number = 0;
-	
+
 	private Enemy actualEnemies[];
-	private Element element;
+	private Element element = null;
 	private Cell[] neighbor;
 	private boolean road;
-	public Element m_Element;
 
-	public Cell(){
+	public Cell() {
 
 	}
 
@@ -20,11 +19,11 @@ public class Cell {
 	 * 
 	 * @param e
 	 */
-	public void addEnemy(Enemy e){
+	public void addEnemy(Enemy e) {
 
 	}
 
-	public Cell[] getNeighbors(){
+	public Cell[] getNeighbors() {
 		return null;
 	}
 
@@ -32,7 +31,7 @@ public class Cell {
 	 * 
 	 * @param e
 	 */
-	public void removeEnemy(Enemy e){
+	public void removeEnemy(Enemy e) {
 
 	}
 
@@ -40,10 +39,37 @@ public class Cell {
 	 * 
 	 * @param c
 	 */
-	public void setNeighbors(Cell[] c){
+	public void setNeighbors(Cell[] c) {
 		logger_number++;
-		Logger.enter("cell"+(logger_number%5), "setNeighbors", "", "");
-		
+		Logger.enter("cell" + (logger_number % 5), "setNeighbors", "", "");
+
+		Logger.exit("void");
+	}
+
+	public Enemy[] getEnemy() {
+		Logger.enter("finalcell", "getEnemy", "", "");
+
+		Logger.exit("e:Enemy[]");
+		return actualEnemies;
+	}
+
+	public Element getElement() {
+		Logger.enter("cell", "getElement", "", "");
+
+		if (element == null)
+			Logger.exit("element");
+		else
+			Logger.exit(element.loggerGetName().toLowerCase());
+		return element;
+	}
+
+	public void setElement(Element element) {
+		if (element.loggerGetName().equals("Tower"))
+			Logger.enter("cell", "setElement", "tower", "");
+		if (element.loggerGetName().equals("Blocker"))
+			Logger.enter("cell", "setElement", "blocker", "");
+		this.element = element;
+
 		Logger.exit("void");
 	}
 

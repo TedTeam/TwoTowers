@@ -12,4 +12,9 @@ public abstract class Element {
 	 */
 	public abstract boolean enhance(MagicStone m);
 
+	/**
+	 * Loggoláshoz, skeleton után törlendő!
+	 * @return
+	 */
+	public abstract String loggerGetName();
 }

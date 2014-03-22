@@ -1,14 +1,8 @@
 package tedteam.twotowers.main;
 
+import tedteam.twotowers.logger.Logger;
+
 public class GreenStone extends MagicStone {
-
-	public GreenStone(){
-
-	}
-
-	public void finalize() throws Throwable {
-		super.finalize();
-	}
 
 	/**
 	 * 
@@ -22,8 +16,15 @@ public class GreenStone extends MagicStone {
 	 * 
 	 * @param t
 	 */
-	public boolean effect(Tower t){
-		return false;
+	public boolean effect(Tower tower){
+		Logger.enter("greenStone", "effect", "tower", "");
+		
+		int i = 0;
+		
+		tower.setSpeed(i);
+		
+		Logger.exit("true");
+		return true;
 	}
 
 }
