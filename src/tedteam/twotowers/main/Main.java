@@ -14,6 +14,7 @@ public class Main {
 		System.out.println("Változtatás másik accounttal? Megy??");
 		
 		System.out.println("Módosítás.");
+		System.out.println("Sikerült?! Sz.");
 	}
 
 }
