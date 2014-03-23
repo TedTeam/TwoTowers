@@ -68,9 +68,9 @@ public class Menu {
 			
 			break;
 		case 8:
-			ElementList el8 = new ElementList();
-			el8.addElement(new Tower());
-			el8.notifyAllElement();
+			ElementList elementList = new ElementList();
+			elementList.addElement(new Tower());
+			elementList.notifyAllElement();
 			break;
 		case 9:
 			Generator g9 = new Generator();
