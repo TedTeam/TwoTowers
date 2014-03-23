@@ -5,13 +5,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+
+/**
+ * Ez az osztaly felelos a szekvenciak megfelelo formatumu kilistazasaert.
+ */
 public class Logger {
 	public static int count = 0;
 	public String param = "";
 	
-	//Itt taroljuk a kiirando sorokat
+
+	/**
+	 * Itt taruljuk a kiirando sorokat.
+	 */
 	private static ArrayList<String> lines = new ArrayList<String>();
 
+	/**
+	 * Metodusok belepesi pontja.
+	 * @param obj: az objektum neve
+	 * @param method: a hivott fuggveny
+	 * @param param1: elso parameter, ha nincs akkor ures string
+	 * @param param2: masodik parameter, ha nincs akkor ures string
+	 */
 	public static void enter(String obj, String method, String param1,
 			String param2) {
 		count++;
@@ -30,7 +44,11 @@ public class Logger {
 		lines.add(actualLine.toString());
 
 	}
-
+	
+	/**
+	 * Metodusok kilepesi pontja.
+	 * @param retType: a metodus visszateresi erteke
+	 */
 	public static void exit(String retType) {
 		count--;
 		
@@ -47,6 +65,12 @@ public class Logger {
 
 	}
 
+	/**
+	 * Ezzel a metodussal ellenorizzuk a parametereket a listazashoz.
+	 * @param param1: elso parameter, ha nincs akkor ures string
+	 * @param param2: masodik parameter, ha nincs akkor ures string
+	 * @return parameter ertekeknek megfelelo string
+	 */
 	public static String checkParam(String param1, String param2) {
 		String param;
 		if (param1.equals("") & param2.equals("")) {

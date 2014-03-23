@@ -16,11 +16,18 @@ import tedteam.twotowers.main.GreenStone;
 import tedteam.twotowers.main.Hobbit;
 import tedteam.twotowers.main.Tower;
 
-
+/**
+ * Ez az osztaly listazza ki a valaszthato szekvenciakat. 
+ */
 public class Menu {
 
 	public int choice;
 
+	/**
+	 * Ez a metodus kezeli le a felhasznalo altal valasztott menupontot,
+	 * vagyis valasztastol fuggoen meghivja az adott szekvencia kezdo metodusat,
+	 * ill. letrehozza a szukseges objektumokat.
+	 */
 	public void handleChoice() {
 		Logger.count=0;
 		Logger.resetLines();
@@ -89,7 +96,11 @@ public class Menu {
 		}
 		Logger.printLines();
 	}
-
+	
+	/**
+	 * Ez a metodus irja ki a valaszthato menupontokat.
+	 * Hibakezeles is talalhato benne, ha esetleg a felhasznalo rossz szamot adna meg.
+	 */
 	public void printMenu() throws IOException {
 
 		System.out.println("-------- Menu --------");
