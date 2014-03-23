@@ -1,27 +1,37 @@
 package tedteam.twotowers.main;
 
 import tedteam.twotowers.logger.Logger;
-
+/**
+ * A jatekter mezoi.
+ * Eltarolja a rajta levo epitmenyeket, ellensegeket.
+ */
 public class Cell {
 
 	private static int logger_number_setNeigh = 0;
 	private static int logger_number_hasRoad = 0;
-
+	// A cellan levo ellensegek.
 	private Enemy actualEnemies[];
+	// A cellara rakott akadaly vagy torony.
 	private Element element = null;
+	// A szomszedos cellak referenciai.
 	private Cell[] neighbor = new Cell[4];
+	// Ez donti el, hogy a cellan talalhato-e ut.
 	private boolean road = false;
 
 	/**
-	 * 
-	 * @param e
+	 * Hozzaad egy ellenseget az actualEnemies lancolt listahoz.
+	 * @param enemy: ezt az ellenseget adja hozza.
 	 */
 	public void addEnemy(Enemy enemy) {
 		Logger.enter("cell", "addEnemy", "enemy", "");
 		
 		Logger.exit("void");
 	}
-
+	
+	/**
+	 * Lekeri cella szomszedait.
+	 * @return a cella szomszedos cellai.
+	 */
 	public Cell[] getNeighbors() {
 		Logger.enter("cell", "getNeighbors", "", "");
 
@@ -34,16 +44,17 @@ public class Cell {
 	}
 
 	/**
-	 * 
-	 * @param e
+	 * Kitorol egy ellenseget az actualEnemies lancolt listabol.
+	 * @param e: ezt az ellenseget torli ki.
 	 */
 	public void removeEnemy(Enemy e) {
-
+		Logger.enter("formerCell", "removeEnemy","","");
+		Logger.exit("void");
 	}
 
 	/**
-	 * 
-	 * @param c
+	 * Beallitja a cella szomszed cellait.
+	 * @param c: a kapott tomb tartalmazza a szomszedokat.
 	 */
 	public void setNeighbors(Cell[] c) {
 		logger_number_setNeigh++;
@@ -52,14 +63,22 @@ public class Cell {
 
 		Logger.exit("void");
 	}
-
+	
+	/**
+	 * Lekeri a cellan talalhato osszes ellenseget.
+	 * @return a cellan talalhato ellensegeket tartalmazo tomb.
+	 */
 	public Enemy[] getEnemy() {
 		Logger.enter("cell", "getEnemy", "", "");
-
+	
 		Logger.exit("e:Enemy[]");
 		return actualEnemies;
 	}
-
+	
+	/**
+	 * Lekeri a cellan talalhato epitmenyt.
+	 * @return a cellan talahato epitmeny.
+	 */
 	public Element getElement() {
 		Logger.enter("cell", "getElement", "", "");
 
@@ -70,6 +89,10 @@ public class Cell {
 		return element;
 	}
 
+	/**
+	 * Beallitja a cellara egy tornyot vagy akadalyt.
+	 * @param element: ezt allitja be.
+	 */
 	public void setElement(Element element) {
 		if (element.loggerGetName().equals("Tower"))
 			Logger.enter("cell", "setElement", "tower", "");
@@ -80,6 +103,10 @@ public class Cell {
 		Logger.exit("void");
 	}
 
+	/**
+	 * Megvizsgalja, hogy a cellan talalhato-e ut.
+	 * @return a vizsgalat eredmenye.
+	 */
 	public boolean hasRoad() {
 		logger_number_hasRoad++;
 		Logger.enter("cell" + (logger_number_hasRoad % 5), "hasRoad", "", "");
