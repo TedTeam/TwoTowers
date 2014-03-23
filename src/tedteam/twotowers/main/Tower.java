@@ -35,10 +35,10 @@ public class Tower extends Element implements IDamage {
 	 */
 	public boolean enhance(MagicStone greenStone) {
 		Logger.enter("tower", "enhance", "greenStone", "");
-		greenStone.effect(this);
+		boolean effect=greenStone.effect(this);
 		
 		Logger.exit("true");
-		return true;
+		return effect;
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class Tower extends Element implements IDamage {
 	public void setSpeed(int i) {
 		Logger.enter("tower", "setSpeed", "i:int", "");
 		
-		Logger.exit("true");		
+		Logger.exit("void");		
 	}
 	
 	/**
