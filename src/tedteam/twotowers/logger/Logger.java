@@ -9,7 +9,7 @@ public class Logger {
 	public static int count = 0;
 	public String param = "";
 	
-	//Itt tároljuk a kiíratandó sorokat
+	//Itt taroljuk a kiirando sorokat
 	private static ArrayList<String> lines = new ArrayList<String>();
 
 	public static void enter(String obj, String method, String param1,
@@ -60,10 +60,10 @@ public class Logger {
 	}
 	
 	/**
-	 * Paraméterként kapott kérdést kiírja, illetve visszatér 
-	 * a felhasználó által megadott válasszal.
-	 * @param question: a kérdés, mely a képernyőre kiíródik
-	 * @return felhasználó IGEN-nel válaszolt --> true, NEM-mel --> false
+	 *  Parameterkent kapott kerdest kiirja, illetve visszater 
+	 * a felhasznalo altal megadott valasszal.
+	 * @param question: a kerdes, mely a kepernyore kiirodik
+	 * @return felhasznalo IGEN-nel valaszolt --> true, NEM-mel --> false
 	 */
 	public static boolean question(String question) {
 		System.out.println(question+"\n I/N?");
@@ -84,14 +84,14 @@ public class Logger {
 	}
 	
 	/**
-	 * Az eltárolt sorok törlése
+	 * Az eltarolt sorok torlese
 	 */
 	public static void resetLines() {
 		lines.clear();
 	}
 	
 	/**
-	 * Kiírja az eltárolt sorokat.
+	 * Kiirja az eltarolt sorokat.
 	 */
 	public static void printLines() {
 		for(String s : lines) {
