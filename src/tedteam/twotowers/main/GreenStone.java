@@ -1,20 +1,26 @@
 package tedteam.twotowers.main;
 
 import tedteam.twotowers.logger.Logger;
-
+/**
+ * A zold varazskovet megvalosito osztaly.
+ * Ososztaly: MagicStone
+ */
 public class GreenStone extends MagicStone {
 
 	/**
-	 * 
-	 * @param b
+	 * Ez a metodus valtoztatja meg az akadaly lovesi sebesseget.
+	 * Mivel ilyen attributuma nincs az akadalynak, ezert ez a metodus nem csinal semmit.
+	 * @param b: az akadaly, melyre a valtoztatast alkalmazni akarjuk.
+	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet az akadalyra (false).
 	 */
 	public boolean effect(Blocker b){
 		return false;
 	}
 
 	/**
-	 * 
-	 * @param t
+	 * Ez a metodus valtoztatja meg a torony lovesi sebesseget.
+	 * @param t: a torony, melyre a valtoztatast alkalmazni akarjuk.
+	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet a toronyra.
 	 */
 	public boolean effect(Tower tower){
 		Logger.enter("greenStone", "effect", "tower", "");
