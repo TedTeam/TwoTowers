@@ -1,11 +1,17 @@
 package tedteam.twotowers.main;
 
 import tedteam.twotowers.logger.Logger;
-
+/**
+ * A jatekteret megvalosito osztaly.
+ */
 public class GameField {
-
+	// A palyat alkoto cellak.
 	private Cell cells[] = new Cell[4];
 
+	/**
+	 * Lekeri a palya utolso cellajat.
+	 * @return az utolso cella.
+	 */
 	public Cell getFinalCell(){
 		Logger.enter("gameField", "getFinalCell", "", "");
 		
@@ -13,6 +19,10 @@ public class GameField {
 		return cells[3];
 	}
 
+	/**
+	 * Lekeri a palya kezdo cellajat.
+	 * @return a kezdo cella.
+	 */
 	public Cell getStartCell(){
 		Logger.enter("gameField", "getStartCell", "", "");
 		
@@ -22,8 +32,12 @@ public class GameField {
 		return cells[1];
 	}
 
+	/**
+	 * Az inicializalo fuggveny. Feladata a cellak letrehozasa,
+	 * es azok szomszedossaganak beallitasa.
+	 */
 	public void init(){ 
-		Logger.enter("gfield", "init", "", "");
+		Logger.enter("gameField", "init", "", "");
 		
 		cells[0] = new Cell();
 		cells[1] = new Cell();
