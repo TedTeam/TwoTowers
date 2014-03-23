@@ -106,20 +106,20 @@ public class Menu {
 		System.out.println("-------- Menu --------");
 		System.out.println();
 
-		System.out.println("(  1 ) Pálya felépítése");
-		System.out.println("(  2 ) Játékállás ellenõrzése");
-		System.out.println("(  3 ) Akadály építése");
-		System.out.println("(  4 ) Torony építése");
-		System.out.println("(  5 ) Kõ akadályra helyezése");
-		System.out.println("(  6 ) Kõ toronyra helyezése");
-		System.out.println("(  7 ) Akadály hatása");
-		System.out.println("(  8 ) Torony lövés");
-		System.out.println("(  9 ) Ellenség generálás");
-		System.out.println("( 10 ) Léptetés");
-		System.out.println("( 11 ) Ellenség sebzés");
+		System.out.println("(  1 ) Palya felepitese");
+		System.out.println("(  2 ) Jatekallas ellenorzese");
+		System.out.println("(  3 ) Akadaly epitese");
+		System.out.println("(  4 ) Torony epitese");
+		System.out.println("(  5 ) Ko akadalyra helyezese");
+		System.out.println("(  6 ) Ko toronyra helyezese");
+		System.out.println("(  7 ) Akadaly hatasa");
+		System.out.println("(  8 ) Torony loves");
+		System.out.println("(  9 ) Ellenseg generalas");
+		System.out.println("( 10 ) Leptetes");
+		System.out.println("( 11 ) Ellenseg sebzes");
 		System.out.println();
 
-		System.out.println("Kérlek válassz menüpontot: ");
+		System.out.println("Kerlek valassz menupontot: ");
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String s1 = br.readLine();
