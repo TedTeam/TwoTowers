@@ -43,10 +43,11 @@ public class GameField {
 		cells[1] = new Cell();
 		cells[2] = new Cell();
 		cells[3] = new Cell();
-		cells[0].setNeighbors(cells);
+		//TODO
+		/**cells[0].setNeighbors(cells);
 		cells[1].setNeighbors(cells);
 		cells[2].setNeighbors(cells);
-		cells[3].setNeighbors(cells);
+		cells[3].setNeighbors(cells);*/
 		
 		Logger.exit("void");
 		

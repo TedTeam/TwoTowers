@@ -30,10 +30,8 @@ public class Elf extends Enemy {
 	 * mukodesenek lathatosaga miatt itt kellett megvalositani.
 	 * @param slowing: ilyen mertekben lassitja le az ellenseget.
 	 */
-	public void block(int slowing) {
-		Logger.enter("elf", "block", "slowing: int", "");
-		
-		Logger.exit("void");
+	public boolean block(int slowing) {
+		return false;
 	}
 
 }

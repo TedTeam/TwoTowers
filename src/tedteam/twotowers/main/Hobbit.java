@@ -37,8 +37,8 @@ public class Hobbit extends Enemy {
 	 * mukodesenek lathatosaga miatt itt kellett megvalositani.
 	 */
 	public void step() {
-		Logger.enter("hobbit", "step", "", "");
-		
+		//TODO
+		/**
 		Cell neighbors[] = cell.getNeighbors();
 		neighbors[0].hasRoad();
 		neighbors[1].hasRoad();
@@ -47,6 +47,7 @@ public class Hobbit extends Enemy {
 		neighbors[3].addEnemy(this);
 		formerCell.removeEnemy(this);
 		Logger.exit("void");
+		*/
 	}
 	
 	/**

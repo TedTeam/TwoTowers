@@ -13,11 +13,7 @@ public class ElementList {
 	 * @param element: a hozzaadando epitmeny.
 	 */
 	public void addElement(Element element) {
-		if (element.loggerGetName().equals("Tower"))
-			Logger.enter("elementList", "addElement", "tower", "");
-		if (element.loggerGetName().equals("Blocker"))
-			Logger.enter("elementList", "addElement", "blocker", "");
-		
+	
 		elements[0] = element;
 		
 		Logger.exit("void");
