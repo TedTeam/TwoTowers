@@ -1,5 +1,7 @@
 package tedteam.twotowers.main;
 
+import java.util.ArrayList;
+
 import tedteam.twotowers.logger.Logger;
 /**
  * Az akadalyt megvalosito osztaly, amely az akadaly
@@ -68,11 +70,10 @@ public class Blocker extends Element {
 	 */
 	public void action() {
 		Logger.enter("blocker", "action", "", "");
-		//int slowing=0;
-		Enemy[] el;
+		ArrayList<Enemy> el;
 		el=cell.getEnemy();
-		for(int i=0;i<el.length;i++) {
-			boolean bl=el[i].block(slowing);
+		for(int i=0;i<el.size();i++) {
+			boolean bl=el.get(i).block(slowing);
 			if (bl) {
 				this.countRemain--;
 				if(this.countRemain==0){ 

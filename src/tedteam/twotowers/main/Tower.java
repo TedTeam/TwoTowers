@@ -45,8 +45,9 @@ public class Tower extends Element implements IDamage {
 	 * A torony loveset vegrehajto metodus.
 	 */
 	public void action() {
-		Logger.enter("tower", "action", "", "");
-		Cell[] cells=cell.getNeighbors();
+		//TODO
+		/*Logger.enter("tower", "action", "", "");
+		//Cell[] cells=cell.getNeighbors();
 
 		cells[0].getEnemy();
 		cells[1].getEnemy();
@@ -54,7 +55,7 @@ public class Tower extends Element implements IDamage {
 		hobbit.acceptDamage(this);
 
 		
-		Logger.exit("void");	
+		Logger.exit("void");*/	
 	}
 	
 	/**
@@ -126,11 +127,28 @@ public class Tower extends Element implements IDamage {
 		// TODO Auto-generated method stub	
 	}
 	
-	/**
-	 * Loggolashoz, skeleton utan torlendo!
-	 * @return
-	 */
-	public String loggerGetName() {
-		return "Tower";
+	public int getStoneNumber() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean getEnhancedByBle() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void setEnhancedBlue() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void increaseStoneNumber() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void increaseRange(int rangeRate) {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -1,5 +1,6 @@
 package tedteam.twotowers.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import tedteam.twotowers.logger.Logger;
@@ -9,7 +10,7 @@ import tedteam.twotowers.logger.Logger;
  */
 public class Cell {
 	// A cellan levo ellensegek.
-	private Enemy actualEnemies[];
+	private ArrayList<Enemy> actualEnemies;
 	// A cellara rakott akadaly vagy torony.
 	private Element element = null;
 	// A szomszedos cellak referenciai.
@@ -22,34 +23,23 @@ public class Cell {
 	 * @param enemy: ezt az ellenseget adja hozza.
 	 */
 	public void addEnemy(Enemy enemy) {
-		Logger.enter("cell", "addEnemy", "enemy", "");
-		
-		Logger.exit("void");
+		this.actualEnemies.add(enemy);
 	}
 	
 	/**
 	 * Lekeri cella szomszedait.
 	 * @return a cella szomszedos cellai.
 	 */
-	/* részletes tervekben nincs benne, hogyan legyen??
-	 * public Cell[] getNeighbors() {
-		Logger.enter("cell", "getNeighbors", "", "");
-
-		neighbor[0] = new Cell();
-		neighbor[1] = new Cell();
-		neighbor[2] = new Cell();
-		neighbor[3] = new Cell();
-		Logger.exit("Cell[c1,c2,c3,c4]");
+	public HashMap<String,Cell> getNeighbors() {
 		return neighbor;
-	}*/
+	}
 
 	/**
 	 * Kitorol egy ellenseget az actualEnemies lancolt listabol.
 	 * @param e: ezt az ellenseget torli ki.
 	 */
 	public void removeEnemy(Enemy e) {
-		Logger.enter("formerCell", "removeEnemy","","");
-		Logger.exit("void");
+		this.actualEnemies.remove(e);
 	}
 
 	/**
@@ -60,15 +50,28 @@ public class Cell {
 		neighbor=neighbors;
 	}
 	
+	/* Lekeri a cellan talalhato osszes ellenseget.
+	 * @return a cellan talalhato ellensegeket tartalmazo tomb.
+	 */
+	public boolean hasEnemy() {
+		if(actualEnemies.size()==0) return false;
+		else return true;
+	}
+	
 	/**
 	 * Lekeri a cellan talalhato osszes ellenseget.
 	 * @return a cellan talalhato ellensegeket tartalmazo tomb.
 	 */
-	public Enemy[] getEnemy() {
-		Logger.enter("cell", "getEnemy", "", "");
-	
-		Logger.exit("e:Enemy[]");
+	public ArrayList<Enemy> getEnemy() {
 		return actualEnemies;
+	}
+	/**
+	 * Ha az element valtozo erteke null, akkor false ertekkel ter vissza. 
+	 * Egyéb esetben true-val.
+	 */
+	public boolean hasElement() {
+		if(element==null) return false; 
+		else return true;
 	}
 	
 	/**
@@ -77,6 +80,12 @@ public class Cell {
 	 */
 	public Element getElement() {
 		return element;
+	}
+	/**
+	 * Torli a cellan talalhato epitmenyt
+	 */
+	public void removeElement(Element element) {
+		this.element=null;
 	}
 
 	/**
@@ -96,9 +105,10 @@ public class Cell {
 	public boolean hasRoad() {
 		return road;
 	}
-	//Blocker action függvénye miatt kellett, de részletes tervben nincsen
-	public void removeElement(Blocker blocker) {
-		this.element=null;
-		
+	/**
+	 * Beallitja a road attributumot igazra.
+	 */
+	public void setRoad() {
+		road=true;
 	}
 }

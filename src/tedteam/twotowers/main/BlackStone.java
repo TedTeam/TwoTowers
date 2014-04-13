@@ -2,7 +2,7 @@ package tedteam.twotowers.main;
 
 import tedteam.twotowers.logger.Logger;
 /**
- * A fekete varazskovet megvalosito osztaly
+ * A fekete varazskovet megvalosito osztaly, (akadaly lassitas mertekenek novelese)
  * Ososztaly: MagicStone
  */
 public class BlackStone extends MagicStone {
