@@ -13,12 +13,6 @@ public abstract class Element {
 	 * @return visszajelzes, hogy sikeres volt-e a muvelet.
 	 */
 	public abstract boolean enhance(MagicStone m);
-
-	/**
-	 * Loggolashoz, skeleton utan torlendo!
-	 * @return
-	 */
-	public abstract String loggerGetName();
 	
 	/**
 	 * Az adott epitmeny akciojat vegrehajto metodus.

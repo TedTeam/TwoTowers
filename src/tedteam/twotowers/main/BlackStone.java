@@ -6,7 +6,7 @@ import tedteam.twotowers.logger.Logger;
  * Ososztaly: MagicStone
  */
 public class BlackStone extends MagicStone {
-
+	private int slowingRate=2; /**A lassitas mertekere vonatkozo szam. Alapertelmezett erteke 2.*/ 
 	/**
 	 * Ez a metodus valtoztatja meg az akadaly lassitasanak merteket.
 	 * @param blocker: az akadaly, melyre a valtoztatast alkalmazni akarjuk.
@@ -14,13 +14,11 @@ public class BlackStone extends MagicStone {
 	 */
 	public boolean effect(Blocker blocker) {
 		Logger.enter("blackStone", "effect", "blocker", "");
-		
-		int i = 0;
-		
-		blocker.setSlowing(i);
-		
-		Logger.exit("true");
-		return true;
+		if(blocker.getEnhanced()==false){	
+			blocker.setSlowing(slowingRate);
+			Logger.exit("true");
+			return true;
+		} else return false;
 	}
 
 	/**

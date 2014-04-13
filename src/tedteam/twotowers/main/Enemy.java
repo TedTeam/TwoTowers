@@ -34,7 +34,8 @@ public abstract class Enemy {
 	 * Vegrehajtja az ellenseg blokkolasat.
 	 * @param slowing: ilyen mertekben lassitja le az ellenseget.
 	 */
-	public void block(int slowing){
+	public boolean block(int slowing){
+		return false;
 
 	}
 

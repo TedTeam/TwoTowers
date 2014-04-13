@@ -11,9 +11,10 @@ public class Blocker extends Element {
 	// magat a listabol, ha eleg ellenseg haladt at rajta.
 	private GameState gameState= new GameState();
 	// A feltarthato ellensegek szama.
-	private int countRemain = 0;
+	private int countRemain = 10;
 	// Az akadaly lassitasanak merteke.
 	private int slowing = 0;
+	private boolean enhanced=false;/**Erteke true, ha az objektumhoz lett csatolva MagicStone. Alapertelmezett erteke: false.*/
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -25,6 +26,7 @@ public class Blocker extends Element {
 		Logger.enter("blocker", "enhance", "blackStone", "");
 		//blackStone.effect(this);
 		boolean effect=blackStone.effect(this);
+		if (effect) this.setEnhanced(effect);
 		Logger.exit("true");
 		return effect;
 	}
@@ -57,7 +59,7 @@ public class Blocker extends Element {
 	 */
 	public void setSlowing(int i) {
 		Logger.enter("blocker", "setSlowing", "i:int", "");
-		
+		slowing=slowing+i;
 		Logger.exit("void");
 	}
 	
@@ -66,19 +68,31 @@ public class Blocker extends Element {
 	 */
 	public void action() {
 		Logger.enter("blocker", "action", "", "");
-		int slowing=0;
-		cell.getEnemy();
-		Enemy elf=new Elf();
-		elf.block(slowing);
+		//int slowing=0;
+		Enemy[] el;
+		el=cell.getEnemy();
+		for(int i=0;i<el.length;i++) {
+			boolean bl=el[i].block(slowing);
+			if (bl) {
+				this.countRemain--;
+				if(this.countRemain==0){ 
+					this.gameState.deleteBlocker(this);
+					this.cell.removeElement(this);
+				}
+			}
+		}
+		
 		Logger.exit("void");	
 	}
 	
-	/**
-	 * Loggolashoz, skeleton után torlendo!
-	 * @return
-	 */
-	public String loggerGetName() {
-		return "Blocker";
+
+	/**enhanced attributum ertekenek visszaadasa.*/
+	public boolean getEnhanced() {
+		return enhanced;
+	}
+
+	public void setEnhanced(boolean enhanced) {
+		this.enhanced = enhanced;
 	}
 	
 
