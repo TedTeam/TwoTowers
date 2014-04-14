@@ -1,6 +1,4 @@
 package tedteam.twotowers.main;
-
-import tedteam.twotowers.logger.Logger;
 /**
  * A hobbit ellenseget megvalosito osztaly.
  * Ososztaly: Enemy
@@ -9,15 +7,10 @@ public class Hobbit extends Enemy {
 
 	/**
 	 * Ezen a metoduson keresztul valtozik az ellenseg eletereje.
-	 * @param d: a valtozas merteke.
+	 * @param damage: a valtozas merteke.
 	 */
-	public void acceptDamage(IDamage d){
-		Logger.enter("hobbit", "acceptDamage", "tower", "");
-		
-		d.affect(this);
-		
-		Logger.exit("void");
-
+	public void acceptDamage(IDamage damage){
+		damage.affect(this);
 	}
 
 	/**
@@ -25,46 +18,28 @@ public class Hobbit extends Enemy {
 	 * @param g: ezt allitja be a gameState attributumba.
 	 * @param c: ezen a cellan tartozkodik az ellenseg.
 	 */
-	public void init(GameState gameState, Cell cell){
-		Logger.enter("hobbit", "init", "gameState", "cell");
-		
-		Logger.exit("void");
+	public void init(GameState g, Cell c){
+		gameState = g;
+		cell = c;
+		formerCell = null;
+		maxLifePoint = 100;
+		currentLifePoint = 100;
+		speed = 5;
 	}
 
 	/**
-	 * Az ellenseg leptetesenek metodusa.
-	 * Alapesetben ez az Enemy osztalyban valosul meg, de a szkeleton
-	 * mukodesenek lathatosaga miatt itt kellett megvalositani.
+	 * A kettevago loves metodusa. 
+	 * @param damage: 
 	 */
-	public void step() {
-		//TODO
-		/**
-		Cell neighbors[] = cell.getNeighbors();
-		neighbors[0].hasRoad();
-		neighbors[1].hasRoad();
-		neighbors[2].hasRoad();
-		neighbors[3].hasRoad();
-		neighbors[3].addEnemy(this);
-		formerCell.removeEnemy(this);
-		Logger.exit("void");
-		*/
-	}
-	
-	/**
-	 * Vegrehajtja az ellenseg sebzeset.
-	 * Alapesetben ez az Enemy osztalyban valosul meg, de a szkeleton
-	 * mukodesenek lathatosaga miatt itt kellett megvalositani.
-	 * @param damageValue: a sebzes nagysaga.
-	 */
-	public void damage(int damageValue) {
-		Logger.enter("hobbit", "damageValue", "damageValue:int", "");
-		
-		Logger.exit("void");
-	}
-
-	@Override
 	public void cut(int damage) {
-		// TODO Auto-generated method stub
-		
+		Hobbit newHobbit = new Hobbit();
+		newHobbit.init(gameState, cell);
+		newHobbit.formerCell = this.formerCell;
+		cell.addEnemy(newHobbit);
+		newHobbit.damage(damage);
+		newHobbit.gameState.addEnemy(newHobbit);
+		this.halved = true;
+		newHobbit.setHalved();
+		this.damage(damage);		
 	}
 }

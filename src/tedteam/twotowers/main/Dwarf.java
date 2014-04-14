@@ -7,10 +7,10 @@ public class Dwarf extends Enemy {
 
 	/**
 	 * Ezen a metoduson keresztul valtozik az ellenseg eletereje.
-	 * @param d: a valtozas merteke.
+	 * @param damage: a valtozas merteke.
 	 */
-	public void acceptDamage(IDamage d){
-
+	public void acceptDamage(IDamage damage){
+		damage.affect(this);
 	}
 
 	/**
@@ -19,13 +19,28 @@ public class Dwarf extends Enemy {
 	 * @param c: ezen a cellan tartozkodik az ellenseg.
 	 */
 	public void init(GameState g, Cell c){
-
+		gameState = g;
+		cell = c;
+		formerCell = null;
+		maxLifePoint = 200;
+		currentLifePoint = 200;
+		speed = 5;
 	}
 
-	@Override
+	/**
+	 * A kettevago loves metodusa. 
+	 * @param damage: 
+	 */
 	public void cut(int damage) {
-		// TODO Auto-generated method stub
-		
+		Dwarf newDwarf = new Dwarf();
+		newDwarf.init(gameState, cell);
+		newDwarf.formerCell = this.formerCell;
+		cell.addEnemy(newDwarf);
+		newDwarf.damage(damage);
+		newDwarf.gameState.addEnemy(newDwarf);
+		this.halved = true;
+		newDwarf.setHalved();
+		this.damage(damage);
 	}
 
 }

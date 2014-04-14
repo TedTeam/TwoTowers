@@ -48,11 +48,15 @@ public class GameState {
 		return false;
 	}
 
+	public void addEnemy(Enemy enemy) {
+		
+	}
+	
 	/**
 	 * Torli az enemyListbol a halott ellenseget es noveli a halott ellensegek szamat.
 	 * @param e: a halott ellenseg akit torolni kell.
 	 */
-	public void deadEnemy(Enemy e){
+	public void deadEnemy(Enemy enemy){
 
 	}
 
