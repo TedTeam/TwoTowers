@@ -1,39 +1,37 @@
 package tedteam.twotowers.main;
 
-import tedteam.twotowers.logger.Logger;
+import java.util.ArrayList;
+
 /**
  * A palyan levo epitmenyeket tarolo osztaly.
  */
 public class ElementList {
 	// A palyan levo epitmenyek tombje.
-	private Element elements[] = new Element[10];
+	private ArrayList<Element> elements = new ArrayList<Element>();
 
 	/**
 	 * Hozzaad egy epitmenyt az elements tombhoz.
 	 * @param element: a hozzaadando epitmeny.
 	 */
 	public void addElement(Element element) {
-	
-		elements[0] = element;
-		
-		Logger.exit("void");
+		elements.add(element);
 	}
 
 	/**
 	 * Torol egy epitmenyt az elements tombbol.
-	 * @param e: ezt torli a tombbol.
+	 * @param element: ezt torli a tombbol.
 	 */
-	public void deleteElement(Element e) {
+	public void deleteElement(Element element) {
+		elements.remove(element);
 	}
 
 	/**
 	 * Meghivja az osszes tartalmazott epitmeny action metodusat.
 	 */
 	public void notifyAllElement() {
-		Logger.enter("elementList", "notifyAllElement", "", "");
-		
-		elements[0].action();
-		Logger.exit("void");
+		for(Element e : elements) {
+			e.action();
+		}
 	}
 
 }

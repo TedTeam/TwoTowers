@@ -1,10 +1,11 @@
 package tedteam.twotowers.main;
+
 /**
  * Az epitmenyek (torony, akadaly) absztrakt osztalya.
  */
 public abstract class Element {
 	// Az epitmeny helye a palyan.
-	protected Cell cell = new Cell();
+	protected Cell cell;
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -19,4 +20,22 @@ public abstract class Element {
 	 * Toronynal loves, akadalynal blokkolas.
 	 */
 	public abstract void action();
+	
+	/**
+	 * Az element cellajat beallito metodus, ha esetleg
+	 * nem valamelyik leszarmazottja akarna hozzanyulni.
+	 * @param c a beallitando cella
+	 */
+	public void setCell(Cell c) {
+		cell = c;
+	}
+	
+	/**
+	 * Az element cellajat lekero metodus, ha esetleg
+	 * nem valamelyik leszarmazottja akarna hozzanyulni.
+	 * @return az element cellaja
+	 */
+	public Cell getCell() {
+		return cell;
+	}
 }

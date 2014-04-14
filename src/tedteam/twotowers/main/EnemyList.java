@@ -1,48 +1,47 @@
 package tedteam.twotowers.main;
 
-import tedteam.twotowers.logger.Logger;
+import java.util.ArrayList;
+
 /**
  * A palyan levo ellensegeket tarolo osztaly.
  */
 public class EnemyList {
 	// A palyan levo ellensegek tombje.
-	private Enemy enemies[] = new Enemy[20];
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 
 	/**
-	 * Hozzaad egy ellenseget az enemies tombhoz.
+	 * Hozzaad egy ellenseget az enemies lancolt listahoz.
 	 * @param enemy: a hozzaadando ellenseg.
 	 */
 	public void addEnemy(Enemy enemy){
-		Logger.enter("enemyList", "addEnemy", "hobbit", "");
-		
-		Logger.exit("void");
+		enemies.add(enemy);
 	}
 
 	/**
-	 * Torol egy ellenseget az enemies tombbol.
-	 * @param e: ezt torli a tombbol.
+	 * Torol egy ellenseget az enemies lancolt listabol.
+	 * @param enemy: ezt torli a lancolt listabol.
 	 */
-	public void deleteEnemy(Enemy e){
-
+	public void deleteEnemy(Enemy enemy){
+		enemies.remove(enemy);
 	}
 
 	/**
 	 * Meghivja az osszes tartalmazott ellenseg lepteto metodusat.
 	 */
 	public void stepAll(){
-		Logger.enter("enemyList", "stepAll", "","");
-		
-		enemies[0] = new Hobbit();
-		enemies[0].step();
-		Logger.exit("void");
+		for(Enemy e : enemies) {
+			e.step();
+		}
 	}
 
 	/**
 	 * Meghivja az osszes tartalmazott ellenseg acceptDamage metodusat.
-	 * @param d: ezt adja parameterul az acceptDamage metodusoknak.
+	 * @param damage: ezt adja parameterul az acceptDamage metodusoknak.
 	 */
-	public void notifyAllEnemy(IDamage d) {
-		
+	public void notifyAllEnemy(IDamage damage) {
+		for(Enemy e : enemies) {
+			e.acceptDamage(damage);
+		}
 	}
 
 }
