@@ -34,4 +34,10 @@ public class Elf extends Enemy {
 		return false;
 	}
 
+	@Override
+	public void cut(int damage) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

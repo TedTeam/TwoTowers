@@ -22,4 +22,10 @@ public class Human extends Enemy {
 
 	}
 
+	@Override
+	public void cut(int damage) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -61,4 +61,10 @@ public class Hobbit extends Enemy {
 		
 		Logger.exit("void");
 	}
+
+	@Override
+	public void cut(int damage) {
+		// TODO Auto-generated method stub
+		
+	}
 }

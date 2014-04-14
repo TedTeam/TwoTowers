@@ -22,4 +22,10 @@ public class Dwarf extends Enemy {
 
 	}
 
+	@Override
+	public void cut(int damage) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
