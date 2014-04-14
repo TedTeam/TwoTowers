@@ -4,7 +4,7 @@ package tedteam.twotowers.main;
  * Ososztaly: MagicStone
  */
 public class BlueStone extends MagicStone {
-	/**A hatótávolság mértékére vonatkozó szám. */
+	/**A hatï¿½tï¿½volsï¿½g mï¿½rtï¿½kï¿½re vonatkozï¿½ szï¿½m. */
 	private int rangeRate=2;
 	/**
 	 * Ez a metodus valtoztatja meg az akadaly hatotavolsaganak nagysagat.
@@ -23,9 +23,9 @@ public class BlueStone extends MagicStone {
 	 */
 	public boolean effect(Tower t){
 		if(t.getStoneNumber()<2) 
-			if(t.getEnhancedByBle()) return false;
+			if(t.getEnhancedByBlue()) return false;
 			else { 
-				t.setEnhancedBlue();
+				t.setEnhancedByBlue();
 				t.increaseStoneNumber();
 				t.increaseRange(this.rangeRate);
 				return true;

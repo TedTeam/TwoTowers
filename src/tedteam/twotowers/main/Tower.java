@@ -132,14 +132,23 @@ public class Tower extends Element implements IDamage {
 		return 0;
 	}
 
-	public boolean getEnhancedByBle() {
+	public boolean getEnhancedByBlue() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public void setEnhancedBlue() {
+	public void setEnhancedByBlue() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public boolean getEnhancedByGreen() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	public void setEnhancedByGreen() {
+		// TODO Auto-generated method stub
 	}
 
 	public void increaseStoneNumber() {
@@ -150,5 +159,9 @@ public class Tower extends Element implements IDamage {
 	public void increaseRange(int rangeRate) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void increaseSpeed(int speedRate) {
+		// TODO Auto-generated method stub
 	}
 }
