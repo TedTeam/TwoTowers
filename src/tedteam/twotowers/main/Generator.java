@@ -129,4 +129,30 @@ public class Generator {
 		return true;
 	}
 
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @return
+	 */
+	public GameField getGameField() {
+		return gameField;
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @return
+	 */
+	public GameState getGameState() {
+		// TODO Auto-generated method stub
+		return gameState;
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @return
+	 */
+	public ElementList getElementList() {
+		// TODO Auto-generated method stub
+		return elementList;
+	}
+
 }

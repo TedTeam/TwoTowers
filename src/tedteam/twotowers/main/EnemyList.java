@@ -44,4 +44,14 @@ public class EnemyList {
 		}
 	}
 
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @param name
+	 * @return
+	 */
+	public Enemy getEnemyByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -1,5 +1,7 @@
 package tedteam.twotowers.main;
 
+import java.awt.Point;
+
 import tedteam.twotowers.logger.Logger;
 /**
  * A jatekteret megvalosito osztaly.
@@ -50,6 +52,22 @@ public class GameField {
 		cells[3].setNeighbors(cells);*/
 		
 		Logger.exit("void");
+		
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Visszaadja a parameterben megadott nevu cellat.
+	 * @param name
+	 * @return
+	 */
+	public Cell getCellByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void addCell(Cell c, Point point) {
+		// TODO Auto-generated method stub
 		
 	}
 

@@ -95,6 +95,24 @@ public class Blocker extends Element {
 	public void setEnhanced(boolean enhanced) {
 		this.enhanced = enhanced;
 	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Ez visszaadja azokat az egységeket (osszefuzve egy Stringbe), amik blokkoltak a blocker altal
+	 * @return
+	 */
+	public String getBlockedEnemies() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getSlowing() {
+		return slowing;
+	}
+
+	public int getCountRemain() {
+		return countRemain;
+	}
 	
 
 }

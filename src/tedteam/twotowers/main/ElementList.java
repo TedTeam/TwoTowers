@@ -34,4 +34,15 @@ public class ElementList {
 		}
 	}
 
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Visszadja a name nevű elemet.
+	 * @param name
+	 * @return
+	 */
+	public Element getElementByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

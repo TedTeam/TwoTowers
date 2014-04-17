@@ -32,6 +32,11 @@ public abstract class Enemy {
 	// novekszik, ha a 10-speed=tick keplet nem teljesul.
 	// Alapertelmezett erteke: 0.
 	private int tick = 0;
+	
+	//Temp - megadott nev
+	protected String cName = new String();
+	//Temp - Erre megy az ellenseg keresztezodesben
+	protected String cDirection = new String(); 
 
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak
@@ -130,5 +135,34 @@ public abstract class Enemy {
 			cell = nextCell;
 		}
 	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Beallitja az iranyt, amerre mennie kell keresztezodesben az ellensegnek.
+	 * @param direction
+	 */
+	public void setDirection(String direction) {
+		cDirection = direction;
+		
+	}
+
+	public int getCurrentLifePoint() {
+		return currentLifePoint;
+	}
+
+	public Cell getCell() {
+		// TODO Auto-generated method stub
+		return cell;
+	}
+
+	public Cell getFormerCell() {
+		return formerCell;
+	}
+	
+	public String getName() {
+		return cName;
+	}
+
+
 
 }

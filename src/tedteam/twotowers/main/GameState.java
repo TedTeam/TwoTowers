@@ -78,4 +78,27 @@ public class GameState {
 		Logger.exit("void");
 	}
 
+	public void setStartCell(Cell c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @return
+	 */
+	public EnemyList getEnemyList() {
+		return enemylist;
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * @return
+	 */
+	public ElementList getElementList() {
+		return elementList;
+	}
+
+
+
 }

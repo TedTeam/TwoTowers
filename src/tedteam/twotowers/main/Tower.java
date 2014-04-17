@@ -26,6 +26,10 @@ public class Tower extends Element implements IDamage {
 	// A torony tuzelesi gyakorisaga.
 	private int speed;
 	
+	private boolean enhancedByRed;
+	private boolean enhancedByBlue;
+	private boolean enhancedByGreen;
+	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
 	 * a tornyot. Ha igen, akkor erositi is.
@@ -164,4 +168,50 @@ public class Tower extends Element implements IDamage {
 	public void increaseSpeed(int speedRate) {
 		// TODO Auto-generated method stub
 	}
+
+	public void fog() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Visszaadja annak az ellensegnek a nevet, amire utoljara ralottunk
+	 * @return
+	 */
+	public String getLastShotEnemyName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int getRange() {
+		// TODO Auto-generated method stub
+		return range;
+	}
+
+	public int getElfDamage() {
+		// TODO Auto-generated method stub
+		return elfDamage;
+	}
+
+	public int getDwarfDamage() {
+		// TODO Auto-generated method stub
+		return dwarfDamage;
+	}
+
+	public int getHobbitDamage() {
+		// TODO Auto-generated method stub
+		return hobbitDamage;
+	}
+
+	public int getHumanDamage() {
+		// TODO Auto-generated method stub
+		return humanDamage;
+	}
+
+	public boolean getEnhancedByRed() {
+		// TODO Auto-generated method stub
+		return enhancedByRed;
+	}
+
 }

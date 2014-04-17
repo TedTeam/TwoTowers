@@ -42,4 +42,8 @@ public class Hobbit extends Enemy {
 		newHobbit.setHalved();
 		this.damage(damage);		
 	}
+
+	public void setName(String name) {
+		cName = name;
+	}
 }
