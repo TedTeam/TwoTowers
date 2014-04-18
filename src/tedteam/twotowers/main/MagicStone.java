@@ -4,7 +4,8 @@ package tedteam.twotowers.main;
  */
 public abstract class MagicStone {
 
-
+	protected String cName = new String();
+	
 	/**
 	 * Ez a metodus valtoztaja meg az akadaly tulajdonsagait.
 	 * @param b: az akadaly, melyre a valtoztatast alkalmazni akarjuk.
@@ -19,4 +20,6 @@ public abstract class MagicStone {
 	 */
 	public abstract boolean effect(Tower t);
 
+	public abstract String getName();
+	
 }

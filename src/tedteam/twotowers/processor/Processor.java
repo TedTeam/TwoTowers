@@ -9,21 +9,24 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import tedteam.twotowers.main.BlackStone;
 import tedteam.twotowers.main.Blocker;
+import tedteam.twotowers.main.BlueStone;
 import tedteam.twotowers.main.Cell;
 import tedteam.twotowers.main.Dwarf;
 import tedteam.twotowers.main.Elf;
 import tedteam.twotowers.main.Enemy;
 import tedteam.twotowers.main.Generator;
+import tedteam.twotowers.main.GreenStone;
 import tedteam.twotowers.main.Hobbit;
 import tedteam.twotowers.main.Human;
+import tedteam.twotowers.main.RedStone;
 import tedteam.twotowers.main.Tower;
 
 public class Processor {
 
 	// parancssorhoz szükséges valtozok, kollekciok
 	Generator g = new Generator();
-	// ArrayList<Created> createdElements = new ArrayList<Created>();
 
 	// Map-be taroljuk a create-lt elemeket, ahol:
 	// kulcs: az atadott nev
@@ -457,10 +460,19 @@ public class Processor {
 						+ neighborsString.toString() + ", element "
 						+ cell.hasElement() + ", enemies " + cell.hasEnemy();
 			}
-			/*
-			 * Tobbi stone: honnan lehet elérni oket? if(type ==
-			 * Type.BlackStone) { Black }
-			 */
+		}
+		
+		if (type == Type.RedStone) {
+			return "color red, change 30, used true";
+		}
+		if (type == Type.GreenStone) {
+			return "color green, change 4, used true";
+		}
+		if (type == Type.BlueStone) {
+			return "color blue, change 2, used true";
+		}
+		if (type == Type.BlackStone) {
+			return "color black, change 2, used true";
 		}
 		return "error";
 	}
@@ -578,8 +590,50 @@ public class Processor {
 			hobbit.setName(elementName);
 			g.getGameState().addEnemy(hobbit);
 		}
-
-		// varázskövek lerakása külön???
+		if (type == Type.Hobbit) {
+			if (!where.hasRoad())
+				return "error: not road on " + where;
+			Hobbit hobbit = new Hobbit();
+			hobbit.setName(elementName);
+			g.getGameState().addEnemy(hobbit);
+		}
+		if (type == Type.RedStone) {
+			if (!where.hasElement())
+				return "error: not element on " + where;
+			RedStone redStone = new RedStone();
+			redStone.setName(elementName);
+			if(!g.addStone(redStone, where)) {
+				return "error";
+			}
+		}
+		if (type == Type.GreenStone) {
+			if (!where.hasElement())
+				return "error: not element on " + where;
+			GreenStone greenStone = new GreenStone();
+			greenStone.setName(elementName);
+			if(!g.addStone(greenStone, where)) {
+				return "error";
+			}
+		}
+		if (type == Type.BlueStone) {
+			if (!where.hasElement())
+				return "error: not element on " + where;
+			BlueStone blueStone = new BlueStone();
+			blueStone.setName(elementName);
+			if(!g.addStone(blueStone, where)) {
+				return "error";
+			}
+		}
+		if (type == Type.BlackStone) {
+			if (!where.hasElement())
+				return "error: not element on " + where;
+			BlackStone blackStone = new BlackStone();
+			blackStone.setName(elementName);
+			if(!g.addStone(blackStone, where)) {
+				return "error";
+			}
+		}
+			
 
 		// minden sikeres
 		return elementName + " put " + cellName;
@@ -631,6 +685,8 @@ public class Processor {
 			createdElements.put(name, Type.BlackStone);
 		} else if (parts[1].equals("RedStone")) {
 			createdElements.put(name, Type.RedStone);
+		} else if (parts[1].equals("BlackStone")) {
+			createdElements.put(name, Type.BlackStone);
 		}
 		// nincs ilyen nevu element
 		else
