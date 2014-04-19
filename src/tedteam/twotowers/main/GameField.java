@@ -54,9 +54,15 @@ public class GameField {
 		Logger.exit("void");
 		
 	}
+	
+	public void setAllCellUnvisited() {
+		for(Cell c : cells) {
+			c.setVisited(false);
+		}
+	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
 	 * Visszaadja a parameterben megadott nevu cellat.
 	 * @param name
 	 * @return

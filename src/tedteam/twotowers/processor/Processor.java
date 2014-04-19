@@ -25,7 +25,7 @@ import tedteam.twotowers.main.Tower;
 
 public class Processor {
 
-	// parancssorhoz szükséges valtozok, kollekciok
+	// parancssorhoz szï¿½ksï¿½ges valtozok, kollekciok
 	Generator g = new Generator();
 
 	// Map-be taroljuk a create-lt elemeket, ahol:
@@ -38,7 +38,7 @@ public class Processor {
 		Tower, Blocker, Cell, Elf, Dwarf, Human, Hobbit, RedStone, BlackStone, GreenStone, BlueStone
 	};
 
-	// az összes kimeneti sort tartalmazza, melyet fajlba irhatunk
+	// az ï¿½sszes kimeneti sort tartalmazza, melyet fajlba irhatunk
 	private ArrayList<String> outputAll = new ArrayList<String>();
 
 	/**
@@ -208,7 +208,7 @@ public class Processor {
 	}
 
 	/**
-	 * Beolvassa egy text fileból a parancsokat, es egy ciklusban meghivja az
+	 * Beolvassa egy text filebï¿½l a parancsokat, es egy ciklusban meghivja az
 	 * processCommandot az osszes parancsra
 	 * 
 	 * @param destination
@@ -245,7 +245,7 @@ public class Processor {
 	}
 
 	/**
-	 * Játékállás betoltese
+	 * Jï¿½tï¿½kï¿½llï¿½s betoltese
 	 * 
 	 * @param parts
 	 * @return
@@ -291,7 +291,7 @@ public class Processor {
 	private String commandCheckGame(String[] parts) {
 		if (parts.length != 1)
 			return "error";
-		// itt a win-lose még nem tiszta
+		// itt a win-lose mï¿½g nem tiszta
 		if (g.getGameState().checkGame()) {
 			return "win";
 		} else
@@ -362,7 +362,7 @@ public class Processor {
 		if (type == null || type != Type.Tower)
 			return "invalid " + name;
 		boolean fog = false;
-		// opcionális parameter van-e, illetve az /fog alakban van-e, ha igen,
+		// opcionalis parameter van-e, illetve az /fog alakban van-e, ha igen,
 		// akkor megjegyezzuk
 		if (parts[2] != null) {
 			if (parts[2] == "/fog")
@@ -375,6 +375,8 @@ public class Processor {
 		if (fog)
 			t.fog(); // beallitja a kodot
 		t.action();
+		// visszaallitjuk a cellakat unvisited allapotba
+		g.getGameField().setAllCellUnvisited();
 		if (t.getLastShotEnemyName() == "") {
 			return "no damage";
 		} else
@@ -384,7 +386,7 @@ public class Processor {
 
 	/**
 	 * Kiirja a kepernyore az adott elementrol minden lenyeges informaciot (pl.
-	 * allapotat, elhelyezkedeset, eleterejet – ha van neki)
+	 * allapotat, elhelyezkedeset, eleterejet ï¿½ ha van neki)
 	 * 
 	 * @param parts
 	 * @return
@@ -526,12 +528,12 @@ public class Processor {
 	}
 
 	/**
-	 * Command: put [element-name] [where] Leírás: Lehelyezi a paraméterben
-	 * megadott cellára a válaszott elemet, ha lehetséges. Opciók: element-name:
-	 * az element create paranccsal történt létrehozásakor válaszott név, ezt
-	 * akarjuk lehelyezni a pályára. (Element-name tartozhat a következokhoz:
+	 * Command: put [element-name] [where] Leï¿½rï¿½s: Lehelyezi a paramï¿½terben
+	 * megadott cellï¿½ra a vï¿½laszott elemet, ha lehetsï¿½ges. Opciï¿½k: element-name:
+	 * az element create paranccsal tï¿½rtï¿½nt lï¿½trehozï¿½sakor vï¿½laszott nï¿½v, ezt
+	 * akarjuk lehelyezni a pï¿½lyï¿½ra. (Element-name tartozhat a kï¿½vetkezokhoz:
 	 * Tower, Block, Elf, Hobbit, Human, Dwarf, GreenStone, BlackStone,
-	 * RedStone) where: cell, ahova le szeretnénk helyezni a válaszott
+	 * RedStone) where: cell, ahova le szeretnï¿½nk helyezni a vï¿½laszott
 	 * elementet.
 	 */
 	public String commandPut(String[] parts) {

@@ -1,6 +1,9 @@
 package tedteam.twotowers.main;
 
-import tedteam.twotowers.logger.Logger;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * A tornyot megvalosito osztaly. Egy torony fobb
  * tulajdonsagait tartalmazza.
@@ -9,57 +12,109 @@ import tedteam.twotowers.logger.Logger;
  */
 public class Tower extends Element implements IDamage {
 	// A torp ellenseg sebzesenek merteke.
-	private int dwarfDamage;
-	
+	private int dwarfDamage = 50;
 	// A tunde ellenseg sebzesenek merteke.
-	private int elfDamage;
-	
+	private int elfDamage = 50;
 	// A hobbit ellenseg sebzesenek merteke.
-	private int hobbitDamage;
-	
+	private int hobbitDamage = 50;
 	// Az ember ellenseg sebzesenek merteke.
-	private int humanDamage;
-	
+	private int humanDamage = 50;
 	// A torony hatotavolsaga.
-	private int range;
-	
+	private int range = 5;
 	// A torony tuzelesi gyakorisaga.
-	private int speed;
-	
-	private boolean enhancedByRed;
-	private boolean enhancedByBlue;
-	private boolean enhancedByGreen;
+	private int speed = 2;
+	// A tornyon levo kovek szama.
+	// Maximalis ertek = 2 (alapertek = 0)
+	private int stoneNumber = 0;
+	// Erteke true, ha a tornyon van zold ko
+	private boolean enhancedByGreen = false;
+	// Erteke true, ha a tornyon van kek ko
+	private boolean enhancedByBlue = false;
+	// Erteke true, ha a tornyon van piros ko
+	private boolean enhancedByRed = false;
+	// Egy igaz/hamis valtozo, mely erteke eldonti,
+	// hogy leszallt-e a kod a toronyra, vagy sem.
+	private boolean fog = false;
+	// Az utoljara meglott ellenseg neve
+	// Ez csak a prototipusban kell
+	private String lastShotEnemyName = null;
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
 	 * a tornyot. Ha igen, akkor erositi is.
-	 * A szkeleton miatt itt konkret pelda.
-	 * @param greenStone: a varazsko, mellyel erositeni szeretnenk a tornyot.
+	 * @param magicStone: a varazsko, mellyel erositeni szeretnenk a tornyot.
 	 * @return visszajelzes, hogy sikeres volt-e a muvelet.
 	 */
-	public boolean enhance(MagicStone greenStone) {
-		Logger.enter("tower", "enhance", "greenStone", "");
-		boolean effect=greenStone.effect(this);
-		
-		Logger.exit("true");
-		return effect;
+	public boolean enhance(MagicStone magicStone) {
+		return magicStone.effect(this);
 	}
 
+	// Egy ellenseg megtalalasa hatotavon belul 
+	// a Breadth First Search algoritmus segitsegevel
+	public Enemy findEnemyInRange() {
+		// a sor melyben eltaroljuk a vizsgalni kivant cellakat (FIFO)
+		Queue<Cell> queue = new LinkedList<Cell>();
+		// az aktualisan viszgalt hatotav
+		int actualRange = 0;
+		// a cellak szama az aktualisan vizsgalt hatotavban
+		int cellsInActualRange = 1;
+		// novelhetjuk-e az aktualis hatotavot
+		boolean actualRangeIncrease = false;
+		// berakjuk a sorba az elso elemet
+		queue.add(this.cell);
+		// az elso elemet megtekintettuk
+		this.cell.setVisited(true);
+		// ciklus, amig a sor ures nem lesz
+		while(!queue.isEmpty()) {
+			// toroljuk az elso elemet a sorban
+			Cell x = queue.remove();
+			// ha a torolt cellan volt ellenseg visszaterunk az ellenseggel
+			// (ha tobb van rajta akkor a legelsot adjuk vissza)
+			if(x.hasEnemy() == true)	{
+				return x.getEnemy().get(0);
+			} else {
+				// ha a cellak szama az aktialisan vizsgalt hatotavban 0-ra csokkent
+				if(--cellsInActualRange == 0) {
+					// noveljuk az aktualis hatotavot, de ha az nagyobb mint
+					// a toronyban megadott, akkor nem talaltunk ellenseget
+					if(++actualRange == this.range) {
+						return null;
+					}
+					// ha nem ertuk el a megadott hatotavot,
+					// akkor felvehetjuk a hatotavban levo cellak szamat
+					actualRangeIncrease = true;
+				}
+				// lekerdezzuk a szomszedokat
+				ArrayList<Cell> neighbors = new ArrayList<Cell>(x.getNeighbors().values());
+				for(Cell y : neighbors) {
+					// ha van szomszed es azt meg nem tekintettuk meg
+					if(y != null && y.getVisited() == false) {
+						// megtekintettuk es a sorbarakjuk
+						y.setVisited(true);
+						queue.add(y);
+					}
+				}
+				// ha felvehetjuk a hatotavban levo cellak szamat
+				if(actualRangeIncrease == true) {
+					actualRangeIncrease = false;
+					// a sor aktualis merete pont megadja ezt a szamot
+					cellsInActualRange = queue.size();
+				}
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * A torony loveset vegrehajto metodus.
 	 */
 	public void action() {
-		//TODO
-		/*Logger.enter("tower", "action", "", "");
-		//Cell[] cells=cell.getNeighbors();
-
-		cells[0].getEnemy();
-		cells[1].getEnemy();
-		Enemy hobbit=new Hobbit();
-		hobbit.acceptDamage(this);
-
-		
-		Logger.exit("void");*/	
+		Enemy targetEnemy;
+		targetEnemy = findEnemyInRange();
+		if(targetEnemy != null) {
+			lastShotEnemyName = targetEnemy.getName();
+			targetEnemy.acceptDamage(this);
+		}
 	}
 	
 	/**
@@ -67,151 +122,171 @@ public class Tower extends Element implements IDamage {
 	 * @param cell: ebbe a cellaba allitja be magat.
 	 */
 	public void setCell(Cell cell) {
-		Logger.enter("tower", "setCell", "cell", "");
-		
 		cell.setElement(this);
-		
-		Logger.exit("false");
 	}
 	
 	/**
 	 * Beallitja a torony lovesi gyakorisagat.
-	 * @param i: erre allitja be.
+	 * @param s: erre allitja be.
 	 */
-	public void setSpeed(int i) {
-		Logger.enter("tower", "setSpeed", "i:int", "");
-		
-		Logger.exit("void");		
+	public void setSpeed(int s) {
+		speed = s;
 	}
 	
 	/**
 	 * A hobbit ellenseg sebzeseert felelos metodus.
-	 * @param e: az ellenseg melyet sebezni kell.
+	 * @param hobbit: az ellenseg melyet sebezni kell.
 	 */
-	@Override
-	public void affect(Hobbit e) {
-		Logger.enter("tower", "affect", "hobbit", "");
-		
-		int damageValue = 0;
-		e.damage(damageValue);
-		
-		Logger.exit("void");
-		
+	public void affect(Hobbit hobbit) {
+		hobbit.damage(hobbitDamage);
 	}
 
 	/**
 	 * A tunde ellenseg sebzeseert felelos metodus.
-	 * A szkeletonba nem szukseges megvalositani.
-	 * @param e: az ellenseg melyet sebezni kell.
+	 * @param elf: az ellenseg melyet sebezni kell.
 	 */
-	@Override
-	public void affect(Elf e) {
-		// TODO Auto-generated method stub
-		
+	public void affect(Elf elf) {
+		elf.damage(elfDamage);
 	}
 
 	/**
 	 * A torp ellenseg sebzeseert felelos metodus.
-	 * A szkeletonba nem szukseges megvalositani.
-	 * @param e: az ellenseg melyet sebezni kell.
+	 * @param dwarf: az ellenseg melyet sebezni kell.
 	 */
-	@Override
-	public void affect(Dwarf d) {
-		// TODO Auto-generated method stub
-		
+	public void affect(Dwarf dwarf) {
+		dwarf.damage(dwarfDamage);
 	}
 
 	/**
 	 * Az ember ellenseg sebzeseert felelos metodus.
-	 * A szkeletonba nem szukseges megvalositani.
-	 * @param e: az ellenseg melyet sebezni kell.
+	 * @param human: az ellenseg melyet sebezni kell.
 	 */
-	@Override
-	public void affect(Human h) {
-		// TODO Auto-generated method stub	
+	public void affect(Human human) {
+		human.damage(humanDamage);
 	}
 	
+	/**
+	 * A stoneNumber attributum ertekevel ter vissza.
+	 */
 	public int getStoneNumber() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public boolean getEnhancedByBlue() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void setEnhancedByBlue() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public boolean getEnhancedByGreen() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	public void setEnhancedByGreen() {
-		// TODO Auto-generated method stub
-	}
-
-	public void increaseStoneNumber() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void increaseRange(int rangeRate) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void increaseSpeed(int speedRate) {
-		// TODO Auto-generated method stub
-	}
-
-	public void fog() {
-		// TODO Auto-generated method stub
-		
+		return stoneNumber;
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Igaz, ha enhancedByBlue igaz, egyebkent false
+	 */
+	public boolean getEnhancedByBlue() {
+		return enhancedByBlue;
+	}
+	/**
+	 * enhancedByBlue attributumot true-ra allitja
+	 */
+	public void setEnhancedByBlue() {
+		enhancedByBlue = true;
+	}
+	
+	/**
+	 * Igaz, ha enhancedByGreen igaz, egyebkent false
+	 */
+	public boolean getEnhancedByGreen() {
+		return enhancedByGreen;
+	}
+	/**
+	 * enhancedByGreen attributumot true-ra allitja
+	 */
+	public void setEnhancedByGreen() {
+		enhancedByGreen = true;
+	}
+	
+	/**
+	 * Igaz, ha enhancedByRed igaz, egyebkent false
+	 */
+	public boolean getEnhancedByRed() {
+		return enhancedByRed;
+	}
+	/**
+	 * enhancedByRed attributumot true-ra allitja
+	 */
+	public void setEnhancedByRed() {
+		enhancedByRed = true;
+	}
+
+	/**
+	 * Noveli a stoneNumber attributum erteket
+	 */
+	public void increaseStoneNumber() {
+		stoneNumber++;
+	}
+
+	/**
+	 * Noveli a range attributum erteket
+	 * @param rangeRate: ennyivel noveli a hatotavot
+	 */
+	public void increaseRange(int rangeRate) {
+		range += rangeRate;
+	}
+	
+	/**
+	 * Noveli a speed attributum erteket
+	 * @param speedRate: ennyivel noveli a sebesseget
+	 */
+	public void increaseSpeed(int speedRate) {
+		speed += speedRate;
+	}
+
+	/**
+	 * Ez a metodus beallitja a fog valtozo erteket true-ra
+	 * es az uj range erteket, ami 2-vel kevesebb lesz,
+	 * mint eddig volt, es ez vegleges is marad.
+	 */
+	public void fog() {
+		if(fog == false) {
+			fog = true;
+			range -= 2;
+		}
+	}
+	/**
+	 * Visszaadja a fog attributum erteket
+	 */
+	public boolean getFog() {
+		return fog;
+	}
+
+	/**
+	 * Parancsfeldolgozo - temporalis fuggveny
 	 * Visszaadja annak az ellensegnek a nevet, amire utoljara ralottunk
 	 * @return
 	 */
 	public String getLastShotEnemyName() {
-		// TODO Auto-generated method stub
-		return null;
+		String returnName = lastShotEnemyName;
+		lastShotEnemyName = null;
+		return returnName;
 	}
 
 	public int getRange() {
-		// TODO Auto-generated method stub
 		return range;
 	}
 
+	/**
+	 * A kovetkezo 4 metodus a kulonbozo ellensegek sebzesenek merteket
+	 * adja vissza.
+	 * Ez csak a prototipusban kell.
+	 * @return a kulonbozo ellensegek sebzesenek merteke
+	 */
 	public int getElfDamage() {
-		// TODO Auto-generated method stub
 		return elfDamage;
 	}
 
 	public int getDwarfDamage() {
-		// TODO Auto-generated method stub
 		return dwarfDamage;
 	}
 
 	public int getHobbitDamage() {
-		// TODO Auto-generated method stub
 		return hobbitDamage;
 	}
 
 	public int getHumanDamage() {
-		// TODO Auto-generated method stub
 		return humanDamage;
-	}
-
-	public boolean getEnhancedByRed() {
-		// TODO Auto-generated method stub
-		return enhancedByRed;
 	}
 
 }

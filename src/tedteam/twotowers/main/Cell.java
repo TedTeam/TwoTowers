@@ -17,6 +17,8 @@ public class Cell {
 	private HashMap<String,Cell> neighbor;
 	// Ez donti el, hogy a cellan talalhato-e ut.
 	private boolean road = false;
+	// A torony lovesenel hasznalt valtozo.
+	private boolean visited = false;
 	
 	//temp-parancsfeldolgozo
 	private String cName = new String();
@@ -70,7 +72,7 @@ public class Cell {
 	}
 	/**
 	 * Ha az element valtozo erteke null, akkor false ertekkel ter vissza. 
-	 * Egyéb esetben true-val.
+	 * Egyï¿½b esetben true-val.
 	 */
 	public boolean hasElement() {
 		if(element==null) return false; 
@@ -115,6 +117,13 @@ public class Cell {
 		road=true;
 	}
 	
+	public void setVisited(boolean b) {
+		visited = b;
+	}
+	
+	public boolean getVisited() {
+		return visited;
+	}
 	
 	public String getCellName() {
 		return cName;
@@ -122,6 +131,5 @@ public class Cell {
 
 	public void setCellName(String name) {
 		cName = name;
-		
 	}
 }
