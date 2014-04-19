@@ -37,7 +37,7 @@ public abstract class Enemy {
 	//Temp - megadott nev
 	protected String cName = new String();
 	//Temp - Erre megy az ellenseg keresztezodesben
-	protected String cDirection = new String(); 
+	protected String cDirection; 
 
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak
@@ -112,17 +112,27 @@ public abstract class Enemy {
 		
 		if(cDirection != null) {
 			nextCell = neighbors.get(cDirection);
-			if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
-				formerCell = cell;
-				cell = nextCell;
+			if(nextCell != null){
+				if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
+					System.out.println("lepes irannyal");
+					formerCell = cell;
+					cell.removeEnemy(this);
+					cell = nextCell;
+					nextCell.addEnemy(this);
+				}
 			}
 			cDirection = null;
 		} else {
 			for(Entry<String,Cell> h : neighbors.entrySet()) {
-				Cell value = h.getValue();
-				if(value.hasRoad() == true && !value.equals(formerCell)) {
-					formerCell = cell;
-					cell = nextCell;
+				nextCell = h.getValue();
+				if(nextCell != null){
+					if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
+						System.out.println("lepes irany nelkul");
+						formerCell = cell;
+						cell.removeEnemy(this);
+						cell = nextCell;
+						nextCell.addEnemy(this);
+					}
 				}
 			}
 		}
