@@ -487,7 +487,7 @@ public class Processor {
 	 * @return
 	 */
 	private String commandSetNeighbor(String[] parts) {
-		if (parts.length != 3)
+		if (parts.length != 4)
 			return "error";
 		String targetCell = parts[1];
 		String neighborCell = parts[2];
@@ -496,14 +496,18 @@ public class Processor {
 		if (target == null)
 			return "invalid " + targetCell;
 		Cell neighbor = g.getGameField().getCellByName(neighborCell);
-		if (neighbor == null)
+		if (neighbor == null) 
 			return "invalid " + neighborCell;
 		if (direction == null)
 			return "invalid " + direction;
-		HashMap<String, Cell> neighbors = target.getNeighbors();
-		neighbors.put(direction, neighbor);
-		return neighborCell + " set " + targetCell + " " + direction
-				+ "neighbor";
+		if(direction.equals("left") || direction.equals("right") || direction.equals("up") || direction.equals("down")){
+			HashMap<String, Cell> neighbors = target.getNeighbors();
+			neighbors.put(direction, neighbor);
+			return neighborCell + " set " + targetCell + " " + direction
+					+ "neighbor";
+		}
+		else 
+			return "invalid " + direction;
 	}
 
 	/**
@@ -524,7 +528,7 @@ public class Processor {
 		if (cell.hasElement())
 			return "error: " + cellName + " has tower";
 		cell.setRoad();
-		return cellName + "set Road";
+		return cellName + " set Road";
 	}
 
 	/**
