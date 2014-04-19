@@ -1,7 +1,7 @@
 package tedteam.twotowers.main;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map.Entry;
 
 /**
  * Az ellensegeket megvalosito absztrakt osztaly.
@@ -30,6 +30,7 @@ public abstract class Enemy {
 	protected boolean halved = false;
 	// A cellavaltashoz szukseges segedvaltozo, amely mindig
 	// novekszik, ha a 10-speed=tick keplet nem teljesul.
+	// A prototipusban nem hasznaljuk.
 	// Alapertelmezett erteke: 0.
 	private int tick = 0;
 	
@@ -102,67 +103,78 @@ public abstract class Enemy {
 	}
 
 	/**
-	 * Az ellenseg leptetesenek metodusa.
+	 * Az ellenseg leptetesenek metodusa a prototipusban.
 	 */
 	public void step(){
-		if(10 - speed != tick) {
-			tick++;
+		Cell nextCell = new Cell();
+		HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
+		neighbors.putAll(cell.getNeighbors());
+		
+		if(cDirection != null) {
+			nextCell = neighbors.get(cDirection);
+			if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
+				formerCell = cell;
+				cell = nextCell;
+			}
+			cDirection = null;
 		} else {
-			tick = 0;
-			Cell nextCell;
-			ArrayList<Cell> road = new ArrayList<Cell>();
-			ArrayList<Cell> neighbors = new ArrayList<Cell>();
-			neighbors.addAll(cell.getNeighbors().values());
-			
-			for(Cell c : neighbors) {
-				if(c.hasRoad() == true && !c.equals(formerCell)) {
-					road.add(c);
+			for(Entry<String,Cell> h : neighbors.entrySet()) {
+				Cell value = h.getValue();
+				if(value.hasRoad() == true && !value.equals(formerCell)) {
+					formerCell = cell;
+					cell = nextCell;
 				}
 			}
-			
-			if(road.size() > 1) {
-				Random random = new Random();
-				int r = random.nextInt(road.size() - 1);
-				nextCell = road.get(r);
-			} else {
-				nextCell = road.get(0);
-			}
-			
-			nextCell.addEnemy(this);
-			cell.removeEnemy(this);
-			blocked = false;
-			formerCell = cell;
-			cell = nextCell;
 		}
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporalis fuggveny
 	 * Beallitja az iranyt, amerre mennie kell keresztezodesben az ellensegnek.
 	 * @param direction
 	 */
 	public void setDirection(String direction) {
 		cDirection = direction;
-		
 	}
 
+	/**
+	 * Visszaadja az aktualis eleterot.
+	 * @return az aktualis eletero
+	 */
 	public int getCurrentLifePoint() {
 		return currentLifePoint;
 	}
 
+	/**
+	 * Visszaadja a jelenlegi cellat.
+	 * @return a jelenlegi cella
+	 */
 	public Cell getCell() {
-		// TODO Auto-generated method stub
 		return cell;
 	}
 
+	/**
+	 * Visszaadja az elozo cellat.
+	 * @return az elozo cella
+	 */
 	public Cell getFormerCell() {
 		return formerCell;
 	}
 	
+	/**
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * @return visszadja a cella nevet
+	 */
 	public String getName() {
 		return cName;
 	}
 
-
+	/**
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * @param name: beallitja nevnek az itt kapott stringet
+	 */
+	public void setName(String name) {
+		cName = name;
+	}
 
 }

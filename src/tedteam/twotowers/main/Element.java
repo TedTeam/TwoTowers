@@ -42,9 +42,18 @@ public abstract class Element {
 	}
 	
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * @return visszadja a cella nevet
 	 */
 	public String getName() {
 		return cName;
+	}
+	
+	/**
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * @param name: beallitja nevnek az itt kapott stringet
+	 */
+	public void setName(String name) {
+		cName = name;
 	}
 }

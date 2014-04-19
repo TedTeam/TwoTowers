@@ -45,13 +45,20 @@ public class EnemyList {
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
-	 * @param name
-	 * @return
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * Visszadja a name nevu ellenseget.
+	 * @param name: az ilyen nevu enemyt keressuk
+	 * @return a megtalalt enemy (ha van)
 	 */
 	public Enemy getEnemyByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		int index = -1;
+		for(Enemy e : enemies) {
+			if(e.getName().equals(name))
+				index = enemies.indexOf(e);
+		}
+		if(index == -1)
+			return null;
+		return enemies.get(index);
 	}
 
 }

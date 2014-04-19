@@ -35,14 +35,20 @@ public class ElementList {
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
-	 * Visszadja a name nevű elemet.
-	 * @param name
-	 * @return
+	 * Parancsfeldolgozo - temporalis fuggveny
+	 * Visszadja a name nevu elemet.
+	 * @param name: az ilyen nevu elementet keressuk
+	 * @return a megtalalt element (ha van)
 	 */
 	public Element getElementByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		int index = -1;
+		for(Element e : elements) {
+			if(e.getName().equals(name))
+				index = elements.indexOf(e);
+		}
+		if(index == -1)
+			return null;
+		return elements.get(index);
 	}
 
 }
