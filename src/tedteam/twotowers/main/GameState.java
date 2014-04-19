@@ -12,13 +12,13 @@ public class GameState {
 	private int deadEnemiesNumber;
 	
 	// A palyan levo epitmenyeket tartalmazo osztaly.
-	private ElementList elementList;
+	private ElementList elementList = new ElementList();
 	
 	// A palyan levo ellensegeket tartalmazo osztaly.
-	private EnemyList enemylist;
+	private EnemyList enemylist = new EnemyList();
 	
 	// A palya utolso cellaja.
-	private Cell finalCell = new Cell();
+	private Cell finalCell;
 	
 	// Az osszes letrehozhato ellenseg szama.
 	private int maximumEnemy;
@@ -48,8 +48,21 @@ public class GameState {
 		return false;
 	}
 
+	/**
+	 * Meghivja az enemyList attributum addEnemy metodusat,
+	 * atadva neki a parameterul kapott Enemy objektumot.
+	 * @param enemy: felvett Enemy 
+	 */
 	public void addEnemy(Enemy enemy) {
-		
+		enemylist.addEnemy(enemy);
+	}
+	/**
+	 * Meghivja az elementList valtozojanak addElement(Element) metodusat 
+	 * atadva neki a parameterkent kapott Element objektumot.
+	 * @param element: felvett Element
+	 */
+	public void addElement(Element element){
+		elementList.addElement(element);
 	}
 	
 	/**
@@ -57,28 +70,26 @@ public class GameState {
 	 * @param e: a halott ellenseg akit torolni kell.
 	 */
 	public void deadEnemy(Enemy enemy){
-
+		enemylist.deleteEnemy(enemy);
 	}
 
 	/**
 	 * Torli az elementListbol a tonkrement akadalyt.
 	 * @param blocker: ezt az akadalyt kell torolni.
 	 */
-	public void deleteBlocker(Blocker blocker){
-
+	public void deleteElement(Element element){
+		elementList.deleteElement(element);
 	}
 
 	/**
 	 * Beallitja a palya utolso cellajat.
 	 * @param c: ez lesz az utolso cella.
 	 */
-	public void setFinalCell(Cell c){
-		Logger.enter("gameState", "setFinalCell", "cell4", "");
-		
-		Logger.exit("void");
+	public void setFinalCell(Cell cell){
+		finalCell = cell;
 	}
 
-	public void setStartCell(Cell c) {
+	public void setStartCell(Cell c) {//ez minek is?
 		// TODO Auto-generated method stub
 		
 	}
