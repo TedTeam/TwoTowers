@@ -21,7 +21,7 @@ public class Hobbit extends Enemy {
 	public void init(GameState g, Cell c){
 		gameState = g;
 		cell = c;
-		formerCell = null;
+		formerCell = c;
 		maxLifePoint = 100;
 		currentLifePoint = 100;
 		speed = 5;

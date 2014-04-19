@@ -22,7 +22,7 @@ public class Human extends Enemy {
 	public void init(GameState g, Cell c){
 		gameState = g;
 		cell = c;
-		formerCell = null;
+		formerCell = c;
 		maxLifePoint = 150;
 		currentLifePoint = 150;
 		speed = 7;

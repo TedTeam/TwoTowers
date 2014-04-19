@@ -21,7 +21,7 @@ public class Dwarf extends Enemy {
 	public void init(GameState g, Cell c){
 		gameState = g;
 		cell = c;
-		formerCell = null;
+		formerCell = c;
 		maxLifePoint = 200;
 		currentLifePoint = 200;
 		speed = 5;
