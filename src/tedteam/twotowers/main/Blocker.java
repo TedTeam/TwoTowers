@@ -77,7 +77,7 @@ public class Blocker extends Element {
 			if (bl) {
 				this.countRemain--;
 				if(this.countRemain==0){ 
-					this.gameState.deleteBlocker(this);
+					this.gameState.deleteElement(this);
 					this.cell.removeElement(this);
 				}
 			}
