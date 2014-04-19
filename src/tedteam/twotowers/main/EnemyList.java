@@ -35,16 +35,6 @@ public class EnemyList {
 	}
 
 	/**
-	 * Meghivja az osszes tartalmazott ellenseg acceptDamage metodusat.
-	 * @param damage: ezt adja parameterul az acceptDamage metodusoknak.
-	 */
-	public void notifyAllEnemy(IDamage damage) {
-		for(Enemy e : enemies) {
-			e.acceptDamage(damage);
-		}
-	}
-
-	/**
 	 * Parancsfeldolgozo - temporalis fuggveny
 	 * Visszadja a name nevu ellenseget.
 	 * @param name: az ilyen nevu enemyt keressuk
