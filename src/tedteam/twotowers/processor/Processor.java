@@ -338,8 +338,8 @@ public class Processor {
 		Enemy actual = g.getGameState().getEnemyList().getEnemyByName(name);
 		if(parts.length == 3){
 			String direction = parts[2];
-			if (direction.equals("Left") || direction.equals("Right") || direction.equals("Up")
-					|| direction.equals("Down"))
+			if (direction.equals("left") || direction.equals("right") || direction.equals("up")
+					|| direction.equals("down"))
 				actual.setDirection(direction);
 			else 
 				return "invalid " + direction;
