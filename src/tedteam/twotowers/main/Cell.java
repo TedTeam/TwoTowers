@@ -10,11 +10,11 @@ import tedteam.twotowers.logger.Logger;
  */
 public class Cell {
 	// A cellan levo ellensegek.
-	private ArrayList<Enemy> actualEnemies;
+	private ArrayList<Enemy> actualEnemies = new ArrayList<Enemy>();
 	// A cellara rakott akadaly vagy torony.
 	private Element element = null;
 	// A szomszedos cellak referenciai.
-	private HashMap<String,Cell> neighbor;
+	private HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
 	// Ez donti el, hogy a cellan talalhato-e ut.
 	private boolean road = false;
 	// A torony lovesenel hasznalt valtozo.
@@ -36,7 +36,7 @@ public class Cell {
 	 * @return a cella szomszedos cellai.
 	 */
 	public HashMap<String,Cell> getNeighbors() {
-		return neighbor;
+		return neighbors;
 	}
 
 	/**
@@ -51,8 +51,8 @@ public class Cell {
 	 * Beallitja a cella szomszed cellait.
 	 * @param c: a kapott tomb tartalmazza a szomszedokat.
 	 */
-	public void setNeighbors(HashMap<String,Cell> neighbors) {
-		neighbor=neighbors;
+	public void setNeighbors(HashMap<String,Cell> neighbors2) {
+		this.neighbors.putAll(neighbors2);
 	}
 	
 	/* Lekeri a cellan talalhato osszes ellenseget.
@@ -72,7 +72,7 @@ public class Cell {
 	}
 	/**
 	 * Ha az element valtozo erteke null, akkor false ertekkel ter vissza. 
-	 * Egy�b esetben true-val.
+	 * Egyeb esetben true-val.
 	 */
 	public boolean hasElement() {
 		if(element==null) return false; 
@@ -99,8 +99,6 @@ public class Cell {
 	 */
 	public void setElement(Element element) {
 		this.element = element;
-
-		Logger.exit("void");
 	}
 
 	/**
