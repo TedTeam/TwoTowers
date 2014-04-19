@@ -328,20 +328,22 @@ public class Processor {
 	 * @return
 	 */
 	private String commandStep(String[] parts) {
-		if (parts.length != 3)
+		if (parts.length < 2)
 			return "error";
 		String name = parts[1];
 		Type type = createdElements.get(name);
-		if (type == null || type != Type.Elf || type != Type.Dwarf
-				|| type != Type.Human || type != Type.Hobbit)
+		if (type == null || (type != Type.Elf && type != Type.Dwarf
+				&& type != Type.Human && type != Type.Hobbit))
 			return "invalid " + name;
-		String direction = parts[2];
-		if (direction != "Left" || direction != "Right" || direction != "Up"
-				|| direction != "Down")
-			return "invalid " + direction;
-
 		Enemy actual = g.getGameState().getEnemyList().getEnemyByName(name);
-		actual.setDirection(direction);
+		if(parts.length == 3){
+			String direction = parts[2];
+			if (direction.equals("Left") || direction.equals("Right") || direction.equals("Up")
+					|| direction.equals("Down"))
+				actual.setDirection(direction);
+			else 
+				return "invalid " + direction;
+		}
 		actual.step();
 		return name + " step";
 	}
@@ -556,7 +558,7 @@ public class Processor {
 		// ha lezezik az element es a cell
 		if (type == Type.Blocker) {
 			if (!g.createBlocker(where))
-				return "error: not road on " + where;
+				return "error: not road on " + where.getCellName();
 		}
 		if (type == Type.Tower) {
 			if (!g.createTower(where)) {
@@ -570,38 +572,39 @@ public class Processor {
 		}
 		if (type == Type.Elf) {
 			if (!where.hasRoad())
-				return "error: not road on " + where;
+				return "error: not road on " + where.getCellName();
 			Elf elf = new Elf();
 			elf.setName(elementName);
+			elf.init(g.getGameState(), where);
 			g.getGameState().addEnemy(elf);
+			where.addEnemy(elf);
 		}
 		if (type == Type.Dwarf) {
 			if (!where.hasRoad())
 				return "error: not road on " + where;
 			Dwarf dwarf = new Dwarf();
 			dwarf.setName(elementName);
+			dwarf.init(g.getGameState(), where);
 			g.getGameState().addEnemy(dwarf);
+			where.addEnemy(dwarf);
 		}
 		if (type == Type.Human) {
 			if (!where.hasRoad())
 				return "error: not road on " + where;
 			Human human = new Human();
 			human.setName(elementName);
+			human.init(g.getGameState(), where);
 			g.getGameState().addEnemy(human);
+			where.addEnemy(human);
 		}
 		if (type == Type.Hobbit) {
 			if (!where.hasRoad())
 				return "error: not road on " + where;
 			Hobbit hobbit = new Hobbit();
 			hobbit.setName(elementName);
+			hobbit.init(g.getGameState(), where);
 			g.getGameState().addEnemy(hobbit);
-		}
-		if (type == Type.Hobbit) {
-			if (!where.hasRoad())
-				return "error: not road on " + where;
-			Hobbit hobbit = new Hobbit();
-			hobbit.setName(elementName);
-			g.getGameState().addEnemy(hobbit);
+			where.addEnemy(hobbit);
 		}
 		if (type == Type.RedStone) {
 			if (!where.hasElement())
@@ -679,6 +682,9 @@ public class Processor {
 			createdElements.put(name, Type.Blocker);
 		} else if (parts[1].equals("Elf")) {
 			createdElements.put(name, Type.Elf);
+			/*Elf elf = new Elf();
+			elf.setName(name);*/
+			
 		} else if (parts[1].equals("Hobbit")) {
 			createdElements.put(name, Type.Hobbit);
 		} else if (parts[1].equals("Human")) {
