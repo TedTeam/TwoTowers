@@ -1,6 +1,10 @@
 package tedteam.twotowers.main;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import tedteam.twotowers.logger.Logger;
 /**
@@ -8,30 +12,48 @@ import tedteam.twotowers.logger.Logger;
  */
 public class GameField {
 	// A palyat alkoto cellak.
-	private Cell cells[] = new Cell[4];
-
+	//private Map<Point,Cell> cells = new HashMap<Point,Cell>();  //most nem kell meg
+	
+	//ideiglenes tarolo a prototipushoz,utana toroljuk
+	private List<Cell> cells = new ArrayList<Cell>();
+	
+	//A kezdo cellat eltarolo valtozo. Innet indulnak majd ki az ellensegek.
+	private Cell startCell;
+	
+	//Az utolso cellat eltarolo valtozo. Ezt a cellat akarjak az ellensegek elerni.
+	private Cell finalCell;
+	
 	/**
 	 * Lekeri a palya utolso cellajat.
 	 * @return az utolso cella.
 	 */
 	public Cell getFinalCell(){
-		Logger.enter("gameField", "getFinalCell", "", "");
-		
-		Logger.exit("cell4");
-		return cells[3];
+		return finalCell;
 	}
-
+	
+	/**
+	 * A parameterkent kapott Cell objektumot 
+	 * eltarolja a finalCell valtozoba.
+	 * @param cell: tarolando Cella
+	 */
+	public void setFinalCell(Cell cell){
+		finalCell = cell;
+	}
+	
+	/**
+	 * A parameterkent kapott Cell objektumot eltarolja a startCell valtozoba.
+	 * @param cell: tarolando Cella
+	 */
+	public void setStartCell(Cell cell){
+		startCell = cell;
+	}
+	
 	/**
 	 * Lekeri a palya kezdo cellajat.
 	 * @return a kezdo cella.
 	 */
 	public Cell getStartCell(){
-		Logger.enter("gameField", "getStartCell", "", "");
-		
-		cells[1] = new Cell();
-		
-		Logger.exit("cell");
-		return cells[1];
+		return startCell;
 	}
 
 	/**
@@ -41,10 +63,7 @@ public class GameField {
 	public void init(){ 
 		Logger.enter("gameField", "init", "", "");
 		
-		cells[0] = new Cell();
-		cells[1] = new Cell();
-		cells[2] = new Cell();
-		cells[3] = new Cell();
+		
 		//TODO
 		/**cells[0].setNeighbors(cells);
 		cells[1].setNeighbors(cells);
@@ -55,26 +74,36 @@ public class GameField {
 		
 	}
 	
-	public void setAllCellUnvisited() {
+	public void setAllCellUnvisited() {//bullshit
 		for(Cell c : cells) {
 			c.setVisited(false);
 		}
 	}
 
 	/**
-	 * Parancsfeldolgozo - tempor�lis fuggveny
+	 * Parancsfeldolgozo - temporalis fuggveny
 	 * Visszaadja a parameterben megadott nevu cellat.
 	 * @param name
 	 * @return
 	 */
 	public Cell getCellByName(String name) {
 		// TODO Auto-generated method stub
+		for (Cell cell : cells) {
+			if (cell.getCellName().equals(name)) return cell;
+		}
 		return null;
 	}
 
+	/**
+	 * A parameterkent kapott Cell objektumot eltarolja a cells 
+	 * kollekcioba a Point tipuskent kapott kulccsal.
+	 * @param c: kapott Cell objektum
+	 * @param point: kulcs koordinatak
+	 * @return
+	 */
 	public void addCell(Cell c, Point point) {
 		// TODO Auto-generated method stub
-		
+		cells.add(c);
 	}
 
 }
