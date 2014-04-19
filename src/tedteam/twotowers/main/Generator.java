@@ -6,11 +6,6 @@ import tedteam.twotowers.logger.Logger;
  * vegrehajtasara, valamint az ellensegek letrehozasara.
  */
 public class Generator {
-	// A palyan levo epitmenyeket tartalmazo osztaly.
-	private ElementList elementList = new ElementList();
-	
-	// A palyan levo ellensegeket tartalmazo osztaly.
-	private EnemyList enemyList = new EnemyList();
 	
 	// A jatekteret tartalmazo osztaly.
 	private GameField gameField = new GameField();
@@ -56,7 +51,7 @@ public class Generator {
 		Blocker blocker = new Blocker();
 		blocker.setCell(cell);
 		blocker.setGameState(gameState);
-		elementList.addElement(blocker);
+		gameState.addElement(blocker);
 		
 		Logger.exit("true");
 		return true;
@@ -75,7 +70,7 @@ public class Generator {
 		cell.getElement();		
 		Tower tower = new Tower();
 		tower.setCell(cell);
-		elementList.addElement(tower);
+		gameState.addElement(tower);
 		
 		Logger.exit("true");
 		return true;
@@ -91,7 +86,7 @@ public class Generator {
 		Cell cell = gameField.getStartCell();
 		Hobbit hobbit = new Hobbit();
 		hobbit.init(gameState, cell);
-		enemyList.addEnemy(hobbit);
+		gameState.addEnemy(hobbit);
 		
 		Logger.exit("void");
 	}
@@ -152,7 +147,7 @@ public class Generator {
 	 */
 	public ElementList getElementList() {
 		// TODO Auto-generated method stub
-		return elementList;
+		return gameState.getElementList();
 	}
 
 }
