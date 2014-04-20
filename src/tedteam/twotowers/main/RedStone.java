@@ -5,6 +5,11 @@ package tedteam.twotowers.main;
  */
 public class RedStone extends MagicStone {
 
+	private int DwarfDamage = 30;
+	private int elfDamage = 30;
+	private int hobbitDamage = 30;
+	private int humanDamage = 30;
+
 	/**
 	 * Ez a metodus valtoztatja meg az akadaly sebzesenek nagysagat.
 	 * Mivel ilyen attributuma nincs az akadalynak, ezert ez a metodus nem csinal semmit.
@@ -12,7 +17,7 @@ public class RedStone extends MagicStone {
 	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet az akadalyra (false).
 	 */
 	public boolean effect(Blocker b){
-		return true;
+		return false;
 	}
 
 	/**
@@ -21,6 +26,15 @@ public class RedStone extends MagicStone {
 	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet a toronyra.
 	 */
 	public boolean effect(Tower t){
+		if(t.getStoneNumber() <2){
+			if(t.getEnhancedByRed() == false){
+				t.setEnhancedByRed();
+				t.increaseStoneNumber();
+				t.increaseDamage(DwarfDamage, elfDamage, hobbitDamage, humanDamage);
+				return true;
+			}
+			else return false;
+		}
 		return false;
 	}
 
