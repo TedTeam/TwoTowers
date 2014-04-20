@@ -120,23 +120,7 @@ public class Tower extends Element implements IDamage {
 			targetEnemy.acceptDamage(this);
 		}
 	}
-	
-	/**
-	 * Beallitja magat egy cellaba.
-	 * @param cell: ebbe a cellaba allitja be magat.
-	 */
-	public void setCell(Cell cell) {
-		cell.setElement(this);
-	}
-	
-	/**
-	 * Beallitja a torony lovesi gyakorisagat.
-	 * @param s: erre allitja be.
-	 */
-	public void setSpeed(int s) {
-		speed = s;
-	}
-	
+
 	/**
 	 * A hobbit ellenseg sebzeseert felelos metodus.
 	 * @param hobbit: az ellenseg melyet sebezni kell.
