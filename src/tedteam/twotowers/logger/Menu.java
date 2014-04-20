@@ -36,7 +36,7 @@ public class Menu {
 
 		case 1:
 			Generator g1 = new Generator();
-			g1.buildField();		
+			//g1.buildField();		
 			break;
 		case 2:
 			GameState gs2 = new GameState();

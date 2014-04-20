@@ -546,7 +546,7 @@ public class Processor {
 		if (cell.hasElement())
 			return "error: " + cellName + " has tower";
 		cell.setRoad();
-		return cellName + " set Road";
+		return cellName + " set road";
 	}
 
 	/**
