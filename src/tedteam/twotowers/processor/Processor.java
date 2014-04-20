@@ -222,8 +222,7 @@ public class Processor {
 			String line = br.readLine();
 			outputAll.clear(); // torli a korabban beleirt elemeket
 			while (line != null) {
-				outputAll.add(line);
-				System.out.println(line);
+				processCommand(line);
 				line = br.readLine();
 			}
 			br.close();
@@ -373,7 +372,7 @@ public class Processor {
 		boolean fog = false;
 		// opcionalis parameter van-e, illetve az /fog alakban van-e, ha igen,
 		// akkor megjegyezzuk
-		if (parts[2] != null) {
+		if (parts.length == 3) {
 			if (parts[2] == "/fog")
 				fog = true;
 			else
