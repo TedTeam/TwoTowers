@@ -294,7 +294,7 @@ public class Tower extends Element implements IDamage {
 	public void fog() {
 		if(fog == false) {
 			fog = true;
-			range -= 2;
+			range = 3;
 		}
 	}
 	/**
