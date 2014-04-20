@@ -45,18 +45,33 @@ public class Generator {
 	 * rahelyezheto az akadaly. false ha nem.
 	 */
 	public boolean createBlocker(Cell cell){
-		Logger.enter("generator", "createBlocker", "cell", "");
 		
-		cell.getElement();
-		Blocker blocker = new Blocker();
-		blocker.setCell(cell);
-		blocker.setGameState(gameState);
-		gameState.addElement(blocker);
+		if(cell.hasRoad() == true && cell.hasElement() == false){		
+			Blocker blocker = new Blocker();
+			blocker.setCell(cell);
+			cell.setElement(blocker);
+			gameState.addElement(blocker);
+			return true;
+		}
 		
-		Logger.exit("true");
-		return true;
+		return false;
 	}
-
+	//temporalis fuggveny a prototipushoz, alap esetben a String parameter nem kellene
+	public boolean createBlocker(Cell cell,String elementName){
+		
+		if(cell.hasRoad() == true && cell.hasElement() == false){		
+			Blocker blocker = new Blocker();
+			blocker.setCell(cell);
+			blocker.setName(elementName);
+			cell.setElement(blocker);
+			gameState.addElement(blocker);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
 	/**
 	 * Ez a metodus felelos egy torony letrehozasaert
 	 * es cellara helyezeseert. Beallitja annak alapertekeit.
@@ -64,18 +79,31 @@ public class Generator {
 	 * @return true ertekkel ter vissza, ha az adott cellara
 	 * rahelyezheto a torony. false ha nem.
 	 */
-	public boolean createTower(Cell cell){
-		Logger.enter("generator", "createTower", "cell", "");
-		
-		cell.getElement();		
-		Tower tower = new Tower();
-		tower.setCell(cell);
-		gameState.addElement(tower);
-		
-		Logger.exit("true");
-		return true;
-	}
+	public boolean createTower(Cell cell){  //protoban ez nem hivodik meg
 
+		if(cell.hasRoad() == false && cell.hasElement() == false){		
+			Tower tower = new Tower();
+			tower.setCell(cell);
+			cell.setElement(tower);
+			gameState.addElement(tower);
+			return true;
+		}
+		return false;
+	}
+	//temporalis fuggveny a prototipushoz, alap esetben a String parameter nem kellene
+	public boolean createTower(Cell cell,String elementName){
+		
+		if(cell.hasRoad() == false && cell.hasElement() == false){		
+			Tower tower = new Tower();
+			tower.setCell(cell);
+			tower.setName(elementName);
+			cell.setElement(tower);
+			gameState.addElement(tower);
+			return true;
+		}
+		
+		return false;
+	}
 	/**
 	 * Ez a metodus generalja az uj ellensegeket a palyara.
 	 * Letrehozasa utan beallitja annak alapertekeit es
@@ -141,13 +169,6 @@ public class Generator {
 		return gameState;
 	}
 
-	/**
-	 * Parancsfeldolgozo - temporális fuggveny
-	 * @return
-	 */
-	public ElementList getElementList() {
-		// TODO Auto-generated method stub
-		return gameState.getElementList();
-	}
+	
 
 }
