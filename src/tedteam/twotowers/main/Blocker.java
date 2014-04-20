@@ -56,7 +56,10 @@ public class Blocker extends Element {
 		for(int i=0;i<el.size();i++) {
 			boolean bl=el.get(i).block(slowing);
 			if (bl) {
-				BlockedEnemies.concat(el.get(i).getName()+" ");
+				if(BlockedEnemies.equals(""))
+					BlockedEnemies = el.get(i).getName(); 
+				else
+						BlockedEnemies.concat(el.get(i).getName()+" ");
 				this.countRemain--;
 				if(this.countRemain==0){ 
 					this.gameState.deleteElement(this);

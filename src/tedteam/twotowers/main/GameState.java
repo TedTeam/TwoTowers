@@ -30,7 +30,7 @@ public class GameState {
 	 * ellenseg szamaval. Ellenkezo esetben false.
 	 */
 	public boolean checkGame(){
-	
+		try {
 		if(finalCell.getEnemy().size()>0) {
 			System.out.println("Vereseg");
 			return true;
@@ -38,6 +38,10 @@ public class GameState {
 		if(deadEnemiesNumber==maximumEnemy) {
 			System.out.println("Gyozelem");
 			return true;
+		}
+		} catch (NullPointerException e) {
+			//Nincs inicializalva a final cell!!!
+			System.out.println("error");
 		}
 		return false;
 	}

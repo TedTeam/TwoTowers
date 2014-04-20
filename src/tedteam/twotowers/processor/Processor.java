@@ -368,11 +368,16 @@ public class Processor {
 		if (type == null || type != Type.Tower)
 			return "invalid " + name;
 		boolean fog = false;
+		boolean cut = false;
 		// opcionalis parameter van-e, illetve az /fog alakban van-e, ha igen,
 		// akkor megjegyezzuk
 		if (parts.length == 3) {
-			if (parts[2].equals("fog"))
+			if (parts[2].equals("fog")) {
 				fog = true;
+			} else 
+				return "error"; 
+			if (parts[2].equals("cut"))
+				cut = true;
 			else
 				return "error";
 		}
@@ -380,6 +385,8 @@ public class Processor {
 				.getElementByName(name);
 		if (fog)
 			t.fog(); // beallitja a kodot
+		if (cut)
+			t.setCut();
 		t.action();
 		String lastshot = t.getLastShotEnemyName();
 		if (lastshot == null ) {
@@ -571,7 +578,7 @@ public class Processor {
 			return "invalid " + cellName;
 		Type type = createdElements.get(elementName);
 		if (type == null) // nem letezo element-name eseten
-			return "invalid" + elementName;
+			return "invalid " + elementName;
 		// ha lezezik az element es a cell
 		if (type == Type.Blocker) {
 			if (!g.createBlocker(where,elementName))
