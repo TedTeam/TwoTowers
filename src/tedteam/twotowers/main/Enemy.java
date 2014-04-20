@@ -104,8 +104,9 @@ public abstract class Enemy {
 
 	/**
 	 * Az ellenseg leptetesenek metodusa a prototipusban.
+	 * @throws Exception 
 	 */
-	public void step(){
+	public void step() throws Exception{
 		Cell nextCell = new Cell();
 		HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
 		neighbors.putAll(cell.getNeighbors());
@@ -118,6 +119,7 @@ public abstract class Enemy {
 					cell.removeEnemy(this);
 					cell = nextCell;
 					nextCell.addEnemy(this);
+					return;
 				}
 			}
 			cDirection = null;
@@ -130,10 +132,12 @@ public abstract class Enemy {
 						cell.removeEnemy(this);
 						cell = nextCell;
 						nextCell.addEnemy(this);
+						return;
 					}
 				}
 			}
 		}
+		throw new Exception();
 	}
 
 	/**

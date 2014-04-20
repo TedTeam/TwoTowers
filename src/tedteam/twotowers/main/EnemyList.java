@@ -30,7 +30,12 @@ public class EnemyList {
 	 */
 	public void stepAll(){
 		for(Enemy e : enemies) {
-			e.step();
+			try {
+				e.step();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
