@@ -401,11 +401,13 @@ public class Processor {
 			return "error";
 		String name = parts[1];
 		Type type = createdElements.get(name);
-		if (type == null)
-			return "invalid " + name;
 		if (type == Type.Elf || type == Type.Dwarf || type == Type.Human
 				|| type == Type.Hobbit) {
 			Enemy actual = g.getGameState().getEnemyList().getEnemyByName(name);
+			if (actual == null){ //ez akkor lehet, ha mar meghalt az enemy
+				createdElements.remove(name);
+				return "invalid " + name;
+			} 
 			if (actual != null) {
 				return "lifepoint "
 						+ String.valueOf(actual.getCurrentLifePoint())
