@@ -33,7 +33,6 @@ public class RedStone extends MagicStone {
 				t.increaseDamage(DwarfDamage, elfDamage, hobbitDamage, humanDamage);
 				return true;
 			}
-			else return false;
 		}
 		return false;
 	}
