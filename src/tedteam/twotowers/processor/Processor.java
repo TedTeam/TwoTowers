@@ -311,7 +311,7 @@ public class Processor {
 		Type type = createdElements.get(name);
 		if (type == null || type != Type.Blocker)
 			return "invalid " + name;
-		Blocker b = (Blocker) g.getElementList().getElementByName(name);
+		Blocker b = (Blocker) g.getGameState().getElementList().getElementByName(name);
 		b.action();
 		if (b.getBlockedEnemies() == "") {
 			return "no block";
@@ -432,7 +432,7 @@ public class Processor {
 			return string.toString();
 		}
 		if (type == Type.Blocker) {
-			Blocker actual = (Blocker) g.getElementList()
+			Blocker actual = (Blocker) g.getGameState().getElementList()
 					.getElementByName(name);
 			if (actual != null) {
 				return "slowing " + String.valueOf(actual.getSlowing())
@@ -569,15 +569,15 @@ public class Processor {
 			return "invalid" + elementName;
 		// ha lezezik az element es a cell
 		if (type == Type.Blocker) {
-			if (!g.createBlocker(where))
+			if (!g.createBlocker(where,elementName))
 				return "error: not road on " + where.getCellName();
 		}
 		if (type == Type.Tower) {
-			if (!g.createTower(where)) {
+			if (!g.createTower(where,elementName)) {
 				if (where.hasRoad()) // ez azer kell, mert a createTower csak
 										// annyit ad vissza, hogy false
-					return "error: road on " + where;
-				return "error: + " + where + " has tower"; // ha nem az a baj,
+					return "error: road on " + where.getCellName();
+				return "error: " + where.getCellName() + " has tower"; // ha nem az a baj,
 															// hogy road, akkor
 															// ez
 			}
@@ -709,8 +709,8 @@ public class Processor {
 			createdElements.put(name, Type.BlackStone);
 		} else if (parts[1].equals("RedStone")) {
 			createdElements.put(name, Type.RedStone);
-		} else if (parts[1].equals("BlackStone")) {
-			createdElements.put(name, Type.BlackStone);
+		} else if (parts[1].equals("BlueStone")) {
+			createdElements.put(name, Type.BlueStone);
 		}
 		// nincs ilyen nevu element
 		else
