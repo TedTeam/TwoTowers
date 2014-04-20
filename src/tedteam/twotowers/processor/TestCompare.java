@@ -77,9 +77,9 @@ public class TestCompare {
 				System.out.println("    Line: "+ wrongLines.get(i) 
 						+ " Output: " + actualTest.get(wrongLines.get(i)-1));
 				if(wrongLines.get(i) <= idealTest.size())
-					System.out.println("             Ideal: "+ idealTest.get(wrongLines.get(i)-1));
+					System.out.println("             Ideal:  "+ idealTest.get(wrongLines.get(i)-1));
 				else 
-					System.out.println("             Ideal: no pair");
+					System.out.println("             Ideal:  <no pair>");
 			} catch(IndexOutOfBoundsException e) {
 				System.out.println("    Line: "+ wrongLines.get(i) 
 						+ " Missing output row.");
