@@ -11,11 +11,11 @@ import tedteam.twotowers.logger.Logger;
 public class Blocker extends Element {
 	// Ezen a GameState referencian keresztul tudja majd torolni
 	// magat a listabol, ha eleg ellenseg haladt at rajta.
-	private GameState gameState= new GameState();
+	private GameState gameState;
 	// A feltarthato ellensegek szama.
 	private int countRemain = 10;
 	// Az akadaly lassitasanak merteke.
-	private int slowing = 0;
+	private int slowing = 2;
 	private boolean enhanced=false;/**Erteke true, ha az objektumhoz lett csatolva MagicStone. Alapertelmezett erteke: false.*/
 	
 	/**
@@ -34,18 +34,6 @@ public class Blocker extends Element {
 	}
 
 	/**
-	 * Beallitja magat egy cellaba.
-	 * @param cell: ebbe a cellaba allitja be magat.
-	 */
-	public void setCell(Cell cell) {
-		Logger.enter("blocker", "setCell", "", "");
-		
-		cell.setElement(this);
-		
-		Logger.exit("void");
-	}
-
-	/**
 	 * Beallitja a GameState attributumot
 	 * @param gameState: ezt allitja be a gameState attributumba
 	 */
@@ -59,10 +47,8 @@ public class Blocker extends Element {
 	 * Modositja az akadaly lassitasanak merteket
 	 * @param i: a modositas merteke
 	 */
-	public void setSlowing(int i) {
-		Logger.enter("blocker", "setSlowing", "i:int", "");
+	public void increaseSlowing(int i) {
 		slowing=slowing+i;
-		Logger.exit("void");
 	}
 	
 	/**

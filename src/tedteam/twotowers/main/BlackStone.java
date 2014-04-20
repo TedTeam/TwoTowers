@@ -15,7 +15,7 @@ public class BlackStone extends MagicStone {
 	public boolean effect(Blocker blocker) {
 		Logger.enter("blackStone", "effect", "blocker", "");
 		if(blocker.getEnhanced()==false){	
-			blocker.setSlowing(slowingRate);
+			blocker.increaseSlowing(slowingRate);
 			Logger.exit("true");
 			return true;
 		} else return false;
