@@ -114,7 +114,6 @@ public abstract class Enemy {
 			nextCell = neighbors.get(cDirection);
 			if(nextCell != null){
 				if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
-					System.out.println("lepes irannyal");
 					formerCell = cell;
 					cell.removeEnemy(this);
 					cell = nextCell;
@@ -127,7 +126,6 @@ public abstract class Enemy {
 				nextCell = h.getValue();
 				if(nextCell != null){
 					if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
-						System.out.println("lepes irany nelkul");
 						formerCell = cell;
 						cell.removeEnemy(this);
 						cell = nextCell;
