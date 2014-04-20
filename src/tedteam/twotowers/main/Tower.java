@@ -79,7 +79,7 @@ public class Tower extends Element implements IDamage {
 				if(--cellsInActualRange == 0) {
 					// noveljuk az aktualis hatotavot, de ha az nagyobb mint
 					// a toronyban megadott, akkor nem talaltunk ellenseget
-					if(++actualRange == this.range) {
+					if(actualRange > this.range) {
 						return null;
 					}
 					// ha nem ertuk el a megadott hatotavot,
