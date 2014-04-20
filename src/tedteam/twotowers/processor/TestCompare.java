@@ -7,6 +7,13 @@ import java.util.ArrayList;
 
 public class TestCompare {
 		
+	/**
+	 * Compare fo fuggvenye, ez hivodik meg a parancs kiadasanal. 
+	 * Beolvassuk a fajlok tartalmat, osszehasonlitjuk a sorokat, majd kiirjuk a hibakat. 
+	 * @param locActual
+	 * @param locIdeal
+	 * @return
+	 */
 	public String inputFile(String locActual, String locIdeal) {
 		ArrayList<String> actualTest = new ArrayList<String>();
 		ArrayList<String> idealTest = new ArrayList<String>();
@@ -24,6 +31,12 @@ public class TestCompare {
 		}
 	}
 	
+	/**
+	 * A ket bemeneti fajl osszehasonlitasa tortenik meg.
+	 * @param actualTest
+	 * @param idealTest
+	 * @return
+	 */
 	private ArrayList<Integer> compareTest(ArrayList<String> actualTest, ArrayList<String> idealTest) {
 		ArrayList<Integer> wrongLines = new ArrayList<Integer>();
 		int max = 0; //eddig megy a ciklus
@@ -31,43 +44,59 @@ public class TestCompare {
 			max = actualTest.size();
 		else max = idealTest.size(); //ha az idealis a kisebb, addig megy
 		for(int i = 0; i < max; ++i) {
-			if(actualTest.get(i) != idealTest.get(i))
+			if(!actualTest.get(i).equals(idealTest.get(i)) && !actualTest.get(i).equals(""))
 				wrongLines.add(i+1);
 		}
 		
-		//Ha nem egyeznek a sor meretek, a nem paros sorok azok hibasak.
+		//Ha nem egyeznek a sor meretek, akkor azok a sorok, amiknek a masik fajlba nincs parja, 
+		//hibasnak tekinthetoek.
 		if(actualTest.size() < idealTest.size()) {
 			for(int i = 0; i< (idealTest.size()-actualTest.size()); ++i)
-				wrongLines.add(actualTest.size()+i);
+				wrongLines.add(actualTest.size()+i +1);
 		}
-		if(actualTest.size() < idealTest.size()) {
+		//ha a tesztelt kimenet a nagyobb, akkor a plusz sorokat hibasnak irjuk.
+		if(actualTest.size() > idealTest.size()) {
 			for(int i = 0; i< (actualTest.size()-idealTest.size()); ++i)
-				wrongLines.add(idealTest.size()+i);
+				wrongLines.add(idealTest.size()+i +1);
 		}
 		return wrongLines;
 	}
 	
+	/**
+	 * A hibas sorokat irja ki sorszammal.
+	 * @param actualTest
+	 * @param wrongLines
+	 */
 	private void printErrors(ArrayList<String> actualTest, ArrayList<Integer> wrongLines) {
+		System.out.println("Wrong lines in output: ");
 		for(int i = 0; i < wrongLines.size(); ++i) {
-			String actual = actualTest.get(wrongLines.get(i));
-			if(actual == null) {
-				System.out.println("Error: No matching output row in ideal command row.");
-			} else {
-				System.out.println("Line: "+ wrongLines.get(i) 
-						+ "Output: " + actualTest.get(wrongLines.get(i)));
+			//ha null, az azt jelenti, hogy az egy olyan sor, ami a helyes megoldasban benne van,
+			//de a teszteltben nincs
+			try {
+				System.out.println("    Line: "+ wrongLines.get(i) 
+						+ " Output: " + actualTest.get(wrongLines.get(i)-1));
+			} catch(IndexOutOfBoundsException e) {
+				System.out.println("    Line: "+ wrongLines.get(i) 
+						+ " No matching output row in ideal command row.");
 			}
 		}
 				
 				
 	}
 	
+	/**
+	 * Beolvassuk a listaba a fileName helyen levo és nevu fajlt.
+	 * @param list
+	 * @param fileName
+	 * @return
+	 */
 	private boolean readFromFile(ArrayList<String> list, String fileName) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
 			String line = br.readLine();
 			while (line != null) {
 				list.add(line);
-				System.out.println(line);
+				//System.out.println(line);
 				line = br.readLine();
 			}
 			br.close();
