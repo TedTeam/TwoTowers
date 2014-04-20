@@ -371,7 +371,7 @@ public class Processor {
 		// opcionalis parameter van-e, illetve az /fog alakban van-e, ha igen,
 		// akkor megjegyezzuk
 		if (parts.length == 3) {
-			if (parts[2] == "/fog")
+			if (parts[2].equals("fog"))
 				fog = true;
 			else
 				return "error";
