@@ -26,7 +26,7 @@ public class TestCompare {
 		if(wrongLines.size() == 0) {
 			return "Successful testing";
 		} else { 
-			printErrors(actualTest, wrongLines);
+			printErrors(actualTest, idealTest, wrongLines);
 			return "Failed testing";
 		}
 	}
@@ -67,7 +67,8 @@ public class TestCompare {
 	 * @param actualTest
 	 * @param wrongLines
 	 */
-	private void printErrors(ArrayList<String> actualTest, ArrayList<Integer> wrongLines) {
+	private void printErrors(ArrayList<String> actualTest, 
+			ArrayList<String> idealTest, ArrayList<Integer> wrongLines) {
 		System.out.println("Wrong lines in output: ");
 		for(int i = 0; i < wrongLines.size(); ++i) {
 			//ha null, az azt jelenti, hogy az egy olyan sor, ami a helyes megoldasban benne van,
@@ -75,9 +76,13 @@ public class TestCompare {
 			try {
 				System.out.println("    Line: "+ wrongLines.get(i) 
 						+ " Output: " + actualTest.get(wrongLines.get(i)-1));
+				if(wrongLines.get(i) <= idealTest.size())
+					System.out.println("             Ideal: "+ idealTest.get(wrongLines.get(i)-1));
+				else 
+					System.out.println("             Ideal: no pair");
 			} catch(IndexOutOfBoundsException e) {
 				System.out.println("    Line: "+ wrongLines.get(i) 
-						+ " No matching output row in ideal command row.");
+						+ " Missing output row.");
 			}
 		}
 				
