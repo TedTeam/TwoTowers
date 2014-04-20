@@ -699,13 +699,16 @@ public class Processor {
 			createdElements.put(name, Type.Elf);
 			/*Elf elf = new Elf();
 			elf.setName(name);*/
-			
+			g.getGameState().increaseMaxEnemy();
 		} else if (parts[1].equals("Hobbit")) {
 			createdElements.put(name, Type.Hobbit);
+			g.getGameState().increaseMaxEnemy();
 		} else if (parts[1].equals("Human")) {
 			createdElements.put(name, Type.Human);
+			g.getGameState().increaseMaxEnemy();
 		} else if (parts[1].equals("Dwarf")) {
 			createdElements.put(name, Type.Dwarf);
+			g.getGameState().increaseMaxEnemy();
 		} else if (parts[1].equals("GreenStone")) {
 			createdElements.put(name, Type.GreenStone);
 		} else if (parts[1].equals("BlackStone")) {

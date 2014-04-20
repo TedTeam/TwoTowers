@@ -20,8 +20,8 @@ public class GameState {
 	// A palya utolso cellaja.
 	private Cell finalCell;
 	
-	// Az osszes letrehozhato ellenseg szama. beírtam 10-et egyelõre....
-	private int maximumEnemy=10;
+	// Ellenségek maximális száma. Jelenleg ez a létrehozott ellenségek száma a protóban
+	private int maximumEnemy=0;
 
 	/**
 	 * Ez a metodus ellenorzi, hogy veget ert-e a jatek. 
@@ -99,6 +99,16 @@ public class GameState {
 	 */
 	public ElementList getElementList() {
 		return elementList;
+	}
+	
+	/**
+	 * Parancsfeldolgozo - temporális fuggveny
+	 * Letrehozott ellenségek számával növekszik
+	 * @return
+	 */
+	public void increaseMaxEnemy() {
+		maximumEnemy++;
+		
 	}
 
 
