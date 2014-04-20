@@ -1,6 +1,4 @@
 package tedteam.twotowers.main; 
-
-import tedteam.twotowers.logger.Logger;
 /**
  * Ez az osztaly felelos a felhasznalo altal jelzett muveletek
  * vegrehajtasara, valamint az ellensegek letrehozasara.
@@ -107,13 +105,10 @@ public class Generator {
 	 * a palyara rakja.
 	 */
 	public void generateEnemies(){
-		Logger.enter("generator", "generateEnemies", "", "");
 		Cell cell = gameField.getStartCell();
 		Hobbit hobbit = new Hobbit();
 		hobbit.init(gameState, cell);
 		gameState.addEnemy(hobbit);
-		
-		Logger.exit("void");
 	}
 	
 

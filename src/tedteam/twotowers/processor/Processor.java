@@ -272,9 +272,7 @@ public class Processor {
 			return "invalid " + startCell;
 		if (type == null || type != Type.Cell)
 			return "invalid " + finalCell;
-		Cell startC = g.getGameField().getCellByName(startCell);
 		Cell finalC = g.getGameField().getCellByName(finalCell);
-		g.getGameState().setStartCell(startC);
 		g.getGameState().setFinalCell(finalC);
 		return "initialized";
 	}

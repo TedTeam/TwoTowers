@@ -85,11 +85,6 @@ public class GameState {
 		finalCell = cell;
 	}
 
-	//public void setStartCell(Cell c) {//ez minek is?
-		// TODO Auto-generated method stub
-		
-	//}
-
 	/**
 	 * Parancsfeldolgozo - temporális fuggveny
 	 * @return

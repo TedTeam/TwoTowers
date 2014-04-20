@@ -2,7 +2,6 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * A tornyot megvalosito osztaly. Egy torony fobb
