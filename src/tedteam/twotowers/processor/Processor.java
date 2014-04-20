@@ -344,8 +344,14 @@ public class Processor {
 			else 
 				return "invalid " + direction;
 		}
+		try{
 		actual.step();
 		return name + " step";
+		}
+		catch(Exception e){
+			return "error";
+			
+		}
 	}
 
 	/**
