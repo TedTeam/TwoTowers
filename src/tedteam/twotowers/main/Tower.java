@@ -2,7 +2,6 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -57,17 +56,17 @@ public class Tower extends Element implements IDamage {
 	// a Breadth First Search algoritmus segitsegevel
 	public Enemy findEnemyInRange() {
 		// a sor melyben eltaroljuk a vizsgalni kivant cellakat (FIFO)
-		Queue<Cell> queue = new LinkedList<Cell>();
+		LinkedList<Cell> queue = new LinkedList<Cell>();
+		ArrayList<Cell> visited = new ArrayList<Cell>();
 		// az aktualisan viszgalt hatotav
 		int actualRange = 0;
 		// a cellak szama az aktualisan vizsgalt hatotavban
 		int cellsInActualRange = 1;
 		// novelhetjuk-e az aktualis hatotavot
 		boolean actualRangeIncrease = false;
-		// berakjuk a sorba az elso elemet
+		// berakjuk a sorba az elso elemet es meg is tekintettuk
 		queue.add(this.cell);
-		// az elso elemet megtekintettuk
-		this.cell.setVisited(true);
+		visited.add(this.cell);
 		// ciklus, amig a sor ures nem lesz
 		while(!queue.isEmpty()) {
 			// toroljuk az elso elemet a sorban
@@ -92,9 +91,9 @@ public class Tower extends Element implements IDamage {
 				ArrayList<Cell> neighbors = new ArrayList<Cell>(x.getNeighbors().values());
 				for(Cell y : neighbors) {
 					// ha van szomszed es azt meg nem tekintettuk meg
-					if(y != null && y.getVisited() == false) {
+					if(y != null && visited.contains(y) == false) {
 						// megtekintettuk es a sorbarakjuk
-						y.setVisited(true);
+						visited.add(y);
 						queue.add(y);
 					}
 				}
@@ -129,7 +128,7 @@ public class Tower extends Element implements IDamage {
 		/* Most meg nem kell
 		 * 
 		 * Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		int cutChance = rand.nextInt(20) +1 ;// 1-tï¿½l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			hobbit.cut(hobbitDamage);
 		else hobbit.damage(hobbitDamage);
@@ -150,7 +149,7 @@ public class Tower extends Element implements IDamage {
 		/* Most meg nem kell
 		 * 
 		 * Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		int cutChance = rand.nextInt(20) +1 ;// 1-tï¿½l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			elf.cut(elfDamage);
 		else elf.damage(elfDamage);
@@ -171,7 +170,7 @@ public class Tower extends Element implements IDamage {
 		/* Most meg nem kell
 		 * 
 		 * Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		int cutChance = rand.nextInt(20) +1 ;// 1-tï¿½l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			dwarf.cut(dwarfDamage);
 		else dwarf.damage(dwarfDamage);
@@ -192,7 +191,7 @@ public class Tower extends Element implements IDamage {
 		/* Most meg nem kell
 		 * 
 		 * Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		int cutChance = rand.nextInt(20) +1 ;// 1-tï¿½l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			human.cut(humanDamage);
 		else human.damage(humanDamage);
