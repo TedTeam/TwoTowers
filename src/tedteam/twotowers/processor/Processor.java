@@ -449,20 +449,32 @@ public class Processor {
 				HashMap<String, Cell> neighbors = cell.getNeighbors();
 				Cell c = neighbors.get("left");
 				if (c != null)
-					neighborsString.append(c.getCellName() + " ");
+					neighborsString.append(c.getCellName() + " "+"left");
 				c = neighbors.get("right");
 				if (c != null)
-					neighborsString.append(c.getCellName() + " ");
+					neighborsString.append(c.getCellName() + " "+"right");
 				c = neighbors.get("up");
 				if (c != null)
-					neighborsString.append(c.getCellName() + " ");
+					neighborsString.append(c.getCellName() + " "+"up");
 				c = neighbors.get("down");
 				if (c != null)
-					neighborsString.append(c.getCellName() + " ");
-
+					neighborsString.append(c.getCellName() + " "+"down");
+				
+				StringBuilder elementString = new StringBuilder();
+				if(cell.getElement() == null)
+					elementString.append("null");
+				else elementString.append(cell.getElement().getName());
+				StringBuilder enemyString = new StringBuilder();
+				ArrayList<Enemy> enemies = cell.getEnemy();
+				if(enemies.isEmpty()) 
+					enemyString.append(" null");
+				for(Enemy e:enemies){
+					if(e != null)
+						enemyString.append(" "+e.getName());
+				}
 				return "road " + cell.hasRoad() + ", neighbors "
 						+ neighborsString.toString() + ", element "
-						+ cell.hasElement() + ", enemies " + cell.hasEnemy();
+						+ elementString.toString() + ", enemies" + enemyString.toString();
 			}
 		}
 		
@@ -506,7 +518,7 @@ public class Processor {
 			HashMap<String, Cell> neighbors = target.getNeighbors();
 			neighbors.put(direction, neighbor);
 			return neighborCell + " set " + targetCell + " " + direction
-					+ "neighbor";
+					+ " neighbor";
 		}
 		else 
 			return "invalid " + direction;
@@ -534,12 +546,12 @@ public class Processor {
 	}
 
 	/**
-	 * Command: put [element-name] [where] Le�r�s: Lehelyezi a param�terben
-	 * megadott cell�ra a v�laszott elemet, ha lehets�ges. Opci�k: element-name:
-	 * az element create paranccsal t�rt�nt l�trehoz�sakor v�laszott n�v, ezt
-	 * akarjuk lehelyezni a p�ly�ra. (Element-name tartozhat a k�vetkezokhoz:
+	 * Command: put [element-name] [where] Leirass: Lehelyezi a parameterben
+	 * megadott cellara a valasztott elemet, ha lehetseges. Opciok: element-name:
+	 * az element create paranccsal tortent letrehozasakor valasztott nev, ezt
+	 * akarjuk lehelyezni a palyara. (Element-name tartozhat a kovetkezokhoz:
 	 * Tower, Block, Elf, Hobbit, Human, Dwarf, GreenStone, BlackStone,
-	 * RedStone) where: cell, ahova le szeretn�nk helyezni a v�laszott
+	 * RedStone) where: cell, ahova le szeretnenk helyezni a valasztott
 	 * elementet.
 	 */
 	public String commandPut(String[] parts) {
@@ -581,7 +593,7 @@ public class Processor {
 		}
 		if (type == Type.Dwarf) {
 			if (!where.hasRoad())
-				return "error: not road on " + where;
+				return "error: not road on " + where.getCellName();
 			Dwarf dwarf = new Dwarf();
 			dwarf.setName(elementName);
 			dwarf.init(g.getGameState(), where);
@@ -590,7 +602,7 @@ public class Processor {
 		}
 		if (type == Type.Human) {
 			if (!where.hasRoad())
-				return "error: not road on " + where;
+				return "error: not road on " + where.getCellName();
 			Human human = new Human();
 			human.setName(elementName);
 			human.init(g.getGameState(), where);
@@ -599,7 +611,7 @@ public class Processor {
 		}
 		if (type == Type.Hobbit) {
 			if (!where.hasRoad())
-				return "error: not road on " + where;
+				return "error: not road on " + where.getCellName();
 			Hobbit hobbit = new Hobbit();
 			hobbit.setName(elementName);
 			hobbit.init(g.getGameState(), where);
@@ -608,7 +620,7 @@ public class Processor {
 		}
 		if (type == Type.RedStone) {
 			if (!where.hasElement())
-				return "error: not element on " + where;
+				return "error: not element on " + where.getCellName();
 			RedStone redStone = new RedStone();
 			redStone.setName(elementName);
 			if(!g.addStone(redStone, where)) {
@@ -617,7 +629,7 @@ public class Processor {
 		}
 		if (type == Type.GreenStone) {
 			if (!where.hasElement())
-				return "error: not element on " + where;
+				return "error: not element on " + where.getCellName();
 			GreenStone greenStone = new GreenStone();
 			greenStone.setName(elementName);
 			if(!g.addStone(greenStone, where)) {
@@ -626,7 +638,7 @@ public class Processor {
 		}
 		if (type == Type.BlueStone) {
 			if (!where.hasElement())
-				return "error: not element on " + where;
+				return "error: not element on " + where.getCellName();
 			BlueStone blueStone = new BlueStone();
 			blueStone.setName(elementName);
 			if(!g.addStone(blueStone, where)) {
@@ -635,7 +647,7 @@ public class Processor {
 		}
 		if (type == Type.BlackStone) {
 			if (!where.hasElement())
-				return "error: not element on " + where;
+				return "error: not element on " + where.getCellName();
 			BlackStone blackStone = new BlackStone();
 			blackStone.setName(elementName);
 			if(!g.addStone(blackStone, where)) {
