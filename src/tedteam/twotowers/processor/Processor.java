@@ -382,7 +382,7 @@ public class Processor {
 			t.fog(); // beallitja a kodot
 		t.action();
 		String lastshot = t.getLastShotEnemyName();
-		if (lastshot == "") {
+		if (lastshot == null ) {
 			return "no damage";
 		} else
 			return "damage " + lastshot;
