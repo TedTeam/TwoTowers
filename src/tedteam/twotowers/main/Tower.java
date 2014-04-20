@@ -3,6 +3,7 @@ package tedteam.twotowers.main;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 
 /**
  * A tornyot megvalosito osztaly. Egy torony fobb
@@ -38,6 +39,9 @@ public class Tower extends Element implements IDamage {
 	// Az utoljara meglott ellenseg neve
 	// Ez csak a prototipusban kell
 	private String lastShotEnemyName = null;
+	
+	//Temporalis valtozo a prototipus miatt. Ha igaz, a kovetkezo enemy talalatkor cut metodus hivas damage helyett
+	private boolean cut = false;
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -138,7 +142,20 @@ public class Tower extends Element implements IDamage {
 	 * @param hobbit: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Hobbit hobbit) {
-		hobbit.damage(hobbitDamage);
+		/* Most meg nem kell
+		 * 
+		 * Random rand = new Random();
+		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
+			hobbit.cut(hobbitDamage);
+		else hobbit.damage(hobbitDamage);
+		*/
+		
+		if(cut){
+			hobbit.cut(hobbitDamage);
+			cut = false;
+		}
+		else hobbit.damage(hobbitDamage);
 	}
 
 	/**
@@ -146,7 +163,20 @@ public class Tower extends Element implements IDamage {
 	 * @param elf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Elf elf) {
-		elf.damage(elfDamage);
+		/* Most meg nem kell
+		 * 
+		 * Random rand = new Random();
+		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
+			elf.cut(elfDamage);
+		else elf.damage(elfDamage);
+		*/
+		
+		if(cut){
+			elf.cut(hobbitDamage);
+			cut = false;
+		}
+		else elf.damage(hobbitDamage);
 	}
 
 	/**
@@ -154,7 +184,20 @@ public class Tower extends Element implements IDamage {
 	 * @param dwarf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Dwarf dwarf) {
-		dwarf.damage(dwarfDamage);
+		/* Most meg nem kell
+		 * 
+		 * Random rand = new Random();
+		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
+			dwarf.cut(dwarfDamage);
+		else dwarf.damage(dwarfDamage);
+		*/
+		
+		if(cut){
+			dwarf.cut(dwarfDamage);
+			cut = false;
+		}
+		else dwarf.damage(dwarfDamage);
 	}
 
 	/**
@@ -162,7 +205,20 @@ public class Tower extends Element implements IDamage {
 	 * @param human: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Human human) {
-		human.damage(humanDamage);
+		/* Most meg nem kell
+		 * 
+		 * Random rand = new Random();
+		int cutChance = rand.nextInt(20) +1 ;// 1-tõl 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
+			human.cut(humanDamage);
+		else human.damage(humanDamage);
+		*/
+		
+		if(cut){
+			human.cut(humanDamage);
+			cut = false;
+		}
+		else human.damage(humanDamage);
 	}
 	
 	/**
@@ -287,6 +343,11 @@ public class Tower extends Element implements IDamage {
 
 	public int getHumanDamage() {
 		return humanDamage;
+	}
+	
+	//proto utan toroljuk
+	public void setCut(){
+		cut = true;
 	}
 
 }
