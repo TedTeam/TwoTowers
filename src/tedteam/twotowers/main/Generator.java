@@ -20,7 +20,10 @@ public class Generator {
 	 * @param c: a cella melyre a varazskovet akarjuk rakni.
 	 * @return sikeres volt-e a varazsko rarakasa az epitmenyre (false)
 	 */
-	public boolean addStone(MagicStone m, Cell c){
+	public boolean addStone(MagicStone stone, Cell cell){
+		Element element = cell.getElement();
+		if(element != null)
+			return element.enhance(stone);
 		return false;
 	}
 
@@ -119,38 +122,6 @@ public class Generator {
 		Logger.exit("void");
 	}
 	
-	/**
-	 * Ez a metodus adja oda a cellan talalhato epitmenynek
-	 * a varazskovet.
-	 * A szkeleton erthetosegenek celjabol itt konkret pelda talahato.
-	 * @param blackStone: a fekete varazsko melyet le akarunk rakni.
-	 * @param cell: a cella melyre a varazskovet akarjuk rakni.
-	 */
-	public boolean addStone(BlackStone blackStone, Cell cell) {
-		Logger.enter("generator", "addStone", "blackStone", "cell");
-		
-		Blocker blocker = (Blocker)cell.getElement();
-		blocker.enhance(blackStone);
-		
-		Logger.exit("true");
-		return true;
-	}
-	/**
-	 * Ez a metodus adja oda a cellan talalhato epitmenynek
-	 * a varazskovet.
-	 * A szkeleton erthetosegenek celjabol itt konkret pelda talalhato.
-	 * @param greenStone: a  zold varazsko melyet le akarunk rakni.
-	 * @param cell: a cella melyre a varazskovet akarjuk rakni.
-	 */
-	public boolean addStone(GreenStone greenStone, Cell cell) {
-		Logger.enter("generator", "addStone", "greenStone", "cell");
-		
-		Tower tower = (Tower)cell.getElement();
-		tower.enhance(greenStone);
-		
-		Logger.exit("true");
-		return true;
-	}
 
 	/**
 	 * Parancsfeldolgozo - temporális fuggveny
