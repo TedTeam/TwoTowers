@@ -13,10 +13,8 @@ public class BlackStone extends MagicStone {
 	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet az akadalyra.
 	 */
 	public boolean effect(Blocker blocker) {
-		Logger.enter("blackStone", "effect", "blocker", "");
 		if(blocker.getEnhanced()==false){	
 			blocker.increaseSlowing(slowingRate);
-			Logger.exit("true");
 			return true;
 		} else return false;
 	}
