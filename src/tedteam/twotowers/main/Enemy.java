@@ -32,6 +32,7 @@ public abstract class Enemy {
 	// novekszik, ha a 10-speed=tick keplet nem teljesul.
 	// A prototipusban nem hasznaljuk.
 	// Alapertelmezett erteke: 0.
+	@SuppressWarnings("unused")
 	private int tick = 0;
 	
 	//Temp - megadott nev

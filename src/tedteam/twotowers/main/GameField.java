@@ -2,11 +2,7 @@ package tedteam.twotowers.main;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import tedteam.twotowers.logger.Logger;
 /**
  * A jatekteret megvalosito osztaly.
  */
@@ -61,8 +57,6 @@ public class GameField {
 	 * es azok szomszedossaganak beallitasa.
 	 */
 	public void init(){ 
-		Logger.enter("gameField", "init", "", "");
-		
 		
 		//TODO
 		/**cells[0].setNeighbors(cells);
@@ -70,7 +64,6 @@ public class GameField {
 		cells[2].setNeighbors(cells);
 		cells[3].setNeighbors(cells);*/
 		
-		Logger.exit("void");
 		
 	}
 

@@ -1,15 +1,15 @@
 package tedteam.twotowers.main;
 
-import tedteam.twotowers.logger.Logger;
 /**
  * A jatekallapotot megvalosito osztaly.
  */
 public class GameState {
 	// A jatek soran letrehozott ellensegek szama.
+	@SuppressWarnings("unused")
 	private int countEnemy;
 	
-	// A jatek soran megolt ellensegek szama.
-	private int deadEnemiesNumber;
+	// A jatek soran megolt ellensegek szama. default értéke 0
+	private int deadEnemiesNumber=0;
 	
 	// A palyan levo epitmenyeket tartalmazo osztaly.
 	private ElementList elementList = new ElementList();
@@ -20,8 +20,8 @@ public class GameState {
 	// A palya utolso cellaja.
 	private Cell finalCell;
 	
-	// Az osszes letrehozhato ellenseg szama.
-	private int maximumEnemy;
+	// Az osszes letrehozhato ellenseg szama. beírtam 10-et egyelõre....
+	private int maximumEnemy=10;
 
 	/**
 	 * Ez a metodus ellenorzi, hogy veget ert-e a jatek. 
@@ -30,21 +30,15 @@ public class GameState {
 	 * ellenseg szamaval. Ellenkezo esetben false.
 	 */
 	public boolean checkGame(){
-		Logger.enter("gameState", "checkGame", "", "");
-		finalCell.getEnemy();
-		
-		if(Logger.question("Van ellenseg az utolso cellan?")) {
-			System.out.println("Kommunikacio: Vereseg, vesztettel!");
-			Logger.exit("true");
+	
+		if(finalCell.getEnemy().size()>0) {
+			System.out.println("Vereseg");
 			return true;
 		} 
-		if(Logger.question("Ellenseg szama megegyezik a megolt ellensegek szamaval?")) {
-			System.out.println("Kommunikacio: Gyozelem, nyertel!");
-			Logger.exit("true");
+		if(deadEnemiesNumber==maximumEnemy) {
+			System.out.println("Gyozelem");
 			return true;
 		}
-		
-		Logger.exit("false");
 		return false;
 	}
 
@@ -55,6 +49,7 @@ public class GameState {
 	 */
 	public void addEnemy(Enemy enemy) {
 		enemylist.addEnemy(enemy);
+		countEnemy++;
 	}
 	/**
 	 * Meghivja az elementList valtozojanak addElement(Element) metodusat 
@@ -71,6 +66,7 @@ public class GameState {
 	 */
 	public void deadEnemy(Enemy enemy){
 		enemylist.deleteEnemy(enemy);
+		deadEnemiesNumber++;
 	}
 
 	/**
@@ -89,10 +85,10 @@ public class GameState {
 		finalCell = cell;
 	}
 
-	public void setStartCell(Cell c) {//ez minek is?
+	//public void setStartCell(Cell c) {//ez minek is?
 		// TODO Auto-generated method stub
 		
-	}
+	//}
 
 	/**
 	 * Parancsfeldolgozo - temporális fuggveny

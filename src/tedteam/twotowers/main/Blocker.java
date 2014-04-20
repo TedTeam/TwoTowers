@@ -2,7 +2,6 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 
-import tedteam.twotowers.logger.Logger;
 /**
  * Az akadalyt megvalosito osztaly, amely az akadaly
  * tulajdonsagait tartalmazza.
@@ -16,6 +15,8 @@ public class Blocker extends Element {
 	private int countRemain = 10;
 	// Az akadaly lassitasanak merteke.
 	private int slowing = 2;
+	// Parancsfeldolgozohoz a blokkolt enemyk nevei ebbe írodnak.
+	private String BlockedEnemies = new String();
 	private boolean enhanced=false;/**Erteke true, ha az objektumhoz lett csatolva MagicStone. Alapertelmezett erteke: false.*/
 	
 	/**
@@ -25,11 +26,8 @@ public class Blocker extends Element {
 	 * @return visszajelzes, hogy sikeres volt-e a muvelet.
 	 */
 	public boolean enhance(MagicStone blackStone) {
-		Logger.enter("blocker", "enhance", "blackStone", "");
-		//blackStone.effect(this);
 		boolean effect=blackStone.effect(this);
 		if (effect) this.setEnhanced(effect);
-		Logger.exit("true");
 		return effect;
 	}
 
@@ -38,10 +36,8 @@ public class Blocker extends Element {
 	 * @param gameState: ezt allitja be a gameState attributumba
 	 */
 	public void setGameState(GameState gameState) {
-		Logger.enter("blocker", "setGameState", "gameState","");
 		this.gameState = gameState;
 		
-		Logger.exit("void");
 	}
 	/**
 	 * Modositja az akadaly lassitasanak merteket
@@ -55,12 +51,12 @@ public class Blocker extends Element {
 	 * A blokkolast vegrehajto metodus.
 	 */
 	public void action() {
-		Logger.enter("blocker", "action", "", "");
 		ArrayList<Enemy> el;
 		el=cell.getEnemy();
 		for(int i=0;i<el.size();i++) {
 			boolean bl=el.get(i).block(slowing);
 			if (bl) {
+				BlockedEnemies.concat(el.get(i).getName()+" ");
 				this.countRemain--;
 				if(this.countRemain==0){ 
 					this.gameState.deleteElement(this);
@@ -68,8 +64,7 @@ public class Blocker extends Element {
 				}
 			}
 		}
-		
-		Logger.exit("void");	
+			
 	}
 	
 
@@ -88,8 +83,7 @@ public class Blocker extends Element {
 	 * @return
 	 */
 	public String getBlockedEnemies() {
-		// TODO Auto-generated method stub
-		return null;
+		return BlockedEnemies;
 	}
 
 	public int getSlowing() {

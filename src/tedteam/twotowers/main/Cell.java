@@ -2,8 +2,6 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import tedteam.twotowers.logger.Logger;
 /**
  * A jatekter mezoi.
  * Eltarolja a rajta levo epitmenyeket, ellensegeket.
