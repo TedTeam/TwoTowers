@@ -275,6 +275,20 @@ public class Tower extends Element implements IDamage {
 	}
 
 	/**
+	 * Sebzesek novelese a parameterben kapott ertekekkel.
+	 * @param dwarf
+	 * @param elf
+	 * @param hobbit
+	 * @param human
+	 */
+	public void increaseDamage(int dwarf,int elf,int hobbit,int human){
+		dwarfDamage += dwarf;
+		elfDamage += elf;
+		hobbitDamage += hobbit;
+		humanDamage += human;
+	}
+	
+	/**
 	 * Ez a metodus beallitja a fog valtozo erteket true-ra
 	 * es az uj range erteket, ami 2-vel kevesebb lesz,
 	 * mint eddig volt, es ez vegleges is marad.
