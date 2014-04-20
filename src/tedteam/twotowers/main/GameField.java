@@ -73,12 +73,6 @@ public class GameField {
 		Logger.exit("void");
 		
 	}
-	
-	public void setAllCellUnvisited() {//bullshit
-		for(Cell c : cells) {
-			c.setVisited(false);
-		}
-	}
 
 	/**
 	 * Parancsfeldolgozo - temporalis fuggveny

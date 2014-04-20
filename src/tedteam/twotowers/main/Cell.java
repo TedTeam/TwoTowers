@@ -17,8 +17,6 @@ public class Cell {
 	private HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
 	// Ez donti el, hogy a cellan talalhato-e ut.
 	private boolean road = false;
-	// A torony lovesenel hasznalt valtozo.
-	private boolean visited = false;
 	
 	//temp-parancsfeldolgozo
 	private String cName = new String();
@@ -113,14 +111,6 @@ public class Cell {
 	 */
 	public void setRoad() {
 		road=true;
-	}
-	
-	public void setVisited(boolean b) {
-		visited = b;
-	}
-	
-	public boolean getVisited() {
-		return visited;
 	}
 	
 	public String getCellName() {

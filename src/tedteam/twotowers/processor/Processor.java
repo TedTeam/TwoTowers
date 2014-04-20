@@ -377,8 +377,6 @@ public class Processor {
 		if (fog)
 			t.fog(); // beallitja a kodot
 		t.action();
-		// visszaallitjuk a cellakat unvisited allapotba
-		g.getGameField().setAllCellUnvisited();
 		if (t.getLastShotEnemyName() == "") {
 			return "no damage";
 		} else
