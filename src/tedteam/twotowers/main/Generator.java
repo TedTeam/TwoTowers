@@ -30,14 +30,8 @@ public class Generator {
 	/**
 	 * Ez a metodus inicializalja a jatekteret.
 	 */
-	public void buildField(){
-		Logger.enter("generator", "buildField", "", "");
+	public void init(){
 		
-		gameField.init();
-		Cell cell4 = gameField.getFinalCell();
-		gameState.setFinalCell(cell4);
-		
-		Logger.exit("void");
 	}
 
 	/**
