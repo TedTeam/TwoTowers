@@ -239,7 +239,6 @@ public class Processor {
 	 * @return
 	 */
 	private String commandSave(String[] parts) {
-		// TODO
 		return null;
 	}
 
@@ -250,7 +249,6 @@ public class Processor {
 	 * @return
 	 */
 	private String commandLoad(String[] parts) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -290,7 +288,10 @@ public class Processor {
 			return "error";
 		// itt a win-lose m�g nem tiszta
 		if (g.getGameState().checkGame()) {
-			return "win";
+			if(g.getGameState().getWin())
+				return "win";
+			else
+				return "lose";
 		} else
 			return "not finish";
 	}
@@ -327,14 +328,18 @@ public class Processor {
 	private String commandStep(String[] parts) {
 		if (parts.length < 2)
 			return "error";
-		String name = parts[1];
+		String name = new String();
+		if(parts.length == 2)
+			name = parts[1];
+		else if(parts.length == 3) 
+			name = parts[2];
 		Type type = createdElements.get(name);
 		if (type == null || (type != Type.Elf && type != Type.Dwarf
 				&& type != Type.Human && type != Type.Hobbit))
 			return "invalid " + name;
 		Enemy actual = g.getGameState().getEnemyList().getEnemyByName(name);
 		if(parts.length == 3){
-			String direction = parts[2];
+			String direction = parts[1];
 			if (direction.equals("left") || direction.equals("right") || direction.equals("up")
 					|| direction.equals("down"))
 				actual.setDirection(direction);
@@ -421,8 +426,8 @@ public class Processor {
 						+ ", cell " + actual.getCell().getCellName()
 						+ ", formercell "
 						+ actual.getFormerCell().getCellName();
-			} else
-				return "error";
+			}
+			
 		}
 		if (type == Type.Tower) {
 			Tower actual = (Tower) g.getGameState().getElementList()

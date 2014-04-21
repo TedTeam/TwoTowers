@@ -22,6 +22,9 @@ public class GameState {
 	
 	// Ellenségek maximális száma. Jelenleg ez a létrehozott ellenségek száma a protóban
 	private int maximumEnemy=0;
+	
+	//Processor osztaly szamara annak az eldontesere, h ha vege a jateknak, akkor az win v lose.
+	private boolean win = false;
 
 	/**
 	 * Ez a metodus ellenorzi, hogy veget ert-e a jatek. 
@@ -32,11 +35,11 @@ public class GameState {
 	public boolean checkGame(){
 		try {
 		if(finalCell.getEnemy().size()>0) {
-			System.out.println("Vereseg");
+			win = false;
 			return true;
 		} 
 		if(deadEnemiesNumber==maximumEnemy) {
-			System.out.println("Gyozelem");
+			win = true;
 			return true;
 		}
 		} catch (NullPointerException e) {
@@ -113,6 +116,14 @@ public class GameState {
 	public void increaseMaxEnemy() {
 		maximumEnemy++;
 		
+	}
+	
+	/**
+	 * Annak az eldontesere, h ki gyozott.
+	 * @return true, ha gyoztunk, false, ha veszitettunk
+	 */
+	public boolean getWin() {
+		return win;
 	}
 
 
