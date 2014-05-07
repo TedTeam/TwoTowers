@@ -12,10 +12,10 @@ public class GameState {
 	private int deadEnemiesNumber=0;
 	
 	// A palyan levo epitmenyeket tartalmazo osztaly.
-	private ElementList elementList = new ElementList();
+	private ElementList elementList;
 	
 	// A palyan levo ellensegeket tartalmazo osztaly.
-	private EnemyList enemylist = new EnemyList();
+	private EnemyList enemyList;
 	
 	// A palya utolso cellaja.
 	private Cell finalCell;
@@ -55,7 +55,7 @@ public class GameState {
 	 * @param enemy: felvett Enemy 
 	 */
 	public void addEnemy(Enemy enemy) {
-		enemylist.addEnemy(enemy);
+		enemyList.addEnemy(enemy);
 		countEnemy++;
 	}
 	/**
@@ -72,7 +72,7 @@ public class GameState {
 	 * @param e: a halott ellenseg akit torolni kell.
 	 */
 	public void deadEnemy(Enemy enemy){
-		enemylist.deleteEnemy(enemy);
+		enemyList.deleteEnemy(enemy);
 		deadEnemiesNumber++;
 	}
 
@@ -97,7 +97,7 @@ public class GameState {
 	 * @return
 	 */
 	public EnemyList getEnemyList() {
-		return enemylist;
+		return enemyList;
 	}
 
 	/**
@@ -107,7 +107,17 @@ public class GameState {
 	public ElementList getElementList() {
 		return elementList;
 	}
+	/**
+	 * EnemyList referencia beallitasa
+	 * @param enemylist
+	 */
+	public void setEnemyList(EnemyList enemylist){
+		this.enemyList = enemylist;
+	}
 	
+	public void setElementList(ElementList elementlist){
+		this.elementList = elementlist;
+	}
 	/**
 	 * Parancsfeldolgozo - temporális fuggveny
 	 * Letrehozott ellenségek számával növekszik

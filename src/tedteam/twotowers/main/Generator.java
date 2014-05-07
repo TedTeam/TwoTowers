@@ -6,10 +6,10 @@ package tedteam.twotowers.main;
 public class Generator {
 	
 	// A jatekteret tartalmazo osztaly.
-	private GameField gameField = new GameField();
+	private GameField gameField;
 	
 	// A jatekallapotot tartalmazo osztaly.
-	private GameState gameState = new GameState();
+	private GameState gameState;
 
 	/**
 	 * Ez a metodus adja oda a cellan talalhato epitmenynek
@@ -128,7 +128,21 @@ public class Generator {
 		// TODO Auto-generated method stub
 		return gameState;
 	}
+	/**
+	 * GameState referencia beallitasa
+	 * @param gamestate
+	 */
+	public void setGameState(GameState gamestate){
+		this.gameState = gamestate;
+	}
 
+	/**
+	 * GameField referencia beallitasa
+	 * @param gamefield
+	 */
+	public void setGameField(GameField gamefield){
+		this.gameField = gamefield;
+	}
 	
 
 }
