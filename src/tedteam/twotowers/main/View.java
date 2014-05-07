@@ -11,8 +11,11 @@ import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,7 +32,7 @@ public class View {
 	public BufferedImage screen;
 
 	public void init(){
-		screen = new BufferedImage(400,320,BufferedImage.TYPE_INT_RGB);
+		screen = new BufferedImage(500,320,BufferedImage.TYPE_INT_RGB);
 		graphics = screen.createGraphics();
 		JFrame frame = new JFrame("Two Towers - The Game");
 		JPanel pane = new JPanel(new GridBagLayout());
@@ -92,8 +95,19 @@ public class View {
 	}
 	
 	public void modifyField(){
-		Image img1 = Toolkit.getDefaultToolkit().getImage("logo.jpg");
-		graphics.drawImage(img1,10,15,null);
+	
+		try {
+			BufferedImage bg = ImageIO.read(new File("testmap.jpg"));
+			BufferedImage image = ImageIO.read(new File("logo.jpg"));
+			graphics.drawImage(bg,0,0,null);
+			graphics.drawImage(image,10,15,null);
+			graphics.drawImage(image,70,-3,null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
 	}
 	
 }
