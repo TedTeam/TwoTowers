@@ -1,4 +1,4 @@
-package tedteam.twotowers.processor;
+/*package tedteam.twotowers.processor;
 
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -41,10 +41,10 @@ public class Processor {
 	// az �sszes kimeneti sort tartalmazza, melyet fajlba irhatunk
 	private ArrayList<String> outputAll = new ArrayList<String>();
 
-	/**
+	*//**
 	 * Fo loop, ezt hivjuk fel a mainbol, addig megy, mig quit parancsot nem kap
 	 * az inputCommand()
-	 */
+	 *//*
 	public void inputProcessLoop() {
 		System.out.println("Ez a Two Towers jatek konzol felulete."
 				+ " Kerlek ird be a parancsokat. Segitseg: help");
@@ -53,12 +53,12 @@ public class Processor {
 		}
 	}
 
-	/**
+	*//**
 	 * A parancs beolvasasa billentyuzetrol.
 	 * 
 	 * @return true, ha tovabbi parancsok varhatoak, false, ha nincs tobb
 	 *         parancs
-	 */
+	 *//*
 	public boolean inputCommand() {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String command;
@@ -71,14 +71,14 @@ public class Processor {
 		return processCommand(command);
 	}
 
-	/**
+	*//**
 	 * A billentyuzetrol megadott sztring parancsok szerinti szetbontasa Minden
 	 * parancsot kiirunk a kepernyore, es elmentjuk az outputAll kollecioba.
 	 * 
 	 * @param command
 	 *            : bekert sztring
 	 * @return igaz, ha fut tovabb, false, ha nincs tobb parancs
-	 */
+	 *//*
 	public boolean processCommand(String command) {
 		String[] parts = command.split(" ");
 		String actual = new String();
@@ -149,20 +149,19 @@ public class Processor {
 		return true;
 	}
 
-	/**
+	*//**
 	 * Kilistazza a parancsokat parameterekkel.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandHelp(String[] parts) {
 		if (parts.length != 1)
 			return "error";
 		System.out.println("create [element] [element-name]");
 		System.out.println("put [element-name] [where]");
 		System.out.println("setRoad [cell-name]");
-		System.out
-				.println("setNeighbor [target-cell] [neighbor-cell] [direction]");
+		System.out.println("setNeighbor [target-cell] [neighbor-cell] [direction]");
 		System.out.println("print [element-name]");
 		System.out.println("shoot [tower-name] [/fog]");
 		System.out.println("step [enemy-name] [/direction]");
@@ -185,12 +184,12 @@ public class Processor {
 		TestCompare compare = new TestCompare();
 		return compare.inputFile(parts[1], parts[2]);
 	}
-	/**
+	*//**
 	 * Kiirja fajlba a kapott kimeneteket. A kiiras utan a stack torlodik.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String writeToFile(String[] parts) {
 		if (parts.length != 2)
 			return "error";
@@ -207,13 +206,13 @@ public class Processor {
 
 	}
 
-	/**
+	*//**
 	 * Beolvassa egy text fileb�l a parancsokat, es egy ciklusban meghivja az
 	 * processCommandot az osszes parancsra
 	 * 
 	 * @param destination
 	 * @return
-	 */
+	 *//*
 	private String readFromFile(String[] parts) {
 		if (parts.length != 2)
 			return "error";
@@ -232,34 +231,34 @@ public class Processor {
 		return "File reading success";
 	}
 
-	/**
+	*//**
 	 * Jatekallas lementese
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandSave(String[] parts) {
 		return null;
 	}
 
-	/**
+	*//**
 	 * J�t�k�ll�s betoltese
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandLoad(String[] parts) {
 		return null;
 	}
 
-	/**
+	*//**
 	 * Jatek kezdocellajanak (ahonnan az ellenseges egysegek indulnak) es
 	 * vegcellajanak (ahova ha odaer az ellenseg, a felhasznalo veszit)
 	 * beallitasa.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandGameInit(String[] parts) {
 		if (parts.length != 3)
 			return "error";
@@ -275,14 +274,14 @@ public class Processor {
 		return "initialized";
 	}
 
-	/**
+	*//**
 	 * Jatek aktualis allapotat vizsgalja meg, vagyis hogy meghalt-e minden
 	 * ellenseg, illetve elert-e az ellenseg a vegzet hegyeig (ezaltal legyozve
 	 * a jatekost).
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandCheckGame(String[] parts) {
 		if (parts.length != 1)
 			return "error";
@@ -296,12 +295,12 @@ public class Processor {
 			return "not finish";
 	}
 
-	/**
+	*//**
 	 * Utasitas a parameterben megadott blocker elemnek a blokkolasra.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandBlock(String[] parts) {
 		if (parts.length != 2)
 			return "error";
@@ -318,13 +317,13 @@ public class Processor {
 
 	}
 
-	/**
+	*//**
 	 * Parameterben megadott ellenseg leptetese. Elagazas eseten opcionalis
 	 * irany parameter is megadhato, hogy az ellenseg arra lepjen tovabb.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandStep(String[] parts) {
 		if (parts.length < 2)
 			return "error";
@@ -357,14 +356,14 @@ public class Processor {
 		}
 	}
 
-	/**
+	*//**
 	 * A parameterben megadott torony szamara parancs lovesre. Opcionalisan
 	 * megadhato, hogy a torony kodben van-e eppen, illetve hogy az adott loves
 	 * kette vagja-e az ellenfelet.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandShoot(String[] parts) {
 		if (parts.length > 3 && parts.length < 2)
 			return "error";
@@ -401,13 +400,13 @@ public class Processor {
 
 	}
 
-	/**
+	*//**
 	 * Kiirja a kepernyore az adott elementrol minden lenyeges informaciot (pl.
 	 * allapotat, elhelyezkedeset, eleterejet � ha van neki)
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandPrint(String[] parts) {
 		if (parts.length != 2)
 			return "error";
@@ -510,13 +509,13 @@ public class Processor {
 		return "error";
 	}
 
-	/**
+	*//**
 	 * Beallitja az elso parameterben megadott cella szomszedjanak a masodik
 	 * parameterben megadott cellat, a megadott iranyba.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandSetNeighbor(String[] parts) {
 		if (parts.length != 4)
 			return "error";
@@ -541,12 +540,12 @@ public class Processor {
 			return "invalid " + direction;
 	}
 
-	/**
+	*//**
 	 * A parameterben megadott cella ut lesz.
 	 * 
 	 * @param parts
 	 * @return
-	 */
+	 *//*
 	private String commandSetRoad(String[] parts) {
 		if (parts.length != 2)
 			return "error";
@@ -562,7 +561,7 @@ public class Processor {
 		return cellName + " set road";
 	}
 
-	/**
+	*//**
 	 * Command: put [element-name] [where] Leirass: Lehelyezi a parameterben
 	 * megadott cellara a valasztott elemet, ha lehetseges. Opciok: element-name:
 	 * az element create paranccsal tortent letrehozasakor valasztott nev, ezt
@@ -570,7 +569,7 @@ public class Processor {
 	 * Tower, Block, Elf, Hobbit, Human, Dwarf, GreenStone, BlackStone,
 	 * RedStone) where: cell, ahova le szeretnenk helyezni a valasztott
 	 * elementet.
-	 */
+	 *//*
 	public String commandPut(String[] parts) {
 		if (parts.length != 3) {
 			return "error";
@@ -677,7 +676,7 @@ public class Processor {
 		return elementName + " put " + cellName;
 	}
 
-	/**
+	*//**
 	 * Parancs: create A cella kivetelevel virtualisan jonnek csak letre az
 	 * elemek, mivel nem tudjuk inicializalni ekkor meg oket (mert nincs
 	 * cellajuk, amit csak put-nal kapnak)
@@ -685,7 +684,7 @@ public class Processor {
 	 * @param parts
 	 *            : billentyuzetrol megadott sztring
 	 * @return kiiratando szoveg
-	 */
+	 *//*
 	public String commandCreate(String[] parts) {
 		if (parts.length < 3) {
 			return "error";
@@ -711,8 +710,8 @@ public class Processor {
 			createdElements.put(name, Type.Blocker);
 		} else if (parts[1].equals("Elf")) {
 			createdElements.put(name, Type.Elf);
-			/*Elf elf = new Elf();
-			elf.setName(name);*/
+			Elf elf = new Elf();
+			elf.setName(name);
 			g.getGameState().increaseMaxEnemy();
 		} else if (parts[1].equals("Hobbit")) {
 			createdElements.put(name, Type.Hobbit);
@@ -742,3 +741,4 @@ public class Processor {
 	}
 
 }
+*/
