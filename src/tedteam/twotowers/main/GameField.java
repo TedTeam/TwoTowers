@@ -3,6 +3,7 @@ package tedteam.twotowers.main;
 import java.awt.Point;
 import java.io.File;
 import java.io.IOException;
+import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -120,6 +121,22 @@ public class GameField {
 			e.printStackTrace();
 		}
 		
+		//szomszedok osszekapcsolasa
+		for(int y=1;y<19;y++)
+			for(int x=1;x<23;x++){
+				Map<String,Cell> neighbors = new HashMap<String, Cell>();
+				if(cells.containsKey(new Point(x,y))){
+						neighbors.put("up",cells.get(new Point(x,y-1)));
+						neighbors.put("down",cells.get(new Point(x,y+1)));
+						neighbors.put("left",cells.get(new Point(x-1,y)));
+						neighbors.put("right",cells.get(new Point(x+1,y)));
+						cells.get(new Point(x,y)).setNeighbors(neighbors);	
+				}
+				
+			}
+		/*System.out.println(cells.get(new Point(6,16)));
+		System.out.println(cells.get(new Point(1,1)).getNeighbors().get("up"));*/
+		
 		
 	}
 
@@ -135,6 +152,21 @@ public class GameField {
 	public void addCell(Cell c, Point point) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public Cell getCell(Point point) {
+		return cells.get(point);
+		
+	}
+
+	public Point getPoint(Cell cell) {
+		for (java.util.Map.Entry<Point, Cell> entry : cells.entrySet()) {
+            if (entry.getValue().equals(cell)) {
+                System.out.println(entry.getKey());
+            }
+           
+		}
+		 return null;
 	}
 
 }

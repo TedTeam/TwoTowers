@@ -2,6 +2,7 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 /**
  * A jatekter mezoi.
  * Eltarolja a rajta levo epitmenyeket, ellensegeket.
@@ -47,7 +48,7 @@ public class Cell {
 	 * Beallitja a cella szomszed cellait.
 	 * @param c: a kapott tomb tartalmazza a szomszedokat.
 	 */
-	public void setNeighbors(HashMap<String,Cell> neighbors2) {
+	public void setNeighbors(Map<String,Cell> neighbors2) {
 		this.neighbors.putAll(neighbors2);
 	}
 	
