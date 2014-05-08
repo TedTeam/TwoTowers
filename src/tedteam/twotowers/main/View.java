@@ -23,88 +23,120 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 enum Type{elso,masodik}
 public class View {
 
+	
 	private Map<Point,Type> roads;
+	//az a jpanel, amire rajzolunk
 	public MapField field;
 	private Controller controller;
 	
 	
-
+	//ezen keresztul rajzolunk a kepre
 	public Graphics graphics;
+	//erre a kepre rajzolunk
 	public BufferedImage screen;
+	//torony letrehozas gomb es a tobbi..
 	private JButton towerButton;
 	private JButton blockerButton;
 	private JButton blueStoneButton;
 	private JButton blackStoneButton;
 	private JButton greenStoneButton;
 	private JButton redStoneButton;
+	//radio gombokat csoportba foglalo objektum
 	private ButtonGroup radioButtons;
+	//radio gombok a sebzesek kivalasztasahoz
 	private JRadioButton damageElf;
 	private JRadioButton damageHuman;
 	private JRadioButton damageHobbit;
 	private JRadioButton damageDwarf;
+	
+	private JTextField notification;
+	private BufferedImage image;
 
+	/**
+	 * Inicializacio, mint frame felepitese
+	 */
 	public void init(){
-		screen = new BufferedImage(500,320,BufferedImage.TYPE_INT_RGB);
+		try {
+			image = ImageIO.read(new File("logo.jpg"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		//elementek meretei
+		Point buttonSize = new Point(120,30);
+		Point windowSize = new Point(800,600);
+		int leftSideWidth = 140;
+		int rightSideWidth = 660;
+		
+		
+		//kep letrehozasa
+		screen = new BufferedImage(550,320,BufferedImage.TYPE_INT_RGB);
 		graphics = screen.createGraphics();
+		
+		
 		JFrame frame = new JFrame("Two Towers - The Game");
 		JPanel pane = new JPanel(new GridBagLayout());
 		frame.getContentPane().add(pane);
+		//ezzel helyezhetunk el elemeket a fopanelre,a pane-re
 		GridBagConstraints gbc = new GridBagConstraints();
-		pane.setPreferredSize(new Dimension(800,600));
-		
-		
+		//ekkora az egesz ablak merete is:800x600
+		pane.setPreferredSize(new Dimension(windowSize.x,windowSize.y));
+		//felso informacioknak a panel
 		JPanel details = new JPanel(new GridLayout(1,6));
 		
+		//felso panel feltoltese
 		details.add(new JLabel("MaxMana:  ",JLabel.RIGHT));
 		details.add(new JLabel("100"));
 		details.add(new JLabel("ActualMana:  ",JLabel.RIGHT));
 		details.add(new JLabel("20"));
 		details.add(new JLabel("DeadEnemies:  ",JLabel.RIGHT));
 		details.add(new JLabel("xxx"));
+		//fekete keret beallitasa
 		details.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		details.setPreferredSize(new Dimension(800,30));
+		//meret 800x30
+		details.setPreferredSize(new Dimension(windowSize.x,30));
 		
+		//tower es blocker letrehozando gombok panelje, az 50 es 30 padding ertek
 		JPanel elementButtons = new JPanel(new FlowLayout(FlowLayout.CENTER,50,30));
-
 		towerButton = new JButton("Create Tower");
-		towerButton.setPreferredSize(new Dimension(120,30));
-		/*CreateTowerController ctc = new CreateTowerController();
-		ctc.setView(this);*/
+		towerButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		towerButton.addActionListener(new CreateTowerController());
 		blockerButton = new JButton("Create Blocker");
-		blockerButton.setPreferredSize(new Dimension(120,30));
+		blockerButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		blockerButton.addActionListener(new CreateBlockerController());
 	
 		elementButtons.add(towerButton);
 		elementButtons.add(blockerButton);
 		elementButtons.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		elementButtons.setPreferredSize(new Dimension(150,170));
+		elementButtons.setPreferredSize(new Dimension(leftSideWidth,170));
 		
+		//kovek letrehozasanak gombjai
 		JPanel stoneButtons = new JPanel(new FlowLayout(FlowLayout.CENTER,50,27));
 		stoneButtons.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		blueStoneButton = new JButton("Blue Stone");
-		blueStoneButton.setPreferredSize(new Dimension(120,30));
+		blueStoneButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		blueStoneButton.addActionListener(new BlueStoneController());
 		blackStoneButton = new JButton("Black Stone");
-		blackStoneButton.setPreferredSize(new Dimension(120,30));
+		blackStoneButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		blackStoneButton.addActionListener(new BlackStoneController());
 		greenStoneButton = new JButton("Green Stone");
-		greenStoneButton.setPreferredSize(new Dimension(120,30));
+		greenStoneButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		greenStoneButton.addActionListener(new GreenStoneController());
 		redStoneButton = new JButton("Red Stone");
-		redStoneButton.setPreferredSize(new Dimension(120,30));
+		redStoneButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
 		redStoneButton.addActionListener(new RedStoneController());
 		stoneButtons.add(blueStoneButton);
 		stoneButtons.add(blackStoneButton);
 		stoneButtons.add(greenStoneButton);
 		stoneButtons.add(redStoneButton);
-		stoneButtons.setPreferredSize(new Dimension(150,260));
+		stoneButtons.setPreferredSize(new Dimension(leftSideWidth,260));
 		
-		JPanel enemyChoose = new JPanel(new FlowLayout(FlowLayout.LEADING,18,10));
+		JPanel enemyChoose = new JPanel(new FlowLayout(FlowLayout.LEADING,12,10));
 		radioButtons = new ButtonGroup();
 		damageElf = new JRadioButton();
 		damageElf.addActionListener(new ElfRedStoneController());
@@ -120,7 +152,7 @@ public class View {
 		radioButtons.add(damageDwarf);
 		enableAllRadioButtons(false);
 		
-		enemyChoose.setPreferredSize(new Dimension(150,140));
+		enemyChoose.setPreferredSize(new Dimension(leftSideWidth,140));
 		enemyChoose.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		enemyChoose.add(damageElf);
 		enemyChoose.add(new JLabel("damage Elf"));
@@ -130,11 +162,22 @@ public class View {
 		enemyChoose.add(new JLabel("damage Hobbit"));
 		enemyChoose.add(damageDwarf);
 		enemyChoose.add(new JLabel("damage Dwarf"));
+		
+		JPanel map = new JPanel(new FlowLayout(FlowLayout.LEADING,0,0));
 		field = new MapField();
 		field.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		field.setView(this);
 		field.addMouseListener(controller);
-		
+		field.setPreferredSize(new Dimension(rightSideWidth,540));
+		map.add(field);
+		notification = new JTextField();
+		notification.setPreferredSize(new Dimension(rightSideWidth,30));
+		notification.setEditable(false);
+		notification.setText("Notification bullshit");
+		map.add(notification);
+		map.setPreferredSize(new Dimension(rightSideWidth,570));
+		//text.add(notification);
+		//x es y a fopanelen levo alpanelek indexei. A GridBagLayout-ot tudjuk indexelni vele
 		int x = 0;
 		int y = 0;
 		
@@ -154,7 +197,7 @@ public class View {
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridheight = 3;
-		pane.add(field,gbc);
+		pane.add(map,gbc);
 		
 		//stoneButtons panel hozzadasa
 		x--;
@@ -170,7 +213,9 @@ public class View {
 		gbc.gridy = y;
 		pane.add(enemyChoose,gbc);
 		
-		frame.setSize(800, 600);
+		
+		//egesz ablakra vonatkozo beallitasok
+		frame.setSize(windowSize.x,windowSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("logo.jpg").getImage());
 		frame.setResizable(false);
@@ -209,13 +254,12 @@ public class View {
 	
 
 
-
+	
 	public void drawIcon(int x, int y) {
-		BufferedImage image;
 		try {
 			BufferedImage bg = ImageIO.read(new File("testmap.jpg"));
 			graphics.drawImage(bg,0,0,null);
-			image = ImageIO.read(new File("logo.jpg"));
+			
 			graphics.drawImage(image,x,y,null);
 			field.repaint();
 		} catch (IOException e) {
