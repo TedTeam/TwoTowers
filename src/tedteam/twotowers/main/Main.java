@@ -39,6 +39,7 @@ public class Main {
 		
 		view.drawIcon(0,0);
 		view.field.repaint();
+		gameField.init();
 	}
 
 }

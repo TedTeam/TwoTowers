@@ -1,17 +1,31 @@
 package tedteam.twotowers.main;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.Node;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 /**
  * A jatekteret megvalosito osztaly.
  */
 public class GameField {
 	// A palyat alkoto cellak.
-	//private Map<Point,Cell> cells = new HashMap<Point,Cell>();  //most nem kell meg
+	private Map<Point,Cell> cells = new HashMap<Point,Cell>();
 	
 	//ideiglenes tarolo a prototipushoz,utana toroljuk
-	private List<Cell> cells = new ArrayList<Cell>();
+	//private List<Cell> cells = new ArrayList<Cell>();
 	
 	//A kezdo cellat eltarolo valtozo. Innet indulnak majd ki az ellensegek.
 	private Cell startCell;
@@ -58,28 +72,58 @@ public class GameField {
 	 */
 	public void init(){ 
 		
-		//TODO
-		/**cells[0].setNeighbors(cells);
-		cells[1].setNeighbors(cells);
-		cells[2].setNeighbors(cells);
-		cells[3].setNeighbors(cells);*/
+		
+		try {
+			File xmlFile = new File("map.xml");
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder;
+			dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(xmlFile);
+			
+			doc.getDocumentElement().normalize();
+			
+			NodeList nList = doc.getElementsByTagName("Cell");
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				 
+				Node nNode = nList.item(temp);
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+		 
+					Element eElement = (Element) nNode;
+			
+					Integer x;
+					x =Integer.parseInt(eElement.getElementsByTagName("x").item(0).getTextContent());
+					Integer y;
+					y =Integer.parseInt(eElement.getElementsByTagName("y").item(0).getTextContent());
+					boolean road;
+					road = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
+					boolean isFinalCell;
+					isFinalCell = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
+					boolean isStartCell;
+					isStartCell = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
+					Cell c = new Cell();
+					if(road) c.setRoad();
+					cells.put(new Point(x,y), c);
+					if(isFinalCell)finalCell = c;
+					if(isStartCell)startCell = c;
+				}
+			}
+			
+			
+		} catch (ParserConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SAXException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 	}
 
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Visszaadja a parameterben megadott nevu cellat.
-	 * @param name
-	 * @return
-	 */
-	public Cell getCellByName(String name) {
-		// TODO Auto-generated method stub
-		for (Cell cell : cells) {
-			if (cell.getCellName().equals(name)) return cell;
-		}
-		return null;
-	}
+	
 
 	/**
 	 * A parameterkent kapott Cell objektumot eltarolja a cells 
@@ -90,7 +134,7 @@ public class GameField {
 	 */
 	public void addCell(Cell c, Point point) {
 		// TODO Auto-generated method stub
-		cells.add(c);
+		
 	}
 
 }
