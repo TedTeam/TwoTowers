@@ -33,6 +33,8 @@ public class Controller implements ActionListener, MouseListener {
 	public void mouseClicked(MouseEvent clicked) {
 		System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
+		view.drawIcon(clicked.getX(),clicked.getY());
+		
 		switch(creationState){
 		case none:break;
 		case tower:{user.createTower();break;}

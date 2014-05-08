@@ -17,7 +17,7 @@ public class MapField extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(view.screen,10,0,null);
+		g.drawImage(view.screen,0,0,null);
 		System.out.println("repainted");
 		
 	}

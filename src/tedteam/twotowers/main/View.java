@@ -206,20 +206,24 @@ public class View {
 		if(enable == false)radioButtons.clearSelection();
 	}
 	
-	public void modifyField(){
 	
+
+
+
+	public void drawIcon(int x, int y) {
+		BufferedImage image;
 		try {
 			BufferedImage bg = ImageIO.read(new File("testmap.jpg"));
-			BufferedImage image = ImageIO.read(new File("logo.jpg"));
 			graphics.drawImage(bg,0,0,null);
-			graphics.drawImage(image,10,15,null);
-			graphics.drawImage(image,70,-3,null);
+			image = ImageIO.read(new File("logo.jpg"));
+			graphics.drawImage(image,x,y,null);
+			field.repaint();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-
+		
 	}
 	
 }

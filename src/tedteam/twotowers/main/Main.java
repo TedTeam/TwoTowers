@@ -35,8 +35,9 @@ public class Main {
 		//view.modifyField();
 		view.field.removeAll();
 		
+
 		
-		view.modifyField();
+		view.drawIcon(0,0);
 		view.field.repaint();
 	}
 
