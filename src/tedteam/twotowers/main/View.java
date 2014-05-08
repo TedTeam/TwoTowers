@@ -29,6 +29,10 @@ public class View {
 
 	private Map<Point,Type> roads;
 	public MapField field;
+	private Controller controller;
+	
+	
+
 	public Graphics graphics;
 	public BufferedImage screen;
 	private JButton towerButton;
@@ -37,6 +41,11 @@ public class View {
 	private JButton blackStoneButton;
 	private JButton greenStoneButton;
 	private JButton redStoneButton;
+	private ButtonGroup radioButtons;
+	private JRadioButton damageElf;
+	private JRadioButton damageHuman;
+	private JRadioButton damageHobbit;
+	private JRadioButton damageDwarf;
 
 	public void init(){
 		screen = new BufferedImage(500,320,BufferedImage.TYPE_INT_RGB);
@@ -63,8 +72,12 @@ public class View {
 
 		towerButton = new JButton("Create Tower");
 		towerButton.setPreferredSize(new Dimension(120,30));
+		/*CreateTowerController ctc = new CreateTowerController();
+		ctc.setView(this);*/
+		towerButton.addActionListener(new CreateTowerController());
 		blockerButton = new JButton("Create Blocker");
 		blockerButton.setPreferredSize(new Dimension(120,30));
+		blockerButton.addActionListener(new CreateBlockerController());
 	
 		elementButtons.add(towerButton);
 		elementButtons.add(blockerButton);
@@ -75,12 +88,16 @@ public class View {
 		stoneButtons.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		blueStoneButton = new JButton("Blue Stone");
 		blueStoneButton.setPreferredSize(new Dimension(120,30));
+		blueStoneButton.addActionListener(new BlueStoneController());
 		blackStoneButton = new JButton("Black Stone");
 		blackStoneButton.setPreferredSize(new Dimension(120,30));
+		blackStoneButton.addActionListener(new BlackStoneController());
 		greenStoneButton = new JButton("Green Stone");
 		greenStoneButton.setPreferredSize(new Dimension(120,30));
+		greenStoneButton.addActionListener(new GreenStoneController());
 		redStoneButton = new JButton("Red Stone");
 		redStoneButton.setPreferredSize(new Dimension(120,30));
+		redStoneButton.addActionListener(new RedStoneController());
 		stoneButtons.add(blueStoneButton);
 		stoneButtons.add(blackStoneButton);
 		stoneButtons.add(greenStoneButton);
@@ -88,34 +105,40 @@ public class View {
 		stoneButtons.setPreferredSize(new Dimension(150,260));
 		
 		JPanel enemyChoose = new JPanel(new FlowLayout(FlowLayout.LEADING,18,10));
-		ButtonGroup radioButtons = new ButtonGroup();
-		JRadioButton damageElf = new JRadioButton();
-		JRadioButton damageHuman = new JRadioButton();
-		JRadioButton damageHobbit = new JRadioButton();
-		JRadioButton damageDwarf = new JRadioButton();
+		radioButtons = new ButtonGroup();
+		damageElf = new JRadioButton();
+		damageElf.addActionListener(new ElfRedStoneController());
+		damageHuman = new JRadioButton();
+		damageHuman.addActionListener(new HumanRedStoneController());
+		damageHobbit = new JRadioButton();
+		damageHobbit.addActionListener(new HobbitRedStoneController());
+		damageDwarf = new JRadioButton();
+		damageDwarf.addActionListener(new DwarfRedStoneController());
 		radioButtons.add(damageElf);
 		radioButtons.add(damageHuman);
 		radioButtons.add(damageHobbit);
 		radioButtons.add(damageDwarf);
+		enableAllRadioButtons(false);
+		
 		enemyChoose.setPreferredSize(new Dimension(150,140));
 		enemyChoose.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		enemyChoose.add(damageElf);
 		enemyChoose.add(new JLabel("damage Elf"));
-		enemyChoose.add(damageHobbit);
-		enemyChoose.add(new JLabel("damage Human"));
 		enemyChoose.add(damageHuman);
+		enemyChoose.add(new JLabel("damage Human"));
+		enemyChoose.add(damageHobbit);
 		enemyChoose.add(new JLabel("damage Hobbit"));
 		enemyChoose.add(damageDwarf);
 		enemyChoose.add(new JLabel("damage Dwarf"));
 		field = new MapField();
 		field.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		field.setView(this);
-		
+		field.addMouseListener(controller);
 		
 		int x = 0;
 		int y = 0;
 		
-		//add details
+		//details panel hozzadasa a frame-hez
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridwidth = 2;
@@ -124,7 +147,6 @@ public class View {
 		
 		y++;
 		gbc.gridy = y;
-		//gbc.fill = GridBagConstraints.NONE;
 		gbc.gridwidth = 1;
 		pane.add(elementButtons,gbc);
 		
@@ -134,7 +156,7 @@ public class View {
 		gbc.gridheight = 3;
 		pane.add(field,gbc);
 		
-		//add stoneButtons panel
+		//stoneButtons panel hozzadasa
 		x--;
 		y++;
 		gbc.gridx = x;
@@ -142,17 +164,46 @@ public class View {
 		gbc.gridheight = 1;
 		pane.add(stoneButtons,gbc);
 		
-		//add enemyChoose panel
+		//enemyChoose panel hozzadasa
 		y++;
 		gbc.gridx = x;
 		gbc.gridy = y;
 		pane.add(enemyChoose,gbc);
+		
 		frame.setSize(800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("logo.jpg").getImage());
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);
+	}
+	
+	
+	
+	public void setController(Controller controller) {
+		this.controller = controller;
+	}
+	
+	/**
+	 * Osszes gomb aktivalasa, amelyik nem aktiv
+	 */
+	public void enableAllButtons(){
+		if(towerButton.isEnabled() == false) towerButton.setEnabled(true);
+		if(blockerButton.isEnabled() == false) blockerButton.setEnabled(true);
+		if(blueStoneButton.isEnabled() == false) blueStoneButton.setEnabled(true);
+		if(blackStoneButton.isEnabled() == false) blackStoneButton.setEnabled(true);
+		if(redStoneButton.isEnabled() == false) redStoneButton.setEnabled(true);
+		if(greenStoneButton.isEnabled() == false) greenStoneButton.setEnabled(true);
+		enableAllRadioButtons(false);
+	}
+	
+	public void enableAllRadioButtons(boolean enable){
+		damageElf.setSelected(enable);
+		damageElf.setEnabled(enable);
+		damageHuman.setEnabled(enable);
+		damageHobbit.setEnabled(enable);
+		damageDwarf.setEnabled(enable);
+		if(enable == false)radioButtons.clearSelection();
 	}
 	
 	public void modifyField(){

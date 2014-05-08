@@ -1,18 +1,10 @@
 package tedteam.twotowers.main;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.image.ImageObserver;
-import java.io.IOException;
-import java.text.AttributedCharacterIterator;
 
-import tedteam.twotowers.processor.Processor;
+import java.io.IOException;
+
+
+
 
 public class Main {
 
@@ -27,12 +19,17 @@ public class Main {
 		ElementList elementList = new ElementList();
 		GameState gameState = new GameState();
 		GameField gameField = new GameField();
+		Controller controller = new Controller();
 		generator.setGameState(gameState);
 		generator.setGameField(gameField);
 		gameState.setElementList(elementList);
 		gameState.setEnemyList(enemyList);
 		
 		View view = new View();
+		User user = new User();
+		view.setController(controller);
+		controller.setView(view);
+		controller.setUser(user);
 		view.init();
 		
 		//view.modifyField();
