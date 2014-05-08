@@ -1,5 +1,6 @@
 package tedteam.twotowers.main;
 
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -13,12 +14,17 @@ public class Controller implements ActionListener, MouseListener {
 	protected static View view;
 	protected static Creation creationState = Creation.none;
 	private User user;
+	private Converter converter;
 	
 	public void setUser(User user) {
 		this.user = user;
 	}
 	public void setView(View view2) {
 		view = view2;
+	}
+	
+	public void setConverter(Converter converter) {
+		this.converter = converter;
 	}
 	@Override
 	public void actionPerformed(ActionEvent clicked) {
@@ -34,7 +40,7 @@ public class Controller implements ActionListener, MouseListener {
 		System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
 		view.drawIcon(clicked.getX(),clicked.getY());
-		
+		System.out.println(converter.getCell(new Point(clicked.getX(),clicked.getY())));
 		switch(creationState){
 		case none:break;
 		case tower:{user.createTower();break;}

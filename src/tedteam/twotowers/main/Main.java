@@ -20,19 +20,21 @@ public class Main {
 		GameState gameState = new GameState();
 		GameField gameField = new GameField();
 		Controller controller = new Controller();
+		Converter converter = new Converter();
 		generator.setGameState(gameState);
 		generator.setGameField(gameField);
 		gameState.setElementList(elementList);
 		gameState.setEnemyList(enemyList);
+		converter.setGameField(gameField);
 		
 		View view = new View();
 		User user = new User();
 		view.setController(controller);
 		controller.setView(view);
 		controller.setUser(user);
+		controller.setConverter(converter);
 		view.init();
 		
-		//view.modifyField();
 		view.field.removeAll();
 		
 
