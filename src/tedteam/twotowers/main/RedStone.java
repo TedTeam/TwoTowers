@@ -4,12 +4,29 @@ package tedteam.twotowers.main;
  * Ososztaly: MagicStone
  */
 public class RedStone extends MagicStone {
+	// A torpe plusz sebzese
+	private int dwarfDamage;
+	// A tunde plusz sebzese
+	private int elfDamage;
+	// A hobbit plusz sebzese
+	private int hobbitDamage;
+	// Az ember plusz sebzese
+	private int humanDamage;
 
-	private int DwarfDamage = 30;
-	private int elfDamage = 30;
-	private int hobbitDamage = 30;
-	private int humanDamage = 30;
-
+	/**
+	 * A voros varazsko konstruktora.
+	 * @param dwDamage: a torpe plusz sebzese
+	 * @param elDamage: a tunde plusz sebzese
+	 * @param hoDamage: a hobbit plusz sebzese
+	 * @param huDamage: az ember plusz sebzese
+	 */
+	RedStone(int dwDamage, int elDamage, int hoDamage, int huDamage) {
+		dwarfDamage = dwDamage;
+		elfDamage = elDamage;
+		hobbitDamage = hoDamage;
+		humanDamage = huDamage;
+	}
+	
 	/**
 	 * Ez a metodus valtoztatja meg az akadaly sebzesenek nagysagat.
 	 * Mivel ilyen attributuma nincs az akadalynak, ezert ez a metodus nem csinal semmit.
@@ -30,7 +47,7 @@ public class RedStone extends MagicStone {
 			if(t.getEnhancedByRed() == false){
 				t.setEnhancedByRed();
 				t.increaseStoneNumber();
-				t.increaseDamage(DwarfDamage, elfDamage, hobbitDamage, humanDamage);
+				t.increaseDamage(dwarfDamage, elfDamage, hobbitDamage, humanDamage);
 				return true;
 			}
 		}
