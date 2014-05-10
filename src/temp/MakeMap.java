@@ -33,7 +33,7 @@ public class MakeMap {
 			Element rootElement = doc.createElement("Field");
 			doc.appendChild(rootElement);
 			
-			
+			//j :oszlop, i :sor
 			for(int j=1;j<19;j++){
 				for(int i=1;i<23;i++){
 				Element cell = doc.createElement("Cell");
@@ -48,23 +48,42 @@ public class MakeMap {
 				y.appendChild(doc.createTextNode(yc.toString()));
 				cell.appendChild(y);
 				
+				Boolean roadBol = false;
+				if(i == 1 && j<11)roadBol = true;
+				if(j == 4)roadBol = true;
+				if(j == 10 && i < 7)roadBol = true;
+				if(i == 6 && j>9 && j<18)roadBol = true;
+				if(j==13 && i>5 && i<14)roadBol = true;
+				if(j == 17 && i>5)roadBol = true;
+				if(i == 22 && j>3)roadBol = true;
+				if(i==7 && j>3 && j<9)roadBol = true;
+				if(j==8 && i>6 && i <14)roadBol = true;
+				if(i==13 && j>7 && j<14)roadBol = true;
+				if(j==12 && i>12 && i<21)roadBol = true;
+				if(i==20 && j>11 && j<16)roadBol = true;
+				if(i==21 && j==15)roadBol = true;
+				
 				Element road = doc.createElement("road");
-				road.appendChild(doc.createTextNode("false"));
+				road.appendChild(doc.createTextNode(roadBol.toString()));
 				cell.appendChild(road);
 				
+				Boolean finalCellBol = false;
+				if(j == 18 && i == 22)finalCellBol = true;
 				Element finalCell = doc.createElement("final");
-				finalCell.appendChild(doc.createTextNode("false"));
+				finalCell.appendChild(doc.createTextNode(finalCellBol.toString()));
 				cell.appendChild(finalCell);
 				
+				Boolean startCell = false;
+				if(i == 1 && j == 1) startCell = true;
 				Element start = doc.createElement("start");
-				start.appendChild(doc.createTextNode("false"));
+				start.appendChild(doc.createTextNode(startCell.toString()));
 				cell.appendChild(start);
 				}
 			}
 			TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			Transformer transformer = transformerFactory.newTransformer();
 			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("D:\\file2.xml"));
+			StreamResult result = new StreamResult(new File("map.xml"));
 			transformer.transform(source, result);
 
 			
