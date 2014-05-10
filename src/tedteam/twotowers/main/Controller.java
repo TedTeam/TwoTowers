@@ -37,10 +37,14 @@ public class Controller implements ActionListener, MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent clicked) {
-		System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
+		//System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
-		view.drawIcon(clicked.getX(),clicked.getY());
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
+		Point p = converter.getCoords(cell);
+		
+		System.out.println("point:"+p);
+		view.drawIcon(p.x,p.y);
+		
 		System.out.println(cell);
 		switch(creationState){
 		case none:break;

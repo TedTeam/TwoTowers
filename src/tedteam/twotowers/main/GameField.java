@@ -162,7 +162,8 @@ public class GameField {
 	public Point getPoint(Cell cell) {
 		for (java.util.Map.Entry<Point, Cell> entry : cells.entrySet()) {
             if (entry.getValue().equals(cell)) {
-                System.out.println(entry.getKey());
+            	return entry.getKey();
+                //System.out.println(entry.getKey());
             }
            
 		}
