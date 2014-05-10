@@ -45,7 +45,7 @@ public abstract class Enemy {
 	 * kell implementalniuk.
 	 * @param damage.
 	 */
-	public abstract void acceptDamage(IDamage damage);
+	public abstract void accept(EnemyVisitor damage);
 	
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak

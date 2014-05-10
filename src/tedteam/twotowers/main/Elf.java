@@ -10,7 +10,7 @@ public class Elf extends Enemy {
 	 * Ezen a metoduson keresztul valtozik az ellenseg eletereje.
 	 * @param damage: a valtozas merteke.
 	 */
-	public void acceptDamage(IDamage damage){
+	public void accept(EnemyVisitor damage){
 		damage.affect(this);
 	}
 

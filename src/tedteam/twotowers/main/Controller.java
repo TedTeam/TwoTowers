@@ -40,18 +40,19 @@ public class Controller implements ActionListener, MouseListener {
 		System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
 		view.drawIcon(clicked.getX(),clicked.getY());
-		System.out.println(converter.getCell(new Point(clicked.getX(),clicked.getY())));
+		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
+		System.out.println(cell);
 		switch(creationState){
 		case none:break;
-		case tower:{user.createTower();break;}
-		case blocker:{user.createBlocker();break;}
-		case greenStone:{user.createGreenStone();break;}
-		case blueStone:{user.createBlueStone();break;}
-		case blackStone:{user.createBlackStone();break;}
-		case elfRedStone:{user.createElfRedStone();break;}
-		case humanRedStone:{user.createHumanRedStone();break;}
-		case hobbitRedStone:{user.createHobbitRedStone();break;}
-		case dwarfRedStone:{user.createDwarfRedStone();break;}
+		case tower:{user.createTower(cell);break;}
+		case blocker:{user.createBlocker(cell);break;}
+		case greenStone:{user.createGreenStone(cell);break;}
+		case blueStone:{user.createBlueStone(cell);break;}
+		case blackStone:{user.createBlackStone(cell);break;}
+		case elfRedStone:{user.createElfRedStone(cell);break;}
+		case humanRedStone:{user.createHumanRedStone(cell);break;}
+		case hobbitRedStone:{user.createHobbitRedStone(cell);break;}
+		case dwarfRedStone:{user.createDwarfRedStone(cell);break;}
 		}
 		
 		

@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * Ososztaly: Element
  * Interface: IDamage
  */
-public class Tower extends Element implements IDamage {
+public class Tower extends Element implements EnemyVisitor {
 	// A torp ellenseg sebzesenek merteke.
 	private int dwarfDamage = 50;
 	// A tunde ellenseg sebzesenek merteke.
@@ -115,7 +115,7 @@ public class Tower extends Element implements IDamage {
 		targetEnemy = findEnemyInRange();
 		if(targetEnemy != null) {
 			lastShotEnemyName = targetEnemy.getName();
-			targetEnemy.acceptDamage(this);
+			targetEnemy.accept(this);
 		}
 	}
 

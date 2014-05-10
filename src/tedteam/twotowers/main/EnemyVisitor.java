@@ -3,7 +3,7 @@ package tedteam.twotowers.main;
  * Ez az interface felelos azert, hogy a kulonbozo tipusu
  * ellensegeket kulonbozo erosseggel lehessen sebezni.
  */
-public interface IDamage {
+public interface EnemyVisitor {
 
 	/**
 	 * A hobbit ellenseg sebzeseert felelos metodus.
