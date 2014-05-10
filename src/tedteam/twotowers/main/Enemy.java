@@ -107,7 +107,7 @@ public abstract class Enemy {
 	 * Az ellenseg leptetesenek metodusa a prototipusban.
 	 * @throws Exception 
 	 */
-	public void step() throws Exception{
+	public void step(){
 		Cell nextCell = new Cell();
 		HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
 		neighbors.putAll(cell.getNeighbors());
@@ -138,7 +138,6 @@ public abstract class Enemy {
 				}
 			}
 		}
-		throw new Exception();
 	}
 
 	/**

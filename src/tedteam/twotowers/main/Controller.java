@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-public class Controller implements ActionListener, MouseListener {
+public class Controller implements ActionListener, MouseListener,EnemyVisitor {
 
 	enum Creation{none,tower,blocker,elfRedStone,humanRedStone,hobbitRedStone,dwarfRedStone,blueStone,greenStone,blackStone}
 	protected static View view;
@@ -17,6 +17,7 @@ public class Controller implements ActionListener, MouseListener {
 	private User user;
 	private Converter converter;
 	private GameField gameField;
+	private GameState gameState;
 	
 	public void setUser(User user) {
 		this.user = user;
@@ -26,6 +27,9 @@ public class Controller implements ActionListener, MouseListener {
 	}
 	
 	
+	public void setGameState(GameState gameState) {
+		this.gameState = gameState;
+	}
 	public void setGameField(GameField gameField) {
 		this.gameField = gameField;
 	}
@@ -97,7 +101,28 @@ public class Controller implements ActionListener, MouseListener {
 
 	public void drawAll(){
 		view.drawField();
+		gameState.getEnemyList().visitEnemies(this);
 		view.repaint();
+		
+	}
+	@Override
+	public void affect(Hobbit hobbit) {
+		Point point = converter.getCoords(hobbit.getCell());
+		view.drawHobbit(point);
+	}
+	@Override
+	public void affect(Elf e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void affect(Dwarf d) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void affect(Human h) {
+		// TODO Auto-generated method stub
 		
 	}
 }

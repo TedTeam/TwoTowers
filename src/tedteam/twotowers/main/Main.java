@@ -21,23 +21,28 @@ public class Main {
 		GameField gameField = new GameField();
 		Controller controller = new Controller();
 		Converter converter = new Converter();
+		Scheduler scheduler = new Scheduler();
+		View view = new View();
+		User user = new User();
 		generator.setGameState(gameState);
 		generator.setGameField(gameField);
 		gameState.setElementList(elementList);
 		gameState.setEnemyList(enemyList);
 		converter.setGameField(gameField);
+		scheduler.setEnemyList(enemyList);
+		scheduler.setController(controller);
 		
-		View view = new View();
-		User user = new User();
 		user.setGenerator(generator);
 		view.setController(controller);
 		controller.setView(view);
 		controller.setUser(user);
 		controller.setConverter(converter);
 		controller.setGameField(gameField);
+		controller.setGameState(gameState);
 		gameField.init();
 		view.init();
-		controller.drawAll();
+		generator.generateEnemies();
+		scheduler.work();
 		
 	}
 

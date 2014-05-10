@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -60,6 +61,10 @@ public class View {
 	private BufferedImage image;
 	private BufferedImage background;
 	private BufferedImage road;
+	private BufferedImage hobbit;
+	private BufferedImage elf;
+	private BufferedImage human;
+	private BufferedImage dwarf;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
@@ -70,6 +75,10 @@ public class View {
 			image = ImageIO.read(new File("logo.jpg"));
 			background = ImageIO.read(new File("map.jpg"));
 			road = ImageIO.read(new File("road.jpg"));
+			hobbit = ImageIO.read(new File("hobbit.png"));
+			human = ImageIO.read(new File("human.png"));
+			elf = ImageIO.read(new File("elf.png"));
+			dwarf = ImageIO.read(new File("dwarf.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -273,23 +282,40 @@ public class View {
 	
 	
 	public void drawField(){
-		try {
-			background = ImageIO.read(new File("map.jpg"));
-			graphics.drawImage(background,0,0,null);
-			for(Point p:roads){
-				graphics.drawImage(road,p.x,p.y,null);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		graphics.drawImage(background,0,0,null);
+		for(Point p:roads){
+			graphics.drawImage(road,p.x,p.y,null);
 		}
+		
+	
 	}
 
 
 
 	public void repaint() {
-		// TODO Auto-generated method stub
 		field.repaint();
+	}
+
+
+
+	public void drawHobbit(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(hobbit, point.x, point.y, null);
+	}
+	
+	public void drawHuman(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(human, point.x, point.y, null);
+	}
+	
+	public void drawElf(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(elf, point.x, point.y, null);
+	}
+	
+	public void drawDwarf(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(dwarf, point.x, point.y, null);
 	}
 	
 }
