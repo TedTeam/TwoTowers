@@ -5,6 +5,8 @@ public class Scheduler {
 	EnemyList enemyList;
 	Controller controller;
 	
+	final int STEP = 1000; //ennyi ms-onkent tortenik tick
+	
 	public void setEnemyList(EnemyList enemyList) {
 		this.enemyList = enemyList;
 	}
@@ -16,11 +18,18 @@ public class Scheduler {
 
 
 	public void work(){
-		while(true){
-			for(int i=0;i<10000;i++)
-				for(int j=0;j<10000;j++);
-		enemyList.stepAll();
-		controller.drawAll();
-		}
+
+	    double started = System.currentTimeMillis();
+	    int tick = 0;
+	    
+	    while (true) {
+	        while (System.currentTimeMillis() > (started+tick*STEP)) {
+
+	    		enemyList.stepAll();
+	    		controller.drawAll();
+	    		tick++;
+	            }
+	        
+	    }
 	}
 }
