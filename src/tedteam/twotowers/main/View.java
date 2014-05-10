@@ -12,7 +12,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -25,20 +25,21 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-enum Type{elso,masodik}
+//enum Type{elso,masodik}
 public class View {
 
 	
-	private Map<Point,Type> roads;
+	
+	private ArrayList<Point> roads;
 	//az a jpanel, amire rajzolunk
-	public MapField field;
+	private MapField field;
 	private Controller controller;
 	
 	
 	//ezen keresztul rajzolunk a kepre
-	public Graphics graphics;
+	private Graphics graphics;
 	//erre a kepre rajzolunk
-	public BufferedImage screen;
+	private BufferedImage screen;
 	//torony letrehozas gomb es a tobbi..
 	private JButton towerButton;
 	private JButton blockerButton;
@@ -54,15 +55,21 @@ public class View {
 	private JRadioButton damageHobbit;
 	private JRadioButton damageDwarf;
 	
+	
 	private JTextField notification;
 	private BufferedImage image;
-
+	private BufferedImage background;
+	private BufferedImage road;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
+	
+	
 	public void init(){
 		try {
 			image = ImageIO.read(new File("logo.jpg"));
+			background = ImageIO.read(new File("map.jpg"));
+			road = ImageIO.read(new File("road.jpg"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -75,7 +82,7 @@ public class View {
 		
 		
 		//kep letrehozasa
-		screen = new BufferedImage(550,320,BufferedImage.TYPE_INT_RGB);
+		screen = new BufferedImage(660,540,BufferedImage.TYPE_INT_RGB);
 		graphics = screen.createGraphics();
 		
 		
@@ -221,10 +228,18 @@ public class View {
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);
+		
+		roads = controller.getRoads();
 	}
 	
 	
 	
+	public BufferedImage getScreen() {
+		return screen;
+	}
+
+
+
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
@@ -255,19 +270,27 @@ public class View {
 
 
 	
-	public void drawIcon(int x, int y) {
+	
+	
+	public void drawField(){
 		try {
-			BufferedImage bg = ImageIO.read(new File("testmap.jpg"));
-			graphics.drawImage(bg,0,0,null);
-			
-			graphics.drawImage(image,x,y,null);
-			field.repaint();
+			background = ImageIO.read(new File("map.jpg"));
+			graphics.drawImage(background,0,0,null);
+			for(Point p:roads){
+				graphics.drawImage(road,p.x,p.y,null);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 
-		
+
+
+	public void repaint() {
+		// TODO Auto-generated method stub
+		field.repaint();
 	}
 	
 }
+

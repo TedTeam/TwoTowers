@@ -23,7 +23,14 @@ public class Converter {
 		return gameField.getCell(new Point(x,y));
 	}
 	
-	public Point getCoords(Cell cell){
-		return gameField.getPoint(cell);	
+	public Point getCoords(Cell cell){ 
+		Point point = gameField.getPoint(cell);
+		int x = point.x;
+		int y = point.y;
+		x = x-1;
+		x = x*cellWidth;
+		y = y-1;
+		y = y*cellHeight;
+		return new Point(x,y);
 	}
 }

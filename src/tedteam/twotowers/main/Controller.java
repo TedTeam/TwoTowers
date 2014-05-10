@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
@@ -15,6 +16,7 @@ public class Controller implements ActionListener, MouseListener {
 	protected static Creation creationState = Creation.none;
 	private User user;
 	private Converter converter;
+	private GameField gameField;
 	
 	public void setUser(User user) {
 		this.user = user;
@@ -23,6 +25,10 @@ public class Controller implements ActionListener, MouseListener {
 		view = view2;
 	}
 	
+	
+	public void setGameField(GameField gameField) {
+		this.gameField = gameField;
+	}
 	public void setConverter(Converter converter) {
 		this.converter = converter;
 	}
@@ -37,10 +43,14 @@ public class Controller implements ActionListener, MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent clicked) {
-		System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
+		//System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
-		view.drawIcon(clicked.getX(),clicked.getY());
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
+		//Point p = converter.getCoords(cell);
+		
+		//System.out.println("point:"+p);
+		//view.drawIcon(p.x,p.y);
+		
 		System.out.println(cell);
 		switch(creationState){
 		case none:break;
@@ -54,7 +64,7 @@ public class Controller implements ActionListener, MouseListener {
 		case hobbitRedStone:{user.createHobbitRedStone(cell);break;}
 		case dwarfRedStone:{user.createDwarfRedStone(cell);break;}
 		}
-		
+		//
 		
 	}
 	@Override
@@ -76,5 +86,18 @@ public class Controller implements ActionListener, MouseListener {
 		// TODO Auto-generated method stub
 		
 	}
+	public ArrayList<Point> getRoads() {
+		ArrayList<Cell> roadsCell = gameField.getRoads();
+		ArrayList<Point> roadsPoint = new ArrayList<Point>();
+		for(Cell cell:roadsCell){
+			roadsPoint.add(converter.getCoords(cell));
+		}	
+		return roadsPoint;
+	}
 
+	public void drawAll(){
+		view.drawField();
+		view.repaint();
+		
+	}
 }

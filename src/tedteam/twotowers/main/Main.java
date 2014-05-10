@@ -29,19 +29,16 @@ public class Main {
 		
 		View view = new View();
 		User user = new User();
+		user.setGenerator(generator);
 		view.setController(controller);
 		controller.setView(view);
 		controller.setUser(user);
 		controller.setConverter(converter);
-		view.init();
-		
-		view.field.removeAll();
-		
-
-		
-		view.drawIcon(0,0);
-		view.field.repaint();
+		controller.setGameField(gameField);
 		gameField.init();
+		view.init();
+		controller.drawAll();
+		
 	}
 
 }
