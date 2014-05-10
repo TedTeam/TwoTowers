@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.security.KeyStore.Entry;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -98,11 +97,11 @@ public class GameField {
 					boolean road;
 					road = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
 					boolean isFinalCell;
-					isFinalCell = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
+					isFinalCell = Boolean.parseBoolean(eElement.getElementsByTagName("final").item(0).getTextContent());
 					boolean isStartCell;
-					isStartCell = Boolean.parseBoolean(eElement.getElementsByTagName("road").item(0).getTextContent());
+					isStartCell = Boolean.parseBoolean(eElement.getElementsByTagName("start").item(0).getTextContent());
 					Cell c = new Cell();
-					if(road) c.setRoad();
+					if(road)c.setRoad();
 					cells.put(new Point(x,y), c);
 					if(isFinalCell)finalCell = c;
 					if(isStartCell)startCell = c;
@@ -168,6 +167,17 @@ public class GameField {
            
 		}
 		 return null;
+	}
+
+	public ArrayList<Cell> getRoads() {
+		ArrayList<Cell> roads = new ArrayList<Cell>();
+		for (java.util.Map.Entry<Point, Cell> entry : cells.entrySet()) {
+            if (entry.getValue().hasRoad()) {
+            	roads.add(entry.getValue());
+            }
+        }
+		return roads;
+		
 	}
 
 }

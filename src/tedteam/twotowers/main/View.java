@@ -12,7 +12,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -25,11 +25,12 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-enum Type{elso,masodik}
+//enum Type{elso,masodik}
 public class View {
 
 	
-	private Map<Point,Type> roads;
+	
+	private ArrayList<Point> roads;
 	//az a jpanel, amire rajzolunk
 	private MapField field;
 	private Controller controller;
@@ -227,6 +228,8 @@ public class View {
 		frame.setResizable(false);
 		frame.pack();
 		frame.setVisible(true);
+		
+		roads = controller.getRoads();
 	}
 	
 	
@@ -267,19 +270,19 @@ public class View {
 
 
 	
-	public void drawIcon(int x, int y) {
+	
+	
+	public void drawField(){
 		try {
 			background = ImageIO.read(new File("map.jpg"));
 			graphics.drawImage(background,0,0,null);
-			
-			graphics.drawImage(road,x,y,null);
-			field.repaint();
+			for(Point p:roads){
+				graphics.drawImage(road,p.x,p.y,null);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 	}
 
 

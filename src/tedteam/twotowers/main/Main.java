@@ -34,14 +34,10 @@ public class Main {
 		controller.setView(view);
 		controller.setUser(user);
 		controller.setConverter(converter);
-		view.init();
-		
+		controller.setGameField(gameField);
 		gameField.init();
-		
-
-		
-		view.drawIcon(0,0);
-		view.repaint();
+		view.init();
+		controller.drawAll();
 		
 	}
 
