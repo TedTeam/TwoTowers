@@ -7,11 +7,12 @@ package tedteam.twotowers.main;
 public class Elf extends Enemy {
 
 	/**
-	 * Ezen a metoduson keresztul valtozik az ellenseg eletereje.
-	 * @param damage: a valtozas merteke.
+	 * Ezen a metoduson keresztul tudatjuk az EnemyVisitor
+	 * objektummal, hogy ez az ellenseg valojaba tunde.
+	 * @param evisitor: a valtozas merteke.
 	 */
-	public void accept(EnemyVisitor damage){
-		damage.affect(this);
+	public void accept(EnemyVisitor evisitor){
+		evisitor.affect(this);
 	}
 
 	/**

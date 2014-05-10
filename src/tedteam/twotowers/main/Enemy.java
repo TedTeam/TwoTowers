@@ -43,9 +43,9 @@ public abstract class Enemy {
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak
 	 * kell implementalniuk.
-	 * @param damage.
+	 * @param evisitor.
 	 */
-	public abstract void accept(EnemyVisitor damage);
+	public abstract void accept(EnemyVisitor evisitor);
 	
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak

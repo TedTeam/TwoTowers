@@ -7,24 +7,20 @@ public class GameState {
 	// A jatek soran letrehozott ellensegek szama.
 	@SuppressWarnings("unused")
 	private int countEnemy;
-	
-	// A jatek soran megolt ellensegek szama. default értéke 0
-	private int deadEnemiesNumber=0;
-	
+	// A jatek soran megolt ellensegek szama. default erteke 0
+	private int deadEnemiesNumber = 0;
 	// A palyan levo epitmenyeket tartalmazo osztaly.
 	private ElementList elementList;
-	
 	// A palyan levo ellensegeket tartalmazo osztaly.
 	private EnemyList enemyList;
-	
 	// A palya utolso cellaja.
 	private Cell finalCell;
-	
-	// Ellenségek maximális száma. Jelenleg ez a létrehozott ellenségek száma a protóban
-	private int maximumEnemy=0;
-	
-	//Processor osztaly szamara annak az eldontesere, h ha vege a jateknak, akkor az win v lose.
+	// Ellensegek maximalis szama.
+	private int maximumEnemy = 0;
+	// Processor osztaly szamara annak az eldontesere, h ha vege a jateknak, akkor az win v lose.
 	private boolean win = false;
+	// Referencia egy ManaController objektumra. A mana novelesehez kell.
+	private ManaController manaController;
 
 	/**
 	 * Ez a metodus ellenorzi, hogy veget ert-e a jatek. 
@@ -69,11 +65,13 @@ public class GameState {
 	
 	/**
 	 * Torli az enemyListbol a halott ellenseget es noveli a halott ellensegek szamat.
+	 * Valamint noveli a varazserot is.
 	 * @param e: a halott ellenseg akit torolni kell.
 	 */
 	public void deadEnemy(Enemy enemy){
 		enemyList.deleteEnemy(enemy);
 		deadEnemiesNumber++;
+		enemy.accept(manaController);
 	}
 
 	/**
@@ -93,7 +91,7 @@ public class GameState {
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
 	 * @return
 	 */
 	public EnemyList getEnemyList() {
@@ -101,7 +99,7 @@ public class GameState {
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
 	 * @return
 	 */
 	public ElementList getElementList() {
@@ -118,14 +116,22 @@ public class GameState {
 	public void setElementList(ElementList elementlist){
 		this.elementList = elementlist;
 	}
+	
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
-	 * Letrehozott ellenségek számával növekszik
+	 * A ManaController referencia beallitasa.
+	 * @param mc: erre allitjuk.
+	 */
+	public void setManaController(ManaController mc) {
+		manaController = mc;
+	}
+	
+	/**
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
+	 * Letrehozott ellensï¿½gek szï¿½mï¿½val nï¿½vekszik
 	 * @return
 	 */
 	public void increaseMaxEnemy() {
 		maximumEnemy++;
-		
 	}
 	
 	/**
@@ -135,7 +141,5 @@ public class GameState {
 	public boolean getWin() {
 		return win;
 	}
-
-
 
 }
