@@ -46,7 +46,7 @@ public class Controller implements ActionListener, MouseListener {
 		//System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
 		
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
-		Point p = converter.getCoords(cell);
+		//Point p = converter.getCoords(cell);
 		
 		//System.out.println("point:"+p);
 		//view.drawIcon(p.x,p.y);
@@ -64,7 +64,7 @@ public class Controller implements ActionListener, MouseListener {
 		case hobbitRedStone:{user.createHobbitRedStone(cell);break;}
 		case dwarfRedStone:{user.createDwarfRedStone(cell);break;}
 		}
-		
+		//
 		
 	}
 	@Override
