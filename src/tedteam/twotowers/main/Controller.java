@@ -111,18 +111,21 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor {
 		view.drawHobbit(point);
 	}
 	@Override
-	public void affect(Elf e) {
-		// TODO Auto-generated method stub
+	public void affect(Elf elf) {
+		Point point = converter.getCoords(elf.getCell());
+		view.drawElf(point);
 		
 	}
 	@Override
-	public void affect(Dwarf d) {
-		// TODO Auto-generated method stub
+	public void affect(Dwarf dwarf) {
+		Point point = converter.getCoords(dwarf.getCell());
+		view.drawDwarf(point);
 		
 	}
 	@Override
-	public void affect(Human h) {
-		// TODO Auto-generated method stub
+	public void affect(Human human) {
+		Point point = converter.getCoords(human.getCell());
+		view.drawHuman(point);
 		
 	}
 }
