@@ -50,18 +50,22 @@ public class MakeMap {
 				
 				Boolean roadBol = false;
 				if(i == 1 && j<11)roadBol = true;
+				if(j == 1 && i>0 && i<23)roadBol = true;
 				if(j == 4)roadBol = true;
+				if(j == 2 && i == 22)roadBol = true;
+				if(j == 3 && i == 22)roadBol = true;
 				if(j == 10 && i < 7)roadBol = true;
 				if(i == 6 && j>9 && j<18)roadBol = true;
 				if(j==13 && i>5 && i<14)roadBol = true;
-				if(j == 17 && i>5)roadBol = true;
+				if(j == 16 && i>5)roadBol = true;
 				if(i == 22 && j>3)roadBol = true;
 				if(i==7 && j>3 && j<9)roadBol = true;
 				if(j==8 && i>6 && i <14)roadBol = true;
 				if(i==13 && j>7 && j<14)roadBol = true;
 				if(j==12 && i>12 && i<21)roadBol = true;
-				if(i==20 && j>11 && j<16)roadBol = true;
-				if(i==21 && j==15)roadBol = true;
+				if(i==20 && j>11 && j<15)roadBol = true;
+				if(i==21 && j==14)roadBol = true;
+				if(j == 18 && i>5 && i<22)roadBol = true;
 				
 				Element road = doc.createElement("road");
 				road.appendChild(doc.createTextNode(roadBol.toString()));
