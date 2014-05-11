@@ -84,6 +84,7 @@ public class Generator {
 	 * a palyara rakja.
 	 */
 	public void generateEnemies(){
+		
 		Cell cell = gameField.getStartCell();
 		Hobbit hobbit = new Hobbit();
 		hobbit.init(gameState, cell);
@@ -97,6 +98,7 @@ public class Generator {
 		gameState.addEnemy(elf);
 		gameState.addEnemy(human);
 		gameState.addEnemy(dwarf);
+		gameState.setMaximumEnemy(4);
 	}
 	
 

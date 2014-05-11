@@ -123,6 +123,10 @@ public class GameState {
 		this.enemyList = enemylist;
 	}
 	
+	public void setMaximumEnemy(int maximumEnemy) {
+		this.maximumEnemy = maximumEnemy;
+	}
+
 	public void setElementList(ElementList elementlist){
 		this.elementList = elementlist;
 	}
