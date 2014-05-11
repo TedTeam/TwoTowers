@@ -4,6 +4,7 @@ package tedteam.twotowers.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
@@ -211,7 +212,11 @@ public class View {
 		notification = new JTextField();
 		notification.setPreferredSize(new Dimension(rightSideWidth,30));
 		notification.setEditable(false);
-		notification.setText("Notification bullshit");
+		Font textFieldFont=new Font(notification.getFont().getName(),
+				Font.BOLD,notification.getFont().getSize()+3);
+		notification.setFont(textFieldFont);  
+		notification.setText("Nincs ertesites!");
+		notification.setHorizontalAlignment(JTextField.CENTER);
 		map.add(notification);
 		map.setPreferredSize(new Dimension(rightSideWidth,570));
 		//text.add(notification);
@@ -378,9 +383,11 @@ public class View {
 	public void drawBlackStone(Point point) {
 		// TODO Auto-generated method stub
 		graphics.drawImage(black, point.x, point.y, null);
-	}	
+	}
 	
-	public void refreshDetails(int maxmana,int actualmana,int dead,int max){
+
+	
+	public void refreshDetails(int maxmana,int actualmana,int dead,int max, String noti){
 		Integer temp = maxmana;
 		maxMana.setText(temp.toString());
 		temp = actualmana;
@@ -388,6 +395,7 @@ public class View {
 		temp = dead;
 		Integer temp2 = max;
 		enemies.setText(temp.toString()+"/"+temp2.toString());
+		notification.setText(noti);
 	}
 
 

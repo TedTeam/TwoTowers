@@ -19,6 +19,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	private GameField gameField;
 	private GameState gameState;
 	
+	private Notification notification = new Notification();
+	
 	public void setUser(User user) {
 		this.user = user;
 	}
@@ -58,17 +60,52 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		System.out.println(cell);
 		switch(creationState){
 		case none:break;
-		case tower:{user.createTower(cell);break;}
-		case blocker:{user.createBlocker(cell);break;}
-		case greenStone:{user.createGreenStone(cell);break;}
-		case blueStone:{user.createBlueStone(cell);break;}
-		case blackStone:{user.createBlackStone(cell);break;}
-		case elfRedStone:{user.createElfRedStone(cell);break;}
-		case humanRedStone:{user.createHumanRedStone(cell);break;}
-		case hobbitRedStone:{user.createHobbitRedStone(cell);break;}
-		case dwarfRedStone:{user.createDwarfRedStone(cell);break;}
+		case tower: {
+			if(user.createTower(cell))
+				notification.addNotification("Leraktal egy Tornyot!");
+			else notification.addNotification("Nem tudsz Tornyot lerakni!");
+			break; }
+		case blocker:{
+			if(user.createBlocker(cell))
+				notification.addNotification("Leraktal egy Akadályt!");
+			else notification.addNotification("Nem tudsz Akadályt lerakni!");
+			break; }
+		case greenStone:{
+			if(user.createGreenStone(cell))
+				notification.addNotification("Zold kovet raktal a toronyra!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case blackStone:{
+			if(user.createBlackStone(cell))
+				notification.addNotification("Fekete kovet raktal a toronyra!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case blueStone:{
+			if(user.createBlueStone(cell))
+				notification.addNotification("Kek kovet raktal a toronyra!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case elfRedStone:{
+			if(user.createElfRedStone(cell))
+				notification.addNotification("Piros kovet raktal a toronyra, ami elfek ellen erosit!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case humanRedStone:{
+			if(user.createHumanRedStone(cell))
+				notification.addNotification("Piros kovet raktal a toronyra, ami emberek ellen erosit!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case hobbitRedStone:{
+			if(user.createHobbitRedStone(cell))
+				notification.addNotification("Piros kovet raktal a toronyra, ami hobbitok ellen erosit!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
+		case dwarfRedStone:{
+			if(user.createDwarfRedStone(cell))
+				notification.addNotification("Piros kovet raktal a toronyra, ami torpek ellen erosit!");
+			else notification.addNotification("Nem sikerult a ko lerakasa!");
+			break; }
 		}
-		//
 		
 	}
 	@Override
@@ -102,7 +139,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	public void drawAll(){
 		view.drawField();
 		
-		view.refreshDetails(user.getMaxMana(), user.getMana(), gameState.getDeadEnemiesNumber(), gameState.getMaximumEnemy());
+		view.refreshDetails(user.getMaxMana(), user.getMana(), gameState.getDeadEnemiesNumber(), 
+				gameState.getMaximumEnemy(), notification.getNotification());
 		gameState.getEnemyList().visitEnemies(this);
 		gameState.getElementList().visitElements(this);
 		view.repaint();
