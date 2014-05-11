@@ -79,6 +79,7 @@ public class View {
 	private BufferedImage green;
 	private BufferedImage black;
 	private BufferedImage red;
+	private BufferedImage fog;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
@@ -99,6 +100,7 @@ public class View {
 			green = ImageIO.read(new File("green.png"));
 			black = ImageIO.read(new File("black.png"));
 			red = ImageIO.read(new File("red.png"));
+			fog = ImageIO.read(new File("fog.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -385,7 +387,9 @@ public class View {
 		graphics.drawImage(black, point.x, point.y, null);
 	}
 	
-
+	public void drawFog(Point point) {
+		graphics.drawImage(fog, point.x, point.y, null);
+	}
 	
 	public void refreshDetails(int maxmana,int actualmana,int dead,int max, String noti){
 		Integer temp = maxmana;
@@ -397,6 +401,8 @@ public class View {
 		enemies.setText(temp.toString()+"/"+temp2.toString());
 		notification.setText(noti);
 	}
+
+
 
 
 }

@@ -125,6 +125,12 @@ public class Tower extends Element implements EnemyVisitor {
 				//	new Converter().getCoords(targetEnemy.getCell()));
 			}
 			tick = 0;
+			
+			Random r = new Random();
+			int chanceFog = r.nextInt(13);
+			if(chanceFog == 3) {
+				fog = true;
+			}
 		}
 		else tick++;
 	}

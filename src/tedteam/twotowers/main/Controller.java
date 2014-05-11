@@ -173,6 +173,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	public void affect(Tower tower) {
 		Point point = converter.getCoords(tower.getCell());
 		view.drawTower(point);
+		if(tower.getFog())
+			view.drawFog(point);
 		
 		if(tower.getEnhancedByBlue()) {
 			point = converter.getCoords(tower.getCell());
