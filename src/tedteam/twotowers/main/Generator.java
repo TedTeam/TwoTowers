@@ -1,4 +1,7 @@
 package tedteam.twotowers.main; 
+
+import java.util.Random;
+
 /**
  * Ez az osztaly felelos a felhasznalo altal jelzett muveletek
  * vegrehajtasara, valamint az ellensegek letrehozasara.
@@ -84,26 +87,31 @@ public class Generator {
 	 * a palyara rakja.
 	 */
 	public void generateEnemies(){
-		
 		Cell cell = gameField.getStartCell();
-		Hobbit hobbit = new Hobbit();
-		hobbit.init(gameState, cell);
-		Elf elf = new Elf();
-		elf.init(gameState, cell);
-		Human human = new Human();
-		human.init(gameState, cell);
-		Dwarf dwarf = new Dwarf();
-		dwarf.init(gameState, cell);
-		gameState.addEnemy(hobbit);
-		gameState.addEnemy(elf);
-		gameState.addEnemy(human);
-		gameState.addEnemy(dwarf);
-		gameState.setMaximumEnemy(4);
+		Random randgen = new Random();
+		int random = randgen.nextInt(4);
+		if(random == 0) {
+			Dwarf dwarf = new Dwarf();
+			dwarf.init(gameState, cell);
+			gameState.addEnemy(dwarf);
+		} if(random == 1) {
+			Elf elf = new Elf();
+			elf.init(gameState, cell);
+			gameState.addEnemy(elf);
+		} if(random == 2) {
+			Hobbit hobbit = new Hobbit();
+			hobbit.init(gameState, cell);
+			gameState.addEnemy(hobbit);
+		} if(random == 3) {
+			Human human = new Human();
+			human.init(gameState, cell);
+			gameState.addEnemy(human);
+		}
 	}
 	
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
 	 * @return
 	 */
 	public GameField getGameField() {
@@ -111,7 +119,7 @@ public class Generator {
 	}
 
 	/**
-	 * Parancsfeldolgozo - temporális fuggveny
+	 * Parancsfeldolgozo - temporï¿½lis fuggveny
 	 * @return
 	 */
 	public GameState getGameState() {

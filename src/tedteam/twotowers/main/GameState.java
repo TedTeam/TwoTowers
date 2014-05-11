@@ -99,6 +99,10 @@ public class GameState {
 	public int getDeadEnemiesNumber() {
 		return deadEnemiesNumber;
 	}
+	
+	public int getCountEnemy() {
+		return countEnemy;
+	}
 
 	/**
 	 * Parancsfeldolgozo - tempor�lis fuggveny

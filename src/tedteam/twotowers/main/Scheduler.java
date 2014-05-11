@@ -2,33 +2,18 @@ package tedteam.twotowers.main;
 
 public class Scheduler {
 
-	EnemyList enemyList;
 	Controller controller;
-	ElementList elementList;
-	GameState gameState;
+	Generator generator;
 	
 	final int STEP = 200; //ennyi ms-onkent tortenik tick
 	
-	public void setEnemyList(EnemyList enemyList) {
-		this.enemyList = enemyList;
+	public void setGenerator(Generator generator) {
+		this.generator = generator;
 	}
-
-
-	
-	public void setElementList(ElementList elementList) {
-		this.elementList = elementList;
-	}
-
-
 
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
-	
-	public void setGameState(GameState gamestate) {
-		this.gameState = gamestate;
-	}
-
 
 	public void work(){
 
@@ -36,13 +21,19 @@ public class Scheduler {
 	    int tick = 0;
 	    while (true) {
 	        while (System.currentTimeMillis() > (started+tick*STEP)) {
-
-	    		enemyList.stepAll();
-	    		elementList.notifyAllElement();
+	        	if(tick % 100 == 0 && generator.getGameState().getMaximumEnemy() != generator.getGameState().getCountEnemy()) {
+	        		generator.generateEnemies();
+	        		generator.generateEnemies();
+	        		generator.generateEnemies();
+	        	} if(tick % 20 == 0 && generator.getGameState().getMaximumEnemy() != generator.getGameState().getCountEnemy()) {
+	        		generator.generateEnemies();
+	        	}
+	    		generator.getGameState().getEnemyList().stepAll();
+	    		generator.getGameState().getElementList().notifyAllElement();
 	    		controller.drawAll();
 	    		tick++;
 	    		
-	    		if(gameState.checkGame()) {
+	    		if(generator.getGameState().checkGame()) {
 	    			System.exit(0);
 	    		}
 	    			

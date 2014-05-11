@@ -34,10 +34,8 @@ public class Main {
 		gameState.setEnemyList(enemyList);
 		gameState.setManaController(manaController);
 		converter.setGameField(gameField);
-		scheduler.setEnemyList(enemyList);
+		scheduler.setGenerator(generator);
 		scheduler.setController(controller);
-		scheduler.setElementList(elementList);
-		scheduler.setGameState(gameState);
 		manaController.setUser(user);
 		
 		user.setGenerator(generator);
@@ -52,7 +50,7 @@ public class Main {
 		gameField.init();
 		gameState.setFinalCell(gameField.getFinalCell());
 		view.init();
-		generator.generateEnemies();
+		gameState.setMaximumEnemy(15);
 		scheduler.work();
 		
 	}
