@@ -184,7 +184,7 @@ public class Tower extends Element implements EnemyVisitor {
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			human.cut(humanDamage);
-		else human.damage(humanDamage);
+		else human.damage(humanDamage);//
 	}
 	
 	/**
