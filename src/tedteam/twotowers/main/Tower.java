@@ -121,9 +121,6 @@ public class Tower extends Element implements EnemyVisitor {
 			if(targetEnemy != null) {
 				targetEnemy.accept(this);
 				hit.addHit(this.cell,targetEnemy.getCell());
-				
-				//hit.setHit(new Converter().getCoords(this.cell), 
-				//	new Converter().getCoords(targetEnemy.getCell()));
 			}
 			tick = 0;
 			
@@ -147,7 +144,6 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			hobbit.cut(hobbitDamage);
 		else hobbit.damage(hobbitDamage);
-		System.out.println("hobbit damage");
 		
 	}
 
@@ -162,7 +158,6 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			elf.cut(elfDamage);
 		else elf.damage(elfDamage);
-		System.out.println("elf damage");
 	}
 
 	/**
@@ -176,7 +171,6 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			dwarf.cut(dwarfDamage);
 		else dwarf.damage(dwarfDamage);
-		System.out.println("dwarf damage");
 	}
 
 
@@ -191,7 +185,6 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			human.cut(humanDamage);
 		else human.damage(humanDamage);
-		System.out.println("human damage");
 	}
 	
 	/**
