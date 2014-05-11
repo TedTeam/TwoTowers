@@ -22,15 +22,19 @@ public class Main {
 		Controller controller = new Controller();
 		Converter converter = new Converter();
 		Scheduler scheduler = new Scheduler();
+		ManaController manaController = new ManaController();
 		View view = new View();
 		User user = new User();
 		generator.setGameState(gameState);
 		generator.setGameField(gameField);
 		gameState.setElementList(elementList);
 		gameState.setEnemyList(enemyList);
+		gameState.setManaController(manaController);
 		converter.setGameField(gameField);
 		scheduler.setEnemyList(enemyList);
 		scheduler.setController(controller);
+		scheduler.setElementList(elementList);
+		manaController.setUser(user);
 		
 		user.setGenerator(generator);
 		view.setController(controller);
@@ -39,6 +43,7 @@ public class Main {
 		controller.setConverter(converter);
 		controller.setGameField(gameField);
 		controller.setGameState(gameState);
+		
 		gameField.init();
 		view.init();
 		generator.generateEnemies();

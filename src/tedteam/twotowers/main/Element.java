@@ -56,4 +56,6 @@ public abstract class Element {
 	public void setName(String name) {
 		cName = name;
 	}
+
+	public abstract void visitElement(ElementVisitor visitor);
 }

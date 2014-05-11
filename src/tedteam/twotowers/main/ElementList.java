@@ -51,4 +51,11 @@ public class ElementList {
 		return elements.get(index);
 	}
 
+	public void visitElements(ElementVisitor visitor) {
+		// TODO Auto-generated method stub
+		for(Element e:elements){
+			e.visitElement(visitor);
+		}
+	}
+
 }

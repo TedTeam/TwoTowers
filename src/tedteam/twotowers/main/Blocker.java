@@ -93,5 +93,10 @@ public class Blocker extends Element {
 		return countRemain;
 	}
 	
+	@Override
+	public void visitElement(ElementVisitor visitor) {
+		visitor.affect(this);
+		
+	}
 
 }

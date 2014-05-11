@@ -65,6 +65,8 @@ public class View {
 	private BufferedImage elf;
 	private BufferedImage human;
 	private BufferedImage dwarf;
+	private BufferedImage blocker;
+	private BufferedImage tower;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
@@ -79,6 +81,8 @@ public class View {
 			human = ImageIO.read(new File("human.png"));
 			elf = ImageIO.read(new File("elf.png"));
 			dwarf = ImageIO.read(new File("dwarf.png"));
+			blocker = ImageIO.read(new File("blocker.png"));
+			tower = ImageIO.read(new File("tower.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -316,6 +320,16 @@ public class View {
 	public void drawDwarf(Point point) {
 		// TODO Auto-generated method stub
 		graphics.drawImage(dwarf, point.x, point.y, null);
+	}
+	
+	public void drawBlocker(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(blocker, point.x, point.y, null);
+	}
+	
+	public void drawTower(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
 }

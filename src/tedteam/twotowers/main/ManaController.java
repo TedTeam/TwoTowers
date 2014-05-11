@@ -38,5 +38,11 @@ public class ManaController implements EnemyVisitor {
 	public void affect(Human h) {
 		user.increaseMana(50);
 	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	
 	
 }

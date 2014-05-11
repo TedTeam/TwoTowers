@@ -344,4 +344,10 @@ public class Tower extends Element implements EnemyVisitor {
 		cut = true;
 	}
 
+	@Override
+	public void visitElement(ElementVisitor visitor) {
+		visitor.affect(this);
+		
+	}
+
 }
