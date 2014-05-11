@@ -213,4 +213,8 @@ public class User {
 			actualMana = maximumMana;
 		}
 	}
+
+	public int getMaxMana() {
+		return maximumMana;
+	}
 }

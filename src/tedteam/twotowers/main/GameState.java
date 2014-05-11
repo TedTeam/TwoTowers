@@ -90,6 +90,16 @@ public class GameState {
 		finalCell = cell;
 	}
 
+	
+	
+	public int getMaximumEnemy() {
+		return maximumEnemy;
+	}
+
+	public int getDeadEnemiesNumber() {
+		return deadEnemiesNumber;
+	}
+
 	/**
 	 * Parancsfeldolgozo - tempor�lis fuggveny
 	 * @return

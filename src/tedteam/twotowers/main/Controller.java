@@ -101,6 +101,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 
 	public void drawAll(){
 		view.drawField();
+		
+		view.refreshDetails(user.getMaxMana(), user.getMana(), gameState.getDeadEnemiesNumber(), gameState.getMaximumEnemy());
 		gameState.getEnemyList().visitEnemies(this);
 		gameState.getElementList().visitElements(this);
 		view.repaint();

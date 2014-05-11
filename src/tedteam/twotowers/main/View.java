@@ -56,6 +56,10 @@ public class View {
 	private JRadioButton damageHobbit;
 	private JRadioButton damageDwarf;
 	
+	//details panel cimkei
+	private JLabel maxMana;
+	private JLabel actualMana;
+	private JLabel enemies;
 	
 	private JTextField notification;
 	private BufferedImage image;
@@ -111,11 +115,14 @@ public class View {
 		
 		//felso panel feltoltese
 		details.add(new JLabel("MaxMana:  ",JLabel.RIGHT));
-		details.add(new JLabel("100"));
+		maxMana = new JLabel();
+		details.add(maxMana);
 		details.add(new JLabel("ActualMana:  ",JLabel.RIGHT));
-		details.add(new JLabel("20"));
+		actualMana = new JLabel();
+		details.add(actualMana);
 		details.add(new JLabel("DeadEnemies:  ",JLabel.RIGHT));
-		details.add(new JLabel("xxx"));
+		enemies = new JLabel();
+		details.add(enemies);
 		//fekete keret beallitasa
 		details.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		//meret 800x30
@@ -332,5 +339,14 @@ public class View {
 		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
+	public void refreshDetails(int maxmana,int actualmana,int dead,int max){
+		Integer temp = maxmana;
+		maxMana.setText(temp.toString());
+		temp = actualmana;
+		actualMana.setText(temp.toString());
+		temp = dead;
+		Integer temp2 = max;
+		enemies.setText(temp.toString()+"/"+temp2.toString());
+	}
 }
 
