@@ -5,17 +5,20 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Line;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -347,8 +350,14 @@ public class View {
 		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
-	public void drawHits(Point point) {
-		// TODO Auto-generated method stub	
+	public void drawHits(ArrayList<Hit> hits) {
+		Graphics2D g2 = (Graphics2D) graphics;
+		for(Hit act: hits) {
+			Line2D line = new Line2D.Double(act.getFrom().getX(), act.getFrom().getY(),
+					act.getTo().getX(), act.getTo().getY());
+			g2.setColor(Color.red);
+			g2.draw(line);
+		}
 	}
 
 	public void drawBlueStone(Point point) {
