@@ -26,7 +26,7 @@ public class Elf extends Enemy {
 		formerCell = c;
 		maxLifePoint = 150;
 		currentLifePoint = 150;
-		speed = 10;
+		speed = 8;
 	}
 
 	/**

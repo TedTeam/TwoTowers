@@ -56,10 +56,6 @@ public class Blocker extends Element {
 		for(int i=0;i<el.size();i++) {
 			boolean bl=el.get(i).block(slowing);
 			if (bl) {
-				if(BlockedEnemies.equals(""))
-					BlockedEnemies = el.get(i).getName(); 
-				else
-						BlockedEnemies.concat(el.get(i).getName()+" ");
 				this.countRemain--;
 				if(this.countRemain==0){ 
 					this.gameState.deleteElement(this);
@@ -97,5 +93,10 @@ public class Blocker extends Element {
 		return countRemain;
 	}
 	
+	@Override
+	public void visitElement(ElementVisitor visitor) {
+		visitor.affect(this);
+		
+	}
 
 }

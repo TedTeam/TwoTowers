@@ -2,6 +2,7 @@ package tedteam.twotowers.main;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
 /**
  * A tornyot megvalosito osztaly. Egy torony fobb
@@ -40,6 +41,9 @@ public class Tower extends Element implements EnemyVisitor {
 	
 	//Temporalis valtozo a prototipus miatt. Ha igaz, a kovetkezo enemy talalatkor cut metodus hivas damage helyett
 	private boolean cut = false;
+	private int tick = 0;
+	
+	private Hit hit = new Hit();
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -111,12 +115,24 @@ public class Tower extends Element implements EnemyVisitor {
 	 * A torony loveset vegrehajto metodus.
 	 */
 	public void action() {
-		Enemy targetEnemy;
-		targetEnemy = findEnemyInRange();
-		if(targetEnemy != null) {
-			lastShotEnemyName = targetEnemy.getName();
-			targetEnemy.accept(this);
+		if(10-tick  == speed){
+			Enemy targetEnemy;
+			targetEnemy = findEnemyInRange();
+			if(targetEnemy != null) {
+				targetEnemy.accept(this);
+				
+				//hit.setHit(new Converter().getCoords(this.cell), 
+				//	new Converter().getCoords(targetEnemy.getCell()));
+			}
+			tick = 0;
+			
+			Random r = new Random();
+			int chanceFog = r.nextInt(13);
+			if(chanceFog == 3) {
+				fog = true;
+			}
 		}
+		else tick++;
 	}
 
 	/**
@@ -124,20 +140,13 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param hobbit: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Hobbit hobbit) {
-		/* Most meg nem kell
-		 * 
-		 * Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+
+		Random rand = new Random();
+		int cutChance = rand.nextInt(20) +1 ;// 1-tol 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			hobbit.cut(hobbitDamage);
 		else hobbit.damage(hobbitDamage);
-		*/
 		
-		if(cut){
-			hobbit.cut(hobbitDamage);
-			cut = false;
-		}
-		else hobbit.damage(hobbitDamage);
 	}
 
 	/**
@@ -145,20 +154,13 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param elf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Elf elf) {
-		/* Most meg nem kell
-		 * 
-		 * Random rand = new Random();
+		
+		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			elf.cut(elfDamage);
 		else elf.damage(elfDamage);
-		*/
-		
-		if(cut){
-			elf.cut(hobbitDamage);
-			cut = false;
-		}
-		else elf.damage(hobbitDamage);
+
 	}
 
 	/**
@@ -166,40 +168,25 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param dwarf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Dwarf dwarf) {
-		/* Most meg nem kell
-		 * 
-		 * Random rand = new Random();
+		
+		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			dwarf.cut(dwarfDamage);
 		else dwarf.damage(dwarfDamage);
-		*/
-		
-		if(cut){
-			dwarf.cut(dwarfDamage);
-			cut = false;
-		}
-		else dwarf.damage(dwarfDamage);
 	}
+
 
 	/**
 	 * Az ember ellenseg sebzeseert felelos metodus.
 	 * @param human: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Human human) {
-		/* Most meg nem kell
-		 * 
-		 * Random rand = new Random();
+		
+		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			human.cut(humanDamage);
-		else human.damage(humanDamage);
-		*/
-		
-		if(cut){
-			human.cut(humanDamage);
-			cut = false;
-		}
 		else human.damage(humanDamage);
 	}
 	
@@ -303,16 +290,7 @@ public class Tower extends Element implements EnemyVisitor {
 		return fog;
 	}
 
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Visszaadja annak az ellensegnek a nevet, amire utoljara ralottunk
-	 * @return
-	 */
-	public String getLastShotEnemyName() {
-		String returnName = lastShotEnemyName;
-		lastShotEnemyName = null;
-		return returnName;
-	}
+
 
 	public int getRange() {
 		return range;
@@ -343,6 +321,12 @@ public class Tower extends Element implements EnemyVisitor {
 	//proto utan toroljuk
 	public void setCut(){
 		cut = true;
+	}
+
+	@Override
+	public void visitElement(ElementVisitor visitor) {
+		visitor.affect(this);
+		
 	}
 
 }

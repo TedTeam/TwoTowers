@@ -38,22 +38,12 @@ public class EnemyList {
 			}
 		}
 	}
-
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Visszadja a name nevu ellenseget.
-	 * @param name: az ilyen nevu enemyt keressuk
-	 * @return a megtalalt enemy (ha van)
-	 */
-	public Enemy getEnemyByName(String name) {
-		int index = -1;
-		for(Enemy e : enemies) {
-			if(e.getName().equals(name))
-				index = enemies.indexOf(e);
+	
+	public void visitEnemies(EnemyVisitor visitor){
+		for(Enemy e : enemies){
+			e.accept(visitor);
 		}
-		if(index == -1)
-			return null;
-		return enemies.get(index);
+		
 	}
 
 }

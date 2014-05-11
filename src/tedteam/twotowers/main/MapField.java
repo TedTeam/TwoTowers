@@ -18,7 +18,6 @@ public class MapField extends JPanel{
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(view.getScreen(),0,0,null);
-		System.out.println("repainted");
 		
 	}
 }

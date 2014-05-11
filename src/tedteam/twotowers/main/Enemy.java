@@ -1,7 +1,9 @@
 package tedteam.twotowers.main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Random;
 
 /**
  * Az ellensegeket megvalosito absztrakt osztaly.
@@ -30,15 +32,9 @@ public abstract class Enemy {
 	protected boolean halved = false;
 	// A cellavaltashoz szukseges segedvaltozo, amely mindig
 	// novekszik, ha a 10-speed=tick keplet nem teljesul.
-	// A prototipusban nem hasznaljuk.
 	// Alapertelmezett erteke: 0.
-	@SuppressWarnings("unused")
 	private int tick = 0;
-	
-	//Temp - megadott nev
-	protected String cName = new String();
-	//Temp - Erre megy az ellenseg keresztezodesben
-	protected String cDirection; 
+
 
 	/**
 	 * Abstract metodus, amit a leszarmaztatott osztalyoknak
@@ -107,47 +103,36 @@ public abstract class Enemy {
 	 * Az ellenseg leptetesenek metodusa a prototipusban.
 	 * @throws Exception 
 	 */
-	public void step() throws Exception{
-		Cell nextCell = new Cell();
-		HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
-		neighbors.putAll(cell.getNeighbors());
-		
-		if(cDirection != null) {
-			nextCell = neighbors.get(cDirection);
-			if(nextCell != null){
-				if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
-					formerCell = cell;
-					cell.removeEnemy(this);
-					cell = nextCell;
-					nextCell.addEnemy(this);
-					return;
+	public void step(){
+		if(10-tick == speed){
+		//szomszed cellak lekerese
+		ArrayList<Cell> neighbors = new ArrayList<Cell>();
+		neighbors.addAll(cell.getNeighbors().values());
+		ArrayList<Cell> stepChances = new ArrayList<Cell>();
+		Random rand = new Random();
+		int stepChanceIndex = 0;
+		for(Cell c:neighbors){
+			if(c != null)
+				if(c.hasRoad() == true && c != formerCell){
+					stepChanceIndex++;
+					stepChances.add(c);
 				}
-			}
-			cDirection = null;
-		} else {
-			for(Entry<String,Cell> h : neighbors.entrySet()) {
-				nextCell = h.getValue();
-				if(nextCell != null){
-					if(nextCell.hasRoad() == true && !nextCell.equals(formerCell)) {
-						formerCell = cell;
-						cell.removeEnemy(this);
-						cell = nextCell;
-						nextCell.addEnemy(this);
-						return;
-					}
-				}
+		}
+		int direction = 0;
+		if(stepChanceIndex>0)
+			direction = rand.nextInt(stepChanceIndex);//1-tol random szam generalas,amennyi lepheto cella van,a lepes iranyat donti el
+		for(int i=0;i<stepChanceIndex;i++){
+			if(i == direction){
+				formerCell = cell;
+				cell.removeEnemy(this);
+				cell = stepChances.get(i);
+				cell.addEnemy(this);
+				tick = 0;
+				return;
 			}
 		}
-		throw new Exception();
-	}
-
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Beallitja az iranyt, amerre mennie kell keresztezodesben az ellensegnek.
-	 * @param direction
-	 */
-	public void setDirection(String direction) {
-		cDirection = direction;
+		}
+		else tick++;
 	}
 
 	/**
@@ -172,22 +157,6 @@ public abstract class Enemy {
 	 */
 	public Cell getFormerCell() {
 		return formerCell;
-	}
-	
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * @return visszadja a cella nevet
-	 */
-	public String getName() {
-		return cName;
-	}
-
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * @param name: beallitja nevnek az itt kapott stringet
-	 */
-	public void setName(String name) {
-		cName = name;
 	}
 
 }

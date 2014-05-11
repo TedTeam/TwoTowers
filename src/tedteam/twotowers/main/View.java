@@ -4,17 +4,22 @@ package tedteam.twotowers.main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Line;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -55,11 +60,26 @@ public class View {
 	private JRadioButton damageHobbit;
 	private JRadioButton damageDwarf;
 	
+	//details panel cimkei
+	private JLabel maxMana;
+	private JLabel actualMana;
+	private JLabel enemies;
 	
 	private JTextField notification;
 	private BufferedImage image;
 	private BufferedImage background;
 	private BufferedImage road;
+	private BufferedImage hobbit;
+	private BufferedImage elf;
+	private BufferedImage human;
+	private BufferedImage dwarf;
+	private BufferedImage blocker;
+	private BufferedImage tower;
+	private BufferedImage blue;
+	private BufferedImage green;
+	private BufferedImage black;
+	private BufferedImage red;
+	private BufferedImage fog;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
@@ -70,6 +90,17 @@ public class View {
 			image = ImageIO.read(new File("logo.jpg"));
 			background = ImageIO.read(new File("map.jpg"));
 			road = ImageIO.read(new File("road.jpg"));
+			hobbit = ImageIO.read(new File("hobbit.png"));
+			human = ImageIO.read(new File("human.png"));
+			elf = ImageIO.read(new File("elf.png"));
+			dwarf = ImageIO.read(new File("dwarf.png"));
+			blocker = ImageIO.read(new File("blocker.png"));
+			tower = ImageIO.read(new File("tower.png"));
+			blue = ImageIO.read(new File("blue.png"));
+			green = ImageIO.read(new File("green.png"));
+			black = ImageIO.read(new File("black.png"));
+			red = ImageIO.read(new File("red.png"));
+			fog = ImageIO.read(new File("fog.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -98,11 +129,14 @@ public class View {
 		
 		//felso panel feltoltese
 		details.add(new JLabel("MaxMana:  ",JLabel.RIGHT));
-		details.add(new JLabel("100"));
+		maxMana = new JLabel();
+		details.add(maxMana);
 		details.add(new JLabel("ActualMana:  ",JLabel.RIGHT));
-		details.add(new JLabel("20"));
+		actualMana = new JLabel();
+		details.add(actualMana);
 		details.add(new JLabel("DeadEnemies:  ",JLabel.RIGHT));
-		details.add(new JLabel("xxx"));
+		enemies = new JLabel();
+		details.add(enemies);
 		//fekete keret beallitasa
 		details.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		//meret 800x30
@@ -180,7 +214,11 @@ public class View {
 		notification = new JTextField();
 		notification.setPreferredSize(new Dimension(rightSideWidth,30));
 		notification.setEditable(false);
-		notification.setText("Notification bullshit");
+		Font textFieldFont=new Font(notification.getFont().getName(),
+				Font.BOLD,notification.getFont().getSize()+3);
+		notification.setFont(textFieldFont);  
+		notification.setText("Nincs ertesites!");
+		notification.setHorizontalAlignment(JTextField.CENTER);
 		map.add(notification);
 		map.setPreferredSize(new Dimension(rightSideWidth,570));
 		//text.add(notification);
@@ -273,24 +311,99 @@ public class View {
 	
 	
 	public void drawField(){
-		try {
-			background = ImageIO.read(new File("map.jpg"));
-			graphics.drawImage(background,0,0,null);
-			for(Point p:roads){
-				graphics.drawImage(road,p.x,p.y,null);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		graphics.drawImage(background,0,0,null);
+		for(Point p:roads){
+			graphics.drawImage(road,p.x,p.y,null);
 		}
+		
+	
 	}
 
 
 
 	public void repaint() {
-		// TODO Auto-generated method stub
 		field.repaint();
 	}
+
+
+
+	public void drawHobbit(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(hobbit, point.x, point.y, null);
+	}
 	
+	public void drawHuman(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(human, point.x, point.y, null);
+	}
+	
+	public void drawElf(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(elf, point.x, point.y, null);
+	}
+	
+	public void drawDwarf(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(dwarf, point.x, point.y, null);
+	}
+	
+	public void drawBlocker(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(blocker, point.x, point.y, null);
+	}
+	
+	public void drawTower(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(tower, point.x, point.y, null);
+	}
+	
+	public void drawHits(ArrayList<Hit> hits) {
+		Graphics2D g2 = (Graphics2D) graphics;
+		for(Hit act: hits) {
+			Line2D line = new Line2D.Double(act.getFrom().getX(), act.getFrom().getY(),
+					act.getTo().getX(), act.getTo().getY());
+			g2.setColor(Color.red);
+			g2.draw(line);
+		}
+	}
+
+	public void drawBlueStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(blue, point.x, point.y, null);
+	}	
+	
+	public void drawGreenStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(green, point.x, point.y, null);
+	}	
+	
+	public void drawRedStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(red, point.x, point.y, null);
+	}	
+
+	public void drawBlackStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(black, point.x, point.y, null);
+	}
+	
+	public void drawFog(Point point) {
+		graphics.drawImage(fog, point.x, point.y, null);
+	}
+	
+	public void refreshDetails(int maxmana,int actualmana,int dead,int max, String noti){
+		Integer temp = maxmana;
+		maxMana.setText(temp.toString());
+		temp = actualmana;
+		actualMana.setText(temp.toString());
+		temp = dead;
+		Integer temp2 = max;
+		enemies.setText(temp.toString()+"/"+temp2.toString());
+		notification.setText(noti);
+	}
+
+
+
+
 }
 
