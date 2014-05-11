@@ -136,11 +136,31 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		Point point = converter.getCoords(tower.getCell());
 		view.drawTower(point);
 		
+		if(tower.getEnhancedByBlue()) {
+			point = converter.getCoords(tower.getCell());
+			view.drawBlueStone(point);
+		}
+		
+		if(tower.getEnhancedByRed()) {
+			point = converter.getCoords(tower.getCell());
+			view.drawRedStone(point);
+		}
+		
+		if(tower.getEnhancedByGreen()) {
+			point = converter.getCoords(tower.getCell());
+			view.drawGreenStone(point);
+		}
+		
 	}
 	@Override
 	public void affect(Blocker blocker) {
 		Point point = converter.getCoords(blocker.getCell());
 		view.drawBlocker(point);
+		
+		if(blocker.getEnhanced()) {
+			point = converter.getCoords(blocker.getCell());
+			view.drawBlackStone(point);
+		}
 		
 	}
 }

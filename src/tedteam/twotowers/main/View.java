@@ -71,6 +71,10 @@ public class View {
 	private BufferedImage dwarf;
 	private BufferedImage blocker;
 	private BufferedImage tower;
+	private BufferedImage blue;
+	private BufferedImage green;
+	private BufferedImage black;
+	private BufferedImage red;
 	/**
 	 * Inicializacio, mint frame felepitese
 	 */
@@ -87,6 +91,10 @@ public class View {
 			dwarf = ImageIO.read(new File("dwarf.png"));
 			blocker = ImageIO.read(new File("blocker.png"));
 			tower = ImageIO.read(new File("tower.png"));
+			blue = ImageIO.read(new File("blue.png"));
+			green = ImageIO.read(new File("green.png"));
+			black = ImageIO.read(new File("black.png"));
+			red = ImageIO.read(new File("red.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -339,6 +347,30 @@ public class View {
 		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
+	public void drawHits(Point point) {
+		// TODO Auto-generated method stub	
+	}
+
+	public void drawBlueStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(blue, point.x, point.y, null);
+	}	
+	
+	public void drawGreenStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(green, point.x, point.y, null);
+	}	
+	
+	public void drawRedStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(red, point.x, point.y, null);
+	}	
+
+	public void drawBlackStone(Point point) {
+		// TODO Auto-generated method stub
+		graphics.drawImage(black, point.x, point.y, null);
+	}	
+	
 	public void refreshDetails(int maxmana,int actualmana,int dead,int max){
 		Integer temp = maxmana;
 		maxMana.setText(temp.toString());
@@ -348,5 +380,7 @@ public class View {
 		Integer temp2 = max;
 		enemies.setText(temp.toString()+"/"+temp2.toString());
 	}
+
+
 }
 
