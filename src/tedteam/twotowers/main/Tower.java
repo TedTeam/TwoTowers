@@ -40,6 +40,7 @@ public class Tower extends Element implements EnemyVisitor {
 	
 	//Temporalis valtozo a prototipus miatt. Ha igaz, a kovetkezo enemy talalatkor cut metodus hivas damage helyett
 	private boolean cut = false;
+	private int tick = 0;
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -111,11 +112,15 @@ public class Tower extends Element implements EnemyVisitor {
 	 * A torony loveset vegrehajto metodus.
 	 */
 	public void action() {
-		Enemy targetEnemy;
-		targetEnemy = findEnemyInRange();
-		if(targetEnemy != null) {
-			targetEnemy.accept(this);
+		if(10-tick  == speed){
+			Enemy targetEnemy;
+			targetEnemy = findEnemyInRange();
+			if(targetEnemy != null) {
+				targetEnemy.accept(this);
+			}
+			tick = 0;
 		}
+		else tick++;
 	}
 
 	/**
@@ -302,16 +307,7 @@ public class Tower extends Element implements EnemyVisitor {
 		return fog;
 	}
 
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Visszaadja annak az ellensegnek a nevet, amire utoljara ralottunk
-	 * @return
-	 */
-	public String getLastShotEnemyName() {
-		String returnName = lastShotEnemyName;
-		lastShotEnemyName = null;
-		return returnName;
-	}
+
 
 	public int getRange() {
 		return range;
