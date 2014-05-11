@@ -35,14 +35,9 @@ public class Tower extends Element implements EnemyVisitor {
 	// Egy igaz/hamis valtozo, mely erteke eldonti,
 	// hogy leszallt-e a kod a toronyra, vagy sem.
 	private boolean fog = false;
-	// Az utoljara meglott ellenseg neve
-	// Ez csak a prototipusban kell
-	private String lastShotEnemyName = null;
-	
-	//Temporalis valtozo a prototipus miatt. Ha igaz, a kovetkezo enemy talalatkor cut metodus hivas damage helyett
-	private boolean cut = false;
+	// Az utemezo alapegysege.
 	private int tick = 0;
-	
+	// A torony loveseit eltarolo hit objektum.
 	private Hit hit = new Hit();
 	
 	/**
@@ -115,7 +110,7 @@ public class Tower extends Element implements EnemyVisitor {
 	 * A torony loveset vegrehajto metodus.
 	 */
 	public void action() {
-		if(10-tick  == speed){
+		if(10 - tick  == speed){
 			Enemy targetEnemy;
 			targetEnemy = findEnemyInRange();
 			if(targetEnemy != null) {
@@ -138,13 +133,11 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param hobbit: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Hobbit hobbit) {
-
 		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-tol 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			hobbit.cut(hobbitDamage);
 		else hobbit.damage(hobbitDamage);
-		
 	}
 
 	/**
@@ -152,7 +145,6 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param elf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Elf elf) {
-		
 		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-tol 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
@@ -165,7 +157,6 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param dwarf: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Dwarf dwarf) {
-		
 		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
@@ -179,7 +170,6 @@ public class Tower extends Element implements EnemyVisitor {
 	 * @param human: az ellenseg melyet sebezni kell.
 	 */
 	public void affect(Human human) {
-		
 		Random rand = new Random();
 		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
@@ -200,6 +190,7 @@ public class Tower extends Element implements EnemyVisitor {
 	public boolean getEnhancedByBlue() {
 		return enhancedByBlue;
 	}
+	
 	/**
 	 * enhancedByBlue attributumot true-ra allitja
 	 */
@@ -213,6 +204,7 @@ public class Tower extends Element implements EnemyVisitor {
 	public boolean getEnhancedByGreen() {
 		return enhancedByGreen;
 	}
+	
 	/**
 	 * enhancedByGreen attributumot true-ra allitja
 	 */
@@ -226,6 +218,7 @@ public class Tower extends Element implements EnemyVisitor {
 	public boolean getEnhancedByRed() {
 		return enhancedByRed;
 	}
+	
 	/**
 	 * enhancedByRed attributumot true-ra allitja
 	 */
@@ -287,47 +280,26 @@ public class Tower extends Element implements EnemyVisitor {
 		return fog;
 	}
 
-
-
+	/**
+	 * A Hit referenciat beallito metodus
+	 * @param hit: erre allitja be.
+	 */
 	public void setHit(Hit hit) {
 		this.hit = hit;
 	}
 
+	/**
+	 * Visszadja a torony hatotavjat.
+	 * @return
+	 */
 	public int getRange() {
 		return range;
 	}
-
-	/**
-	 * A kovetkezo 4 metodus a kulonbozo ellensegek sebzesenek merteket
-	 * adja vissza.
-	 * Ez csak a prototipusban kell.
-	 * @return a kulonbozo ellensegek sebzesenek merteke
-	 */
-	public int getElfDamage() {
-		return elfDamage;
-	}
-
-	public int getDwarfDamage() {
-		return dwarfDamage;
-	}
-
-	public int getHobbitDamage() {
-		return hobbitDamage;
-	}
-
-	public int getHumanDamage() {
-		return humanDamage;
-	}
 	
-	//proto utan toroljuk
-	public void setCut(){
-		cut = true;
-	}
-
-	@Override
+	/**
+	 * A toronyhoz tartozo visitor minta resze.
+	 */
 	public void visitElement(ElementVisitor visitor) {
 		visitor.affect(this);
-		
 	}
-
 }
