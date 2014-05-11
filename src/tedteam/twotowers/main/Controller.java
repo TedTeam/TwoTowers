@@ -49,15 +49,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	}
 	@Override
 	public void mouseClicked(MouseEvent clicked) {
-		//System.out.println("X: "+clicked.getX()+" Y: "+clicked.getY());
-		
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
-		//Point p = converter.getCoords(cell);
-		
-		//System.out.println("point:"+p);
-		//view.drawIcon(p.x,p.y);
-		
-		System.out.println(cell);
+
 		switch(creationState){
 		case none:break;
 		case tower: {
@@ -77,7 +70,7 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 			break; }
 		case blackStone:{
 			if(user.createBlackStone(cell))
-				notification.addNotification("Fekete kovet raktal a toronyra!");
+				notification.addNotification("Fekete kovet raktal az akadalyra!");
 			else notification.addNotification("Nem sikerult a ko lerakasa!");
 			break; }
 		case blueStone:{
