@@ -108,7 +108,16 @@ public class Generator {
 		Cell cell = gameField.getStartCell();
 		Hobbit hobbit = new Hobbit();
 		hobbit.init(gameState, cell);
+		Elf elf = new Elf();
+		elf.init(gameState, cell);
+		Human human = new Human();
+		human.init(gameState, cell);
+		Dwarf dwarf = new Dwarf();
+		dwarf.init(gameState, cell);
 		gameState.addEnemy(hobbit);
+		gameState.addEnemy(elf);
+		gameState.addEnemy(human);
+		gameState.addEnemy(dwarf);
 	}
 	
 
