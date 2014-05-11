@@ -1,27 +1,40 @@
 package tedteam.twotowers.main;
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 public class Hit {
-	private Point from; 
-	private Point to;
-	private int live = 30;
+	private ArrayList<Point> from; 
+	private ArrayList<Point> to;
+	private Converter converter;
 	
-	public Hit() {
-		//singleton
+
+	public Hit(){
+		from = new ArrayList<Point>();
+		to = new ArrayList<Point>();
+	}	
+	public void addHit(Cell f, Cell t) {
+		
+		from.add(converter.getCoords(f));
+		to.add(converter.getCoords(t));
 	}
 	
-	public void setHit(Point f, Point t) {
-		from = f;
-		to = t;
-	}
-	
-	public Point getFrom() {
+	public ArrayList<Point> getFrom() {
 		return from;
 	}
 	
-	public Point getTo() {
+	public void setConverter(Converter converter) {
+		this.converter = converter;
+	}
+
+	public ArrayList<Point> getTo() {
 		return to;
+	}
+	
+	public void clearAll(){
+		from.clear();
+		to.clear();
+		
 	}
 	
 }

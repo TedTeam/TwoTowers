@@ -357,15 +357,10 @@ public class View {
 		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
-	public void drawHits(ArrayList<Hit> hits) {
-		Graphics2D g2 = (Graphics2D) graphics;
-		for(Hit act: hits) {
-			Line2D line = new Line2D.Double(act.getFrom().getX(), act.getFrom().getY(),
-					act.getTo().getX(), act.getTo().getY());
-			g2.setColor(Color.red);
-			g2.draw(line);
-		}
+	public void drawHit(Point from,Point to) {
+		graphics.drawLine(from.x+15, from.y+15, to.x+15, to.y+15);
 	}
+	
 
 	public void drawBlueStone(Point point) {
 		// TODO Auto-generated method stub

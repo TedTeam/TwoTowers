@@ -11,6 +11,7 @@ public class Generator {
 	// A jatekallapotot tartalmazo osztaly.
 	private GameState gameState;
 
+	private Hit hit;
 	/**
 	 * Ez a metodus adja oda a cellan talalhato epitmenynek
 	 * a varazskovet.
@@ -25,12 +26,15 @@ public class Generator {
 		return false;
 	}
 
-	/**
-	 * Ez a metodus inicializalja a jatekteret.
-	 */
-	public void init(){
-		
+	
+
+	
+	public void setHit(Hit hit) {
+		this.hit = hit;
 	}
+
+
+
 
 	/**
 	 * Ez a metodus felelos egy akadaly letrehozasaert
@@ -51,20 +55,7 @@ public class Generator {
 		
 		return false;
 	}
-	//temporalis fuggveny a prototipushoz, alap esetben a String parameter nem kellene
-	public boolean createBlocker(Cell cell,String elementName){
-		
-		if(cell.hasRoad() == true && cell.hasElement() == false){		
-			Blocker blocker = new Blocker();
-			blocker.setCell(cell);
-			blocker.setName(elementName);
-			cell.setElement(blocker);
-			gameState.addElement(blocker);
-			return true;
-		}
-		
-		return false;
-	}
+
 	
 	
 	/**
@@ -79,26 +70,14 @@ public class Generator {
 		if(cell.hasRoad() == false && cell.hasElement() == false){		
 			Tower tower = new Tower();
 			tower.setCell(cell);
+			tower.setHit(hit);
 			cell.setElement(tower);
 			gameState.addElement(tower);
 			return true;
 		}
 		return false;
 	}
-	//temporalis fuggveny a prototipushoz, alap esetben a String parameter nem kellene
-	public boolean createTower(Cell cell,String elementName){
-		
-		if(cell.hasRoad() == false && cell.hasElement() == false){		
-			Tower tower = new Tower();
-			tower.setCell(cell);
-			tower.setName(elementName);
-			cell.setElement(tower);
-			gameState.addElement(tower);
-			return true;
-		}
-		
-		return false;
-	}
+
 	/**
 	 * Ez a metodus generalja az uj ellensegeket a palyara.
 	 * Letrehozasa utan beallitja annak alapertekeit es

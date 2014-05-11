@@ -18,6 +18,7 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	private Converter converter;
 	private GameField gameField;
 	private GameState gameState;
+	private Hit hit;
 	
 	private Notification notification = new Notification();
 	
@@ -29,6 +30,9 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	}
 	
 	
+	public void setHit(Hit hit) {
+		this.hit = hit;
+	}
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
@@ -40,11 +44,9 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	}
 	@Override
 	public void actionPerformed(ActionEvent clicked) {
-		//System.out.println(clicked.getActionCommand());
 		JButton button = (JButton)clicked.getSource();
 		view.enableAllButtons();
 		button.setEnabled(false);
-		//view.field.repaint();
 		
 	}
 	@Override
@@ -134,6 +136,14 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		
 		view.refreshDetails(user.getMaxMana(), user.getMana(), gameState.getDeadEnemiesNumber(), 
 				gameState.getMaximumEnemy(), notification.getNotification());
+		ArrayList<Point> from = hit.getFrom();
+		ArrayList<Point> to = hit.getTo();
+		if(from != null){
+		for(int i=0;i<from.size();i++){
+			view.drawHit(from.get(i),to.get(i));
+		}
+		hit.clearAll();
+		}
 		gameState.getEnemyList().visitEnemies(this);
 		gameState.getElementList().visitElements(this);
 		view.repaint();

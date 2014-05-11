@@ -25,8 +25,11 @@ public class Main {
 		ManaController manaController = new ManaController();
 		View view = new View();
 		User user = new User();
+		Hit hit = new Hit();
+		hit.setConverter(converter);
 		generator.setGameState(gameState);
 		generator.setGameField(gameField);
+		generator.setHit(hit);
 		gameState.setElementList(elementList);
 		gameState.setEnemyList(enemyList);
 		gameState.setManaController(manaController);
@@ -43,6 +46,7 @@ public class Main {
 		controller.setConverter(converter);
 		controller.setGameField(gameField);
 		controller.setGameState(gameState);
+		controller.setHit(hit);
 		
 		gameField.init();
 		view.init();

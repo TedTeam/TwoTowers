@@ -120,6 +120,7 @@ public class Tower extends Element implements EnemyVisitor {
 			targetEnemy = findEnemyInRange();
 			if(targetEnemy != null) {
 				targetEnemy.accept(this);
+				hit.addHit(this.cell,targetEnemy.getCell());
 				
 				//hit.setHit(new Converter().getCoords(this.cell), 
 				//	new Converter().getCoords(targetEnemy.getCell()));
@@ -146,6 +147,7 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			hobbit.cut(hobbitDamage);
 		else hobbit.damage(hobbitDamage);
+		System.out.println("hobbit damage");
 		
 	}
 
@@ -156,11 +158,11 @@ public class Tower extends Element implements EnemyVisitor {
 	public void affect(Elf elf) {
 		
 		Random rand = new Random();
-		int cutChance = rand.nextInt(20) +1 ;// 1-t�l 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
+		int cutChance = rand.nextInt(20) +1 ;// 1-tol 20-ig generalok egy szamot, hogy 5% esellyel legyen cut() hivas
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			elf.cut(elfDamage);
 		else elf.damage(elfDamage);
-
+		System.out.println("elf damage");
 	}
 
 	/**
@@ -174,6 +176,7 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			dwarf.cut(dwarfDamage);
 		else dwarf.damage(dwarfDamage);
+		System.out.println("dwarf damage");
 	}
 
 
@@ -188,6 +191,7 @@ public class Tower extends Element implements EnemyVisitor {
 		if(cutChance == 4)//ez lehet akemilyen szam 1 es 20 kozott
 			human.cut(humanDamage);
 		else human.damage(humanDamage);
+		System.out.println("human damage");
 	}
 	
 	/**
@@ -291,6 +295,10 @@ public class Tower extends Element implements EnemyVisitor {
 	}
 
 
+
+	public void setHit(Hit hit) {
+		this.hit = hit;
+	}
 
 	public int getRange() {
 		return range;
