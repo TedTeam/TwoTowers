@@ -148,6 +148,12 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		gameState.getElementList().visitElements(this);
 		view.repaint();
 		
+		if(gameState.checkGame()) {
+			if(gameState.getWin())
+				view.drawGameOver(true);
+			else view.drawGameOver(false);
+		}
+		
 	}
 	@Override
 	public void affect(Hobbit hobbit) {

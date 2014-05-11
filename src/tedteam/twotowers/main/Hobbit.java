@@ -42,6 +42,8 @@ public class Hobbit extends Enemy {
 		this.halved = true;
 		newHobbit.setHalved();
 		this.damage(damage);		
+		
+		gameState.increaseMaxEnemy();
 	}
 
 }

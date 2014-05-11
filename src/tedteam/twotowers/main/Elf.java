@@ -43,6 +43,8 @@ public class Elf extends Enemy {
 		this.halved = true;
 		newElf.setHalved();
 		this.damage(damage);
+		
+		gameState.increaseMaxEnemy();
 	}
 
 }

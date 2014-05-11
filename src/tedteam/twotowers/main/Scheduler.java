@@ -5,6 +5,7 @@ public class Scheduler {
 	EnemyList enemyList;
 	Controller controller;
 	ElementList elementList;
+	GameState gameState;
 	
 	final int STEP = 200; //ennyi ms-onkent tortenik tick
 	
@@ -23,6 +24,10 @@ public class Scheduler {
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
+	
+	public void setGameState(GameState gamestate) {
+		this.gameState = gamestate;
+	}
 
 
 	public void work(){
@@ -36,6 +41,11 @@ public class Scheduler {
 	    		elementList.notifyAllElement();
 	    		controller.drawAll();
 	    		tick++;
+	    		
+	    		if(gameState.checkGame()) {
+	    			System.exit(0);
+	    		}
+	    			
 	            }
 	        
 	    }

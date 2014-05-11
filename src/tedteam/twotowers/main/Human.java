@@ -43,6 +43,8 @@ public class Human extends Enemy {
 		this.halved = true;
 		newHuman.setHalved();
 		this.damage(damage);
+		
+		gameState.increaseMaxEnemy();
 	}
 
 }

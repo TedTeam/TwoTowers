@@ -42,6 +42,8 @@ public class Dwarf extends Enemy {
 		this.halved = true;
 		newDwarf.setHalved();
 		this.damage(damage);
+		
+		gameState.increaseMaxEnemy();
 	}
 
 }

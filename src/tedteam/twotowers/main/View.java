@@ -26,6 +26,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -395,6 +396,17 @@ public class View {
 		Integer temp2 = max;
 		enemies.setText(temp.toString()+"/"+temp2.toString());
 		notification.setText(noti);
+	}
+
+
+
+	public void drawGameOver(boolean b) {
+		if(b) {
+			JOptionPane.showMessageDialog(null, "Gyoztel, gratulalok!");
+		} else {
+			JOptionPane.showMessageDialog(null, "Vesztettel!");
+		}
+		
 	}
 
 

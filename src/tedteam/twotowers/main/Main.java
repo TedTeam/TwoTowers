@@ -37,6 +37,7 @@ public class Main {
 		scheduler.setEnemyList(enemyList);
 		scheduler.setController(controller);
 		scheduler.setElementList(elementList);
+		scheduler.setGameState(gameState);
 		manaController.setUser(user);
 		
 		user.setGenerator(generator);
@@ -49,6 +50,7 @@ public class Main {
 		controller.setHit(hit);
 		
 		gameField.init();
+		gameState.setFinalCell(gameField.getFinalCell());
 		view.init();
 		generator.generateEnemies();
 		scheduler.work();
