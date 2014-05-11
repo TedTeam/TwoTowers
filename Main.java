@@ -11,8 +11,9 @@ public class Main {
 	/**
 	 * @param args
 	 * @throws IOException
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws IOException, InterruptedException {
 		
 		Generator generator = new Generator();
 		EnemyList enemyList = new EnemyList();
@@ -24,6 +25,7 @@ public class Main {
 		Scheduler scheduler = new Scheduler();
 		ManaController manaController = new ManaController();
 		View view = new View();
+		MenuView menuView = new MenuView();
 		User user = new User();
 		Hit hit = new Hit();
 		hit.setConverter(converter);
@@ -34,8 +36,9 @@ public class Main {
 		gameState.setEnemyList(enemyList);
 		gameState.setManaController(manaController);
 		converter.setGameField(gameField);
-		scheduler.setGenerator(generator);
+		scheduler.setEnemyList(enemyList);
 		scheduler.setController(controller);
+		scheduler.setElementList(elementList);
 		manaController.setUser(user);
 		
 		user.setGenerator(generator);
@@ -47,24 +50,12 @@ public class Main {
 		controller.setGameState(gameState);
 		controller.setHit(hit);
 		
-
-		
 		gameField.init();
-		gameState.setFinalCell(gameField.getFinalCell());
 		
-		MenuView menuView = new MenuView();
-		menuView.initComponents(); 
-		while(menuView.wait) {
-			try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
-		
+		menuView.initComponents();
+		while(menuView.wait) {Thread.sleep(1000);}
 		view.init();
-		gameState.setMaximumEnemy(15);
+		generator.generateEnemies();
 		scheduler.work();
 		
 	}
