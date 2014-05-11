@@ -15,9 +15,9 @@ public class Blocker extends Element {
 	private int countRemain = 10;
 	// Az akadaly lassitasanak merteke.
 	private int slowing = 2;
-	// Parancsfeldolgozohoz a blokkolt enemyk nevei ebbe írodnak.
-	private String BlockedEnemies = new String();
-	private boolean enhanced=false;/**Erteke true, ha az objektumhoz lett csatolva MagicStone. Alapertelmezett erteke: false.*/
+	// Erteke true, ha az objektumhoz lett csatolva MagicStone.
+	// Alapertelmezett erteke: false.
+	private boolean enhanced = false;
 	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
@@ -37,8 +37,8 @@ public class Blocker extends Element {
 	 */
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
-		
 	}
+	
 	/**
 	 * Modositja az akadaly lassitasanak merteket
 	 * @param i: a modositas merteke
@@ -63,37 +63,26 @@ public class Blocker extends Element {
 				}
 			}
 		}
-			
 	}
-	
 
-	/**enhanced attributum ertekenek visszaadasa.*/
+	/**
+	 * Az enhanced attributum ertekenek visszaadasa.
+	 */
 	public boolean getEnhanced() {
 		return enhanced;
 	}
 
+	/**
+	 * Az enhanced attributum ertekenek beallitasa.
+	 * @param enhanced: erre.
+	 */
 	public void setEnhanced(boolean enhanced) {
 		this.enhanced = enhanced;
 	}
-
-	/**
-	 * Parancsfeldolgozo - temporális fuggveny
-	 * Ez visszaadja azokat az egységeket (osszefuzve egy Stringbe), amik blokkoltak a blocker altal
-	 * @return
-	 */
-	public String getBlockedEnemies() {
-		return BlockedEnemies;
-	}
-
-	public int getSlowing() {
-		return slowing;
-	}
-
-	public int getCountRemain() {
-		return countRemain;
-	}
 	
-	@Override
+	/**
+	 * Az akadalyhoz tartozo visitor mintanak az osztalya.
+	 */
 	public void visitElement(ElementVisitor visitor) {
 		visitor.affect(this);
 		

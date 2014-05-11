@@ -4,7 +4,7 @@ package tedteam.twotowers.main;
  * Ososztaly: MagicStone
  */
 public class BlueStone extends MagicStone {
-	/**A hat�t�vols�g m�rt�k�re vonatkoz� sz�m. */
+	/**A hatotavolsag mertekere vonatkozo szam. */
 	private int rangeRate=2;
 	/**
 	 * Ez a metodus valtoztatja meg az akadaly hatotavolsaganak nagysagat.
@@ -32,14 +32,4 @@ public class BlueStone extends MagicStone {
 			}
 		return false;
 	}
-
-	public void setName(String name) {
-		cName = name;	
-	}
-
-	@Override
-	public String getName() {
-		return cName;
-	}
-
 }

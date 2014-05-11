@@ -3,9 +3,6 @@ package tedteam.twotowers.main;
  * A varazskovek absztrakt ososztalya.
  */
 public abstract class MagicStone {
-
-	protected String cName = new String();
-	
 	/**
 	 * Ez a metodus valtoztaja meg az akadaly tulajdonsagait.
 	 * @param b: az akadaly, melyre a valtoztatast alkalmazni akarjuk.
@@ -19,7 +16,4 @@ public abstract class MagicStone {
 	 * @return a visszateresi ertek, hogy sikerult-e rarakni a kovet a toronyra.
 	 */
 	public abstract boolean effect(Tower t);
-
-	public abstract String getName();
-	
 }

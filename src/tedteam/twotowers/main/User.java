@@ -214,6 +214,10 @@ public class User {
 		}
 	}
 
+	/**
+	 * Visszater a maximalis elerheto varazserovel.
+	 * @return maximalis varazsero.
+	 */
 	public int getMaxMana() {
 		return maximumMana;
 	}

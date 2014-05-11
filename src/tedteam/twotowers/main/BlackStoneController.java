@@ -2,6 +2,10 @@ package tedteam.twotowers.main;
 
 import java.awt.event.ActionEvent;
 
+/**
+ * Ez az osztaly kezeli azt, hogy a fekete ko lerakasa
+ * gombra kattintottunk.
+ */
 public class BlackStoneController extends Controller{
 
 @Override

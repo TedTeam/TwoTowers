@@ -26,14 +26,4 @@ public class BlackStone extends MagicStone {
 	public boolean effect(Tower t){
 		return false;
 	}
-
-	public void setName(String name) {
-		cName = name;	
-	}
-
-	@Override
-	public String getName() {
-		return cName;
-	}
-
 }

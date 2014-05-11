@@ -2,6 +2,10 @@ package tedteam.twotowers.main;
 
 import java.awt.event.ActionEvent;
 
+/**
+ * Ez az osztaly kezeli azt, hogy a torony keszitese
+ * gombra kattintottunk.
+ */
 public class CreateTowerController extends Controller{
 
 	@Override
