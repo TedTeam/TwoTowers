@@ -5,7 +5,6 @@ package tedteam.twotowers.main;
  */
 public class GameState {
 	// A jatek soran letrehozott ellensegek szama.
-	@SuppressWarnings("unused")
 	private int countEnemy;
 	// A jatek soran megolt ellensegek szama. default erteke 0
 	private int deadEnemiesNumber = 0;
@@ -90,16 +89,26 @@ public class GameState {
 		finalCell = cell;
 	}
 
-	
-	
+	/**
+	 * Visszaadja a maximalisan letrehozhato ellensegek szamat.	
+	 * @return
+	 */
 	public int getMaximumEnemy() {
 		return maximumEnemy;
 	}
 
+	/**
+	 * Visszaadja az eddig megolt ellensegek szamat.
+	 * @return
+	 */
 	public int getDeadEnemiesNumber() {
 		return deadEnemiesNumber;
 	}
 	
+	/**
+	 * Visszaadja az eddig letrehozott ellensegek szamat.
+	 * @return
+	 */
 	public int getCountEnemy() {
 		return countEnemy;
 	}

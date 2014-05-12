@@ -33,26 +33,12 @@ public class ElementList {
 			e.action();
 		}
 	}
-
+	
 	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * Visszadja a name nevu elemet.
-	 * @param name: az ilyen nevu elementet keressuk
-	 * @return a megtalalt element (ha van)
+	 * Vegigmegy az osszes epitmenyen, es hasznalja a visitor mintat.
+	 * @param visitor
 	 */
-	public Element getElementByName(String name) {
-		int index = -1;
-		for(Element e : elements) {
-			if(e.getName().equals(name))
-				index = elements.indexOf(e);
-		}
-		if(index == -1)
-			return null;
-		return elements.get(index);
-	}
-
 	public void visitElements(ElementVisitor visitor) {
-		// TODO Auto-generated method stub
 		for(Element e:elements){
 			e.visitElement(visitor);
 		}

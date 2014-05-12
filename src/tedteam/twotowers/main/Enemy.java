@@ -100,37 +100,37 @@ public abstract class Enemy {
 	}
 
 	/**
-	 * Az ellenseg leptetesenek metodusa a prototipusban.
+	 * Az ellenseg leptetesenek metodusa.
 	 * @throws Exception 
 	 */
 	public void step(){
-		if(10-tick == speed){
-		//szomszed cellak lekerese
-		ArrayList<Cell> neighbors = new ArrayList<Cell>();
-		neighbors.addAll(cell.getNeighbors().values());
-		ArrayList<Cell> stepChances = new ArrayList<Cell>();
-		Random rand = new Random();
-		int stepChanceIndex = 0;
-		for(Cell c:neighbors){
-			if(c != null)
-				if(c.hasRoad() == true && c != formerCell){
-					stepChanceIndex++;
-					stepChances.add(c);
-				}
-		}
-		int direction = 0;
-		if(stepChanceIndex>0)
-			direction = rand.nextInt(stepChanceIndex);//1-tol random szam generalas,amennyi lepheto cella van,a lepes iranyat donti el
-		for(int i=0;i<stepChanceIndex;i++){
-			if(i == direction){
-				formerCell = cell;
-				cell.removeEnemy(this);
-				cell = stepChances.get(i);
-				cell.addEnemy(this);
-				tick = 0;
-				return;
+		if(10 - tick == speed){
+			//szomszed cellak lekerese
+			ArrayList<Cell> neighbors = new ArrayList<Cell>();
+			neighbors.addAll(cell.getNeighbors().values());
+			ArrayList<Cell> stepChances = new ArrayList<Cell>();
+			Random rand = new Random();
+			int stepChanceIndex = 0;
+			for(Cell c:neighbors) {
+				if(c != null)
+					if(c.hasRoad() == true && c != formerCell) {
+						stepChanceIndex++;
+						stepChances.add(c);
+					}
 			}
-		}
+			int direction = 0;
+			if(stepChanceIndex > 0)
+				direction = rand.nextInt(stepChanceIndex);//1-tol random szam generalas,amennyi lepheto cella van,a lepes iranyat donti el
+			for(int i=0; i < stepChanceIndex; i++) {
+				if(i == direction) {
+					formerCell = cell;
+					cell.removeEnemy(this);
+					cell = stepChances.get(i);
+					cell.addEnemy(this);
+					tick = 0;
+					return;
+				}
+			}
 		}
 		else tick++;
 	}

@@ -72,7 +72,6 @@ public class GameField {
 	 */
 	public void init(){ 
 		
-		
 		try {
 			File xmlFile = new File("map.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -108,7 +107,6 @@ public class GameField {
 				}
 			}
 			
-			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -131,33 +129,25 @@ public class GameField {
 						neighbors.put("right",cells.get(new Point(x+1,y)));
 						cells.get(new Point(x,y)).setNeighbors(neighbors);	
 				}
-				
 			}
 		/*System.out.println(cells.get(new Point(6,16)));
 		System.out.println(cells.get(new Point(1,1)).getNeighbors().get("up"));*/
-		
-		
 	}
-
-	
 
 	/**
-	 * A parameterkent kapott Cell objektumot eltarolja a cells 
-	 * kollekcioba a Point tipuskent kapott kulccsal.
-	 * @param c: kapott Cell objektum
-	 * @param point: kulcs koordinatak
-	 * @return
+	 * Visszater a parameterben kapott koordinatan talalhato cellaval.
+	 * @param point: a koordinata.
+	 * @return a keresett cella.
 	 */
-	public void addCell(Cell c, Point point) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public Cell getCell(Point point) {
 		return cells.get(point);
-		
 	}
 
+	/**
+	 * Visszater a parameterben kapott cella koordinataival.
+	 * @param cell: a cella.
+	 * @return a keresett koordinatak.
+	 */
 	public Point getPoint(Cell cell) {
 		for (java.util.Map.Entry<Point, Cell> entry : cells.entrySet()) {
             if (entry.getValue().equals(cell)) {
@@ -169,6 +159,10 @@ public class GameField {
 		 return null;
 	}
 
+	/**
+	 * Visszater az utakat tartalmazo cellakkal.
+	 * @return az utakat tartalmazo cellak.
+	 */
 	public ArrayList<Cell> getRoads() {
 		ArrayList<Cell> roads = new ArrayList<Cell>();
 		for (java.util.Map.Entry<Point, Cell> entry : cells.entrySet()) {

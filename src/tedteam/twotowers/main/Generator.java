@@ -28,16 +28,14 @@ public class Generator {
 			return element.enhance(stone);
 		return false;
 	}
-
 	
-
-	
+	/**
+	 * Beallitja a hit attributumot.
+	 * @param hit: erre.
+	 */
 	public void setHit(Hit hit) {
 		this.hit = hit;
 	}
-
-
-
 
 	/**
 	 * Ez a metodus felelos egy akadaly letrehozasaert
@@ -55,11 +53,8 @@ public class Generator {
 			gameState.addElement(blocker);
 			return true;
 		}
-		
 		return false;
 	}
-
-	
 	
 	/**
 	 * Ez a metodus felelos egy torony letrehozasaert
@@ -108,7 +103,6 @@ public class Generator {
 			gameState.addEnemy(human);
 		}
 	}
-	
 
 	/**
 	 * Parancsfeldolgozo - tempor�lis fuggveny
@@ -123,7 +117,6 @@ public class Generator {
 	 * @return
 	 */
 	public GameState getGameState() {
-		// TODO Auto-generated method stub
 		return gameState;
 	}
 	/**
@@ -141,6 +134,5 @@ public class Generator {
 	public void setGameField(GameField gamefield){
 		this.gameField = gamefield;
 	}
-	
 
 }

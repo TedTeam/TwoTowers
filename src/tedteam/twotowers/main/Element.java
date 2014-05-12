@@ -7,8 +7,6 @@ public abstract class Element {
 	// Az epitmeny helye a palyan.
 	protected Cell cell;
 	
-	private String cName = new String();
-	
 	/**
 	 * Ez a metodus donti el, hogy a varazskovel lehet-e erositeni
 	 * az epitmenyt. Ha igen, akkor erositi is.
@@ -40,22 +38,10 @@ public abstract class Element {
 	public Cell getCell() {
 		return cell;
 	}
-	
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * @return visszadja a cella nevet
-	 */
-	public String getName() {
-		return cName;
-	}
-	
-	/**
-	 * Parancsfeldolgozo - temporalis fuggveny
-	 * @param name: beallitja nevnek az itt kapott stringet
-	 */
-	public void setName(String name) {
-		cName = name;
-	}
 
+	/**
+	 * Absztrakt osztaly. A leszarmazottak valositjak majd meg.
+	 * @param visitor
+	 */
 	public abstract void visitElement(ElementVisitor visitor);
 }
