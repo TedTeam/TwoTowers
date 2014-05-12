@@ -88,20 +88,20 @@ public class View {
 	
 	public void init(){
 		try {
-			image = ImageIO.read(new File("logo.jpg"));
-			background = ImageIO.read(new File("map.jpg"));
-			road = ImageIO.read(new File("road.jpg"));
-			hobbit = ImageIO.read(new File("hobbit.png"));
-			human = ImageIO.read(new File("human.png"));
-			elf = ImageIO.read(new File("elf.png"));
-			dwarf = ImageIO.read(new File("dwarf.png"));
-			blocker = ImageIO.read(new File("blocker.png"));
-			tower = ImageIO.read(new File("tower.png"));
-			blue = ImageIO.read(new File("blue.png"));
-			green = ImageIO.read(new File("green.png"));
-			black = ImageIO.read(new File("black.png"));
-			red = ImageIO.read(new File("red.png"));
-			fog = ImageIO.read(new File("fog.png"));
+			image = ImageIO.read(new File("resources/logo.jpg"));
+			background = ImageIO.read(new File("resources/map.jpg"));
+			road = ImageIO.read(new File("resources/road.jpg"));
+			hobbit = ImageIO.read(new File("resources/hobbit.png"));
+			human = ImageIO.read(new File("resources/human.png"));
+			elf = ImageIO.read(new File("resources/elf.png"));
+			dwarf = ImageIO.read(new File("resources/dwarf.png"));
+			blocker = ImageIO.read(new File("resources/blocker.png"));
+			tower = ImageIO.read(new File("resources/tower.png"));
+			blue = ImageIO.read(new File("resources/blue.png"));
+			green = ImageIO.read(new File("resources/green.png"));
+			black = ImageIO.read(new File("resources/black.png"));
+			red = ImageIO.read(new File("resources/red.png"));
+			fog = ImageIO.read(new File("resources/fog.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

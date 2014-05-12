@@ -73,7 +73,7 @@ public class GameField {
 	public void init(){ 
 		
 		try {
-			File xmlFile = new File("map.xml");
+			File xmlFile = new File("resources/map.xml");
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder;
 			dBuilder = dbFactory.newDocumentBuilder();

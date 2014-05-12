@@ -24,7 +24,7 @@ public class HelpView extends JFrame{
 	   public void initComponents() {
 		   String content;
 		try {
-			content = readFile("help.txt", Charset.defaultCharset());
+			content = readFile("resources/help.txt", Charset.defaultCharset());
 
 		   JTextArea area = new JTextArea();
 		   area.setText(content); 
