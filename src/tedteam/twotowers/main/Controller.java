@@ -15,11 +15,11 @@ import javax.swing.JButton;
  * a viewnek, hogy miket rajzolhat ki (illetve azt is hogy rajzolhat).
  */
 public class Controller implements ActionListener, MouseListener,EnemyVisitor,ElementVisitor {
-	// 
+	// A gomblenyomasokkal okozhato allapotok listaja.
 	enum Creation{none,tower,blocker,elfRedStone,humanRedStone,hobbitRedStone,dwarfRedStone,blueStone,greenStone,blackStone}
 	// Referencia a View objektumra.
 	protected static View view;
-	// 
+	// Az actualis allapot.
 	protected static Creation creationState = Creation.none;
 	// Referencia a User objektumra.
 	private User user;
@@ -89,11 +89,11 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		JButton button = (JButton)clicked.getSource();
 		view.enableAllButtons();
 		button.setEnabled(false);
-		
 	}
 	
 	/**
-	 * Az eger kattintast feldolgozo metodus.
+	 * Az eger kattintast feldolgozo metodus. Attol fuggoen, hogy melyik gomb van lenyomva
+	 * abba az allapotba kerulunk az egerkattintas utan.
 	 */
 	public void mouseClicked(MouseEvent clicked) {
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
@@ -193,27 +193,42 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		}
 		
 	}
-	@Override
+	
+	/**
+	 * A hobbit ellensegtipus megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Hobbit hobbit) {
 		Point point = converter.getCoords(hobbit.getCell());
 		view.drawHobbit(point);
 	}
-	@Override
+	
+	/**
+	 * A tunde ellensegtipus megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Elf elf) {
 		Point point = converter.getCoords(elf.getCell());
 		view.drawElf(point);
 	}
-	@Override
+	
+	/**
+	 * A torp ellensegtipus megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Dwarf dwarf) {
 		Point point = converter.getCoords(dwarf.getCell());
 		view.drawDwarf(point);
 	}
-	@Override
+	
+	/**
+	 * Az ember ellensegtipus megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Human human) {
 		Point point = converter.getCoords(human.getCell());
 		view.drawHuman(point);
 	}
-	@Override
+	
+	/**
+	 * A torony megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Tower tower) {
 		Point point = converter.getCoords(tower.getCell());
 		view.drawTower(point);
@@ -236,7 +251,10 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		}
 		
 	}
-	@Override
+
+	/**
+	 * Az akadaly megkulonboztetesehez szukseges metodus.
+	 */
 	public void affect(Blocker blocker) {
 		Point point = converter.getCoords(blocker.getCell());
 		view.drawBlocker(point);

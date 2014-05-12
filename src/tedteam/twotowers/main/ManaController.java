@@ -39,6 +39,10 @@ public class ManaController implements EnemyVisitor {
 		user.increaseMana(50);
 	}
 
+	/**
+	 * Beallitjuk a user attributumot.
+	 * @param user: erre.
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}

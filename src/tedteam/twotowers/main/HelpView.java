@@ -13,26 +13,28 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
+/**
+ * A jatek leirasa, melyet a jatekot inditva tudunk elerni.
+ * Beolvassa a help.txt faljbol az adatokat, es kiirja azokat egy uj ablakra.
+ */
 public class HelpView extends JFrame{
-		/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
-		JPanel panel;		
+	JPanel panel;		
 
-	   public void initComponents() {
-		   String content;
+	public void initComponents() {
+		String content;
 		try {
 			content = readFile("resources/help.txt", Charset.defaultCharset());
 
-		   JTextArea area = new JTextArea();
-		   area.setText(content); 
-	       panel=new JPanel();
-	       panel.add(area);
-	       this.setLayout(new BorderLayout());
-	       this.add(panel,BorderLayout.CENTER);
-	       //this.setPreferredSize(new Dimension(500,500));
+		    JTextArea area = new JTextArea();
+		    area.setText(content); 
+	        panel=new JPanel();
+	        panel.add(area);
+	        this.setLayout(new BorderLayout());
+	        this.add(panel,BorderLayout.CENTER);
+	        //this.setPreferredSize(new Dimension(500,500));
 			this.setSize(800,600);
 			this.setLocation(500,300);
 			this.setIconImage(new ImageIcon("logo.jpg").getImage());
@@ -43,12 +45,12 @@ public class HelpView extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	   }
+	}
 	   
-	   static String readFile(String path, Charset encoding) 
-			   throws IOException 
-			 {
-			   byte[] encoded = Files.readAllBytes(Paths.get(path));
-			   return new String(encoded, encoding);
-			 }
+	static String readFile(String path, Charset encoding) 
+		throws IOException 
+		{
+			byte[] encoded = Files.readAllBytes(Paths.get(path));
+			return new String(encoded, encoding);
+		}
 }

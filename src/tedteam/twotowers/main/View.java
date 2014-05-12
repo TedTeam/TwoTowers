@@ -1,6 +1,5 @@
 package tedteam.twotowers.main;
 
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -31,42 +30,46 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-//enum Type{elso,masodik}
+/**
+ * A kirajzolasert felelos osztaly.
+ */
 public class View {
-
-	
-	
+	// Az utak koordinatait eltarolo osztaly.
 	private ArrayList<Point> roads;
-	//az a jpanel, amire rajzolunk
+	// A jpanel, amire rajzolunk.
 	private MapField field;
+	// Referencia egy Controller objektumra.
 	private Controller controller;
-	
-	
-	//ezen keresztul rajzolunk a kepre
+	// Ezen keresztul rajzolunk a kepre
 	private Graphics graphics;
-	//erre a kepre rajzolunk
+	// Erre a kepre rajzolunk
 	private BufferedImage screen;
-	//torony letrehozas gomb es a tobbi..
+	// Torony letrehozas gomb
 	private JButton towerButton;
+	// Akadaly letrehozas gomb
 	private JButton blockerButton;
+	// Kek ko letrehozas gomb
 	private JButton blueStoneButton;
+	// Fekete ko letrehozas gomb
 	private JButton blackStoneButton;
+	// Zold ko letrehozas gomb
 	private JButton greenStoneButton;
+	// Piros ko letrehozas gomb
 	private JButton redStoneButton;
-	//radio gombokat csoportba foglalo objektum
+	// Radio gombokat csoportba foglalo objektum
 	private ButtonGroup radioButtons;
-	//radio gombok a sebzesek kivalasztasahoz
+	// Radio gombok a sebzesek kivalasztasahoz
 	private JRadioButton damageElf;
 	private JRadioButton damageHuman;
 	private JRadioButton damageHobbit;
 	private JRadioButton damageDwarf;
-	
-	//details panel cimkei
+	// A details panel cimkei
 	private JLabel maxMana;
 	private JLabel actualMana;
 	private JLabel enemies;
-	
+	// Az ertesites
 	private JTextField notification;
+	// A jatekban hasznalt kepek.
 	private BufferedImage image;
 	private BufferedImage background;
 	private BufferedImage road;
@@ -81,11 +84,10 @@ public class View {
 	private BufferedImage black;
 	private BufferedImage red;
 	private BufferedImage fog;
+	
 	/**
-	 * Inicializacio, mint frame felepitese
+	 * Inicializacio, mint a frame felepitese
 	 */
-	
-	
 	public void init(){
 		try {
 			image = ImageIO.read(new File("resources/logo.jpg"));
@@ -103,32 +105,30 @@ public class View {
 			red = ImageIO.read(new File("resources/red.png"));
 			fog = ImageIO.read(new File("resources/fog.png"));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//elementek meretei
+		
+		// elementek meretei
 		Point buttonSize = new Point(120,30);
 		Point windowSize = new Point(800,600);
 		int leftSideWidth = 140;
 		int rightSideWidth = 660;
 		
-		
-		//kep letrehozasa
+		// kep letrehozasa
 		screen = new BufferedImage(660,540,BufferedImage.TYPE_INT_RGB);
 		graphics = screen.createGraphics();
-		
 		
 		JFrame frame = new JFrame("Two Towers - The Game");
 		JPanel pane = new JPanel(new GridBagLayout());
 		frame.getContentPane().add(pane);
-		//ezzel helyezhetunk el elemeket a fopanelre,a pane-re
+		// ezzel helyezhetunk el elemeket a fopanelre,a pane-re
 		GridBagConstraints gbc = new GridBagConstraints();
-		//ekkora az egesz ablak merete is:800x600
+		// ekkora az egesz ablak merete is:800x600
 		pane.setPreferredSize(new Dimension(windowSize.x,windowSize.y));
-		//felso informacioknak a panel
+		// felso informacioknak a panel
 		JPanel details = new JPanel(new GridLayout(1,6));
 		
-		//felso panel feltoltese
+		// felso panel feltoltese
 		details.add(new JLabel("MaxMana:  ",JLabel.RIGHT));
 		maxMana = new JLabel();
 		details.add(maxMana);
@@ -138,12 +138,12 @@ public class View {
 		details.add(new JLabel("DeadEnemies:  ",JLabel.RIGHT));
 		enemies = new JLabel();
 		details.add(enemies);
-		//fekete keret beallitasa
+		// fekete keret beallitasa
 		details.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		//meret 800x30
+		// meret 800x30
 		details.setPreferredSize(new Dimension(windowSize.x,30));
 		
-		//tower es blocker letrehozando gombok panelje, az 50 es 30 padding ertek
+		// tower es blocker letrehozando gombok panelje, az 50 es 30 padding ertek
 		JPanel elementButtons = new JPanel(new FlowLayout(FlowLayout.CENTER,50,30));
 		towerButton = new JButton("Create Tower");
 		towerButton.setPreferredSize(new Dimension(buttonSize.x,buttonSize.y));
@@ -157,7 +157,7 @@ public class View {
 		elementButtons.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		elementButtons.setPreferredSize(new Dimension(leftSideWidth,170));
 		
-		//kovek letrehozasanak gombjai
+		// kovek letrehozasanak gombjai
 		JPanel stoneButtons = new JPanel(new FlowLayout(FlowLayout.CENTER,50,27));
 		stoneButtons.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		blueStoneButton = new JButton("Blue Stone");
@@ -222,12 +222,12 @@ public class View {
 		notification.setHorizontalAlignment(JTextField.CENTER);
 		map.add(notification);
 		map.setPreferredSize(new Dimension(rightSideWidth,570));
-		//text.add(notification);
-		//x es y a fopanelen levo alpanelek indexei. A GridBagLayout-ot tudjuk indexelni vele
+		
+		// x es y a fopanelen levo alpanelek indexei. A GridBagLayout-ot tudjuk indexelni vele
 		int x = 0;
 		int y = 0;
 		
-		//details panel hozzadasa a frame-hez
+		// details panel hozzadasa a frame-hez
 		gbc.gridx = x;
 		gbc.gridy = y;
 		gbc.gridwidth = 2;
@@ -245,7 +245,7 @@ public class View {
 		gbc.gridheight = 3;
 		pane.add(map,gbc);
 		
-		//stoneButtons panel hozzadasa
+		// stoneButtons panel hozzadasa
 		x--;
 		y++;
 		gbc.gridx = x;
@@ -253,14 +253,13 @@ public class View {
 		gbc.gridheight = 1;
 		pane.add(stoneButtons,gbc);
 		
-		//enemyChoose panel hozzadasa
+		// enemyChoose panel hozzadasa
 		y++;
 		gbc.gridx = x;
 		gbc.gridy = y;
 		pane.add(enemyChoose,gbc);
 		
-		
-		//egesz ablakra vonatkozo beallitasok
+		// egesz ablakra vonatkozo beallitasok
 		frame.setSize(windowSize.x,windowSize.y);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setIconImage(new ImageIcon("logo.jpg").getImage());
@@ -271,14 +270,18 @@ public class View {
 		roads = controller.getRoads();
 	}
 	
-	
-	
+	/**
+	 * Visszaadja a kepet amelyre rajzolunk.
+	 * @return
+	 */
 	public BufferedImage getScreen() {
 		return screen;
 	}
 
-
-
+	/**
+	 * Beallitja a controller attributumot.
+	 * @param controller: erre.
+	 */
 	public void setController(Controller controller) {
 		this.controller = controller;
 	}
@@ -305,88 +308,128 @@ public class View {
 		if(enable == false)radioButtons.clearSelection();
 	}
 	
-	
-
-
-	
-	
-	
+	/**
+	 * A palya kirajzolasa.
+	 */
 	public void drawField(){
 		graphics.drawImage(background,0,0,null);
 		for(Point p:roads){
 			graphics.drawImage(road,p.x,p.y,null);
 		}
-		
-	
 	}
 
-
-
+	/**
+	 * Az ujrarajzolo metodus.
+	 */
 	public void repaint() {
 		field.repaint();
 	}
 
-
-
+	/**
+	 * A hobbitot kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawHobbit(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(hobbit, point.x, point.y, null);
 	}
 	
+	/**
+	 * Az embert kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawHuman(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(human, point.x, point.y, null);
 	}
 	
+	/**
+	 * A tundet kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawElf(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(elf, point.x, point.y, null);
 	}
 	
+	/**
+	 * A torpot kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawDwarf(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(dwarf, point.x, point.y, null);
 	}
 	
+	/**
+	 * Az akadalyt kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawBlocker(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(blocker, point.x, point.y, null);
 	}
 	
+	/**
+	 * A tornyot kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawTower(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(tower, point.x, point.y, null);
 	}
 	
+	/**
+	 * Egy lovest kirajzolo metodus.
+	 * @param from: honnan
+	 * @param to: hova
+	 */
 	public void drawHit(Point from,Point to) {
 		graphics.drawLine(from.x+15, from.y+15, to.x+15, to.y+15);
 	}
 	
-
+	/**
+	 * A kek kovet kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawBlueStone(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(blue, point.x, point.y, null);
 	}	
 	
+	/**
+	 * A zold kovet kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawGreenStone(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(green, point.x, point.y, null);
 	}	
 	
+	/**
+	 * A piros kovet kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawRedStone(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(red, point.x, point.y, null);
 	}	
 
+	/**
+	 * A fekete kovet kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawBlackStone(Point point) {
-		// TODO Auto-generated method stub
 		graphics.drawImage(black, point.x, point.y, null);
 	}
 	
+	/**
+	 * A kodot kirajzolo metodus.
+	 * @param point: erre a koordinatara rajzolja ki.
+	 */
 	public void drawFog(Point point) {
 		graphics.drawImage(fog, point.x, point.y, null);
 	}
 	
+	/**
+	 * A kepernyore kiirt adatok frissitese.
+	 * @param maxmana: maximalis mana
+	 * @param actualmana: actualis mana
+	 * @param dead: halott ellensegek
+	 * @param max: maximalis ellensegek
+	 * @param noti: ertesitesek
+	 */
 	public void refreshDetails(int maxmana,int actualmana,int dead,int max, String noti){
 		Integer temp = maxmana;
 		maxMana.setText(temp.toString());
@@ -398,19 +441,17 @@ public class View {
 		notification.setText(noti);
 	}
 
-
-
+	/**
+	 * A jatek vege uzenet.
+	 * @param b: vege van-e a jateknak.
+	 */
 	public void drawGameOver(boolean b) {
 		if(b) {
 			JOptionPane.showMessageDialog(null, "Gyoztel, gratulalok!");
 		} else {
 			JOptionPane.showMessageDialog(null, "Vesztettel!");
 		}
-		
 	}
-
-
-
 
 }
 

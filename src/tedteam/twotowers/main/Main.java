@@ -1,11 +1,13 @@
 package tedteam.twotowers.main;
 
-
 import java.io.IOException;
 
-
-
-
+/**
+ * A Main osztaly. Itt hozzuk letre a jatek osszes fobb objektumat,
+ * es beallitjuk azok osszefuggosegeit.
+ * A jatek elejen egy menuvel inditunk, majd ha abbol tovabbleptunk
+ * kirajzoljuk a palyat es elinditjuk a jatek utemezojet.
+ */
 public class Main {
 
 	/**
@@ -13,7 +15,6 @@ public class Main {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-		
 		Generator generator = new Generator();
 		EnemyList enemyList = new EnemyList();
 		ElementList elementList = new ElementList();
@@ -46,9 +47,7 @@ public class Main {
 		controller.setGameField(gameField);
 		controller.setGameState(gameState);
 		controller.setHit(hit);
-		
-
-		
+	
 		gameField.init();
 		gameState.setFinalCell(gameField.getFinalCell());
 		
@@ -56,17 +55,15 @@ public class Main {
 		menuView.initComponents(); 
 		while(menuView.wait) {
 			try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		view.init();
 		gameState.setMaximumEnemy(15);
 		scheduler.work();
-		
 	}
 
 }

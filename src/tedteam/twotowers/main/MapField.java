@@ -7,6 +7,9 @@ import java.awt.Toolkit;
 
 import javax.swing.JPanel;
 
+/**
+ * Egy JPanel leszarmazott osztaly, melyre rajzolunk a jatek soran.
+ */
 public class MapField extends JPanel{
 
 	View view;
@@ -14,7 +17,7 @@ public class MapField extends JPanel{
 	public void setView(View v){
 		this.view = v;
 	}
-	@Override
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(view.getScreen(),0,0,null);
