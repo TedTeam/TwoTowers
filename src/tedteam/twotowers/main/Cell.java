@@ -16,9 +16,6 @@ public class Cell {
 	private HashMap<String,Cell> neighbors = new HashMap<String,Cell>();
 	// Ez donti el, hogy a cellan talalhato-e ut.
 	private boolean road = false;
-	
-	//temp-parancsfeldolgozo
-	private String cName = new String();
 
 	/**
 	 * Hozzaad egy ellenseget az actualEnemies lancolt listahoz.
@@ -52,7 +49,7 @@ public class Cell {
 		this.neighbors.putAll(neighbors2);
 	}
 	
-	/* Lekeri a cellan talalhato osszes ellenseget.
+	/** Lekeri a cellan talalhato osszes ellenseget.
 	 * @return a cellan talalhato ellensegeket tartalmazo tomb.
 	 */
 	public boolean hasEnemy() {
@@ -110,13 +107,5 @@ public class Cell {
 	 */
 	public void setRoad() {
 		road=true;
-	}
-	
-	public String getCellName() {
-		return cName;
-	}
-
-	public void setCellName(String name) {
-		cName = name;
 	}
 }

@@ -9,47 +9,92 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+/**
+ * A hid osztaly a View es a Modell kozott.
+ * Ez az osztaly kezeli le az egerkattintasokat es o szol
+ * a viewnek, hogy miket rajzolhat ki (illetve azt is hogy rajzolhat).
+ */
 public class Controller implements ActionListener, MouseListener,EnemyVisitor,ElementVisitor {
-
+	// 
 	enum Creation{none,tower,blocker,elfRedStone,humanRedStone,hobbitRedStone,dwarfRedStone,blueStone,greenStone,blackStone}
+	// Referencia a View objektumra.
 	protected static View view;
+	// 
 	protected static Creation creationState = Creation.none;
+	// Referencia a User objektumra.
 	private User user;
+	// Referencia a converter objektumra.
 	private Converter converter;
+	// Referencia a GameField objektumra.
 	private GameField gameField;
+	// Referencia a GameState objektumra.
 	private GameState gameState;
+	// Referencia a Hit objektumra.
 	private Hit hit;
-	
+	// Referencia a Notification objektumra.
 	private Notification notification = new Notification();
 	
+	/**
+	 * A user attributum beallitasa.
+	 * @param user: erre.
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	/**
+	 * A view attributum beallitasa.
+	 * @param view2: erre.
+	 */
 	public void setView(View view2) {
 		view = view2;
 	}
 	
-	
+	/**
+	 * A hit attributum beallitasa.
+	 * @param hit: erre.
+	 */
 	public void setHit(Hit hit) {
 		this.hit = hit;
 	}
+	
+	/**
+	 * A gameState attributum beallitasa.
+	 * @param gameState: erre.
+	 */
 	public void setGameState(GameState gameState) {
 		this.gameState = gameState;
 	}
+	
+	/**
+	 * A gameField attributum beallitasa.
+	 * @param gameField: erre.
+	 */
 	public void setGameField(GameField gameField) {
 		this.gameField = gameField;
 	}
+	
+	/**
+	 * A converter attributum beallitasa.
+	 * @param converter: erre.
+	 */
 	public void setConverter(Converter converter) {
 		this.converter = converter;
 	}
-	@Override
+	
+	/**
+	 * Az eger kattintasbol adodo akciot feldolgozo metodus.
+	 */
 	public void actionPerformed(ActionEvent clicked) {
 		JButton button = (JButton)clicked.getSource();
 		view.enableAllButtons();
 		button.setEnabled(false);
 		
 	}
-	@Override
+	
+	/**
+	 * Az eger kattintast feldolgozo metodus.
+	 */
 	public void mouseClicked(MouseEvent clicked) {
 		Cell cell = converter.getCell(new Point(clicked.getX(),clicked.getY()));
 
@@ -62,8 +107,8 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 			break; }
 		case blocker:{
 			if(user.createBlocker(cell))
-				notification.addNotification("Leraktal egy Akadályt!");
-			else notification.addNotification("Nem tudsz Akadályt lerakni!");
+				notification.addNotification("Leraktal egy Akadï¿½lyt!");
+			else notification.addNotification("Nem tudsz Akadï¿½lyt lerakni!");
 			break; }
 		case greenStone:{
 			if(user.createGreenStone(cell))
@@ -101,27 +146,17 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 			else notification.addNotification("Nem sikerult a ko lerakasa!");
 			break; }
 		}
-		
 	}
-	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		
-	}
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	
+	public void mouseEntered(MouseEvent arg0) {}
+	public void mouseExited(MouseEvent arg0) {}
+	public void mousePressed(MouseEvent arg0) {}
+	public void mouseReleased(MouseEvent arg0) {}
+	
+	/**
+	 * Az utakat lekerdezo metodus.
+	 * @return visszater a palyan talalhato utak koordinatajaval.
+	 */
 	public ArrayList<Point> getRoads() {
 		ArrayList<Cell> roadsCell = gameField.getRoads();
 		ArrayList<Point> roadsPoint = new ArrayList<Point>();
@@ -131,6 +166,9 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 		return roadsPoint;
 	}
 
+	/**
+	 * A kirajzolo fuggveny.
+	 */
 	public void drawAll(){
 		view.drawField();
 		
@@ -164,19 +202,16 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 	public void affect(Elf elf) {
 		Point point = converter.getCoords(elf.getCell());
 		view.drawElf(point);
-		
 	}
 	@Override
 	public void affect(Dwarf dwarf) {
 		Point point = converter.getCoords(dwarf.getCell());
 		view.drawDwarf(point);
-		
 	}
 	@Override
 	public void affect(Human human) {
 		Point point = converter.getCoords(human.getCell());
 		view.drawHuman(point);
-		
 	}
 	@Override
 	public void affect(Tower tower) {
@@ -210,6 +245,5 @@ public class Controller implements ActionListener, MouseListener,EnemyVisitor,El
 			point = converter.getCoords(blocker.getCell());
 			view.drawBlackStone(point);
 		}
-		
 	}
 }
